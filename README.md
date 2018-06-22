@@ -9,3 +9,5 @@ A Python Notebook with steps taken and code written to identify a list of confir
 A CSV file containing just the final resulting table from the Python Notebook.  This table is also contained in the SQLite database file.
 - *pln_template.yaml*  
 A YAML template file to help the Exoplanet class recreate a pln file with the original sections and parameters.
+- *skip_planets.txt*
+A list of planet names to omit from EOD.
