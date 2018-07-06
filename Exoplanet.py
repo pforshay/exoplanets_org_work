@@ -1,4 +1,6 @@
-from decimal import *
+from decimal import Decimal, InvalidOperation
+import os
+import pandas as pd
 import yaml
 
 
@@ -12,7 +14,7 @@ class ExoParameter(object):
 
     def __init__(self, parameter, attr_dict=None):
         self.parameter = str(parameter).upper()
-        self.comments = []
+        self.comments = list()
         self.default = None
         self.eu_field = None
         self.label = "N/A"
@@ -27,7 +29,7 @@ class ExoParameter(object):
         self.value = None
 
         if attr_dict:
-            self.add_from_template(attr_dict)
+            self.set_from_template(attr_dict)
 
     def __lt__(self, another):
         if isinstance(another, ExoParameter):
@@ -42,11 +44,6 @@ class ExoParameter(object):
     def add_comment(self, comment):
         self.comments.append(comment)
 
-    def add_from_template(self, attribute_dict):
-        for attr, value in attribute_dict.items():
-            setattr(self, attr, value)
-        self.value = self.default
-
     def copy_values(self, another):
         if isinstance(another, ExoParameter):
             self.reference = another.reference
@@ -60,6 +57,12 @@ class ExoParameter(object):
 
     def rm_comment(self, index):
         del self.comments[index]
+
+    def set_from_template(self, attribute_dict):
+        for attr, value in attribute_dict.items():
+            setattr(self, attr, value)
+        if self.value is None:
+            self.value = self.default
 
 
 class Exoplanet(object):
@@ -78,41 +81,49 @@ class Exoplanet(object):
         Create an exoplanet object and optionally seed it with parameters
         already in hand.
 
-        :param parameters:  If the user already has exoplanet parameters
-                            stored in a dictionary, they may pass it during
-                            creation using this field.
-        :type parameters:  dict
-
         :param path:  A filepath may be supplied to create an Exoplanet object
                       from an existing .pln file.
         :type path:  str
         """
 
-        # Ingest parameters from either the parameters variable or a .pln file
-        # supplied in path.
+        # Initialize the Exoplanet object with an empty 'attributes' list and
+        # use the 'self.template_file' to create the default attributes.
         self.attributes = []
         self.build_from_template(self.template_file)
+
+        # If an existing .pln file is provided, read this file information.
         if path:
             self.read_from_pln(path)
 
-        # The pln template should define the major sections of the file and
-        # where to store / find each parameter.  This could become a class
-        # property, though it is lengthy.
+        # Add the YAML-formatted contents of 'self.pln_template_file' to an
+        # attribute of this object.
         with open(self.pln_template_file, 'r') as yamlstream:
             self.pln_template = yaml.load(yamlstream)
 
     def __str__(self):
         """
-        Return the self.parameters dictionary if a user tries to print an
-        Exoplanet object.
+        Format an Exoplanet string if requested.
         """
 
         return "<Exoplanet>: {0}".format(self.__dict__)
 
     def build_from_template(self, template_file):
+        """
+        Use a template file to add default attributes to an Exoplanet and set
+        these attributes to default ExoParameter objects.
+
+        :param template_file:  The template file defining default Exoplanet
+                               attributes.
+        :type template_file:  str
+        """
+
+        # Load the YAML-formatted template file.
         with open(template_file, 'r') as template:
             template_parameters = yaml.load(template)
 
+        # For each attribute defined in the template file, add this attribute
+        # to the Exoplanet object and link it to a new ExoParameter defined
+        # by the information supplied.
         for param, attributes in template_parameters.items():
             setattr(self, param.lower(), ExoParameter(param,
                                                       attr_dict=attributes
@@ -150,6 +161,22 @@ class Exoplanet(object):
         self.all_names = list(set(all_names))
         return self.all_names
 
+    def read_from_nasa(self, nasa_series):
+
+        nasa_dict = nasa_series.to_dict()
+
+        for att in self.attributes:
+            exo_param = getattr(self, att)
+            nasa_field = exo_param.nasa_field
+            if nasa_field is None:
+                continue
+
+            new_value = nasa_dict[nasa_field]
+            if str(new_value) == "nan":
+                new_value = exo_param.default
+            exo_param.value = new_value
+            setattr(self, att, exo_param)
+
     def read_from_pln(self, path):
         """
         Read exoplanet parameters from a .pln file assuming certain commenting
@@ -184,12 +211,17 @@ class Exoplanet(object):
                     elif num == 2:
                         value = keyword_value_pair[1]
 
-                        # Try turning the value into an integer or float.
+                        # Try turning the value into a Decimal (this will
+                        # preserve significant figures).
                         try:
                             value = Decimal(value)
                         except InvalidOperation:
                             pass
 
+                    # Examine the keyword more closely.  Current .pln
+                    # formatting specifies the uncertainty keywords being with
+                    # 'U', uncertainty upper-limits end with 'D', references
+                    # end with 'REF', and links end with 'URL'.
                     if keyword[0] == "u" and keyword[1:] in self.attributes:
                         keyword = keyword[1:]
                         attribute = "uncertainty"
@@ -208,7 +240,9 @@ class Exoplanet(object):
                         attribute = "url"
                     else:
                         attribute = "value"
-                    # Add this pair to the parameters dictionary.
+
+                    # If this keyword exists as an ExoParameter, set the
+                    # designated attribute and value.
                     try:
                         param = getattr(self, keyword)
                         setattr(param, attribute, value)
@@ -260,25 +294,37 @@ class Exoplanet(object):
                     # Add this pair to the parameters dictionary.
                     self.parameters[keyword] = value
 
-    def save_to_pln(self, path=None):
+    def save_to_pln(self, name=None, dir=None, gui=False):
         """
-        Save an Exoplanet object into a .pln text file.  Needs more work to
-        ensure significant digits are preserved.  A .pln template is needed
-        here to recreate the sections of the text file and where to write each
-        parameter.
+        Save an Exoplanet object into a .pln text file.  A .pln template is
+        needed here to recreate the sections of the text file and where to
+        write each parameter.
 
-        :param path:  The file path for the resulting .pln file.  This will be
+        :param name:  The file name for the resulting .pln file.  This will be
                       automatically set to the exoplanet name if not provided,
-                      but the user may supply a different path for testing.
-        :type path:  str
+                      but the user may supply a different name for testing.
+        :type name:  str
+
+        :param gui:  Flag used to alter the filename if this file is being
+                     generated by the GUI.
+        :type gui:  bool
         """
 
-        # Set the file path to the exoplanet name if not provided.
-        if not path:
-            path = ".".join([self.name.value, "pln"])
+        # Set the file name to the exoplanet name if not provided.
+        if not name:
+            name = ".".join([self.name.value, "pln"])
+        if gui:
+            name = "_".join(["gen", name])
+        if dir:
+            name = os.path.join(dir, name)
+            home = os.getcwd()
+            name = "".join([home, name])
 
-        with open(path, 'w') as new_pln:
-            print("writing to {0}".format(path))
+        if os.path.isfile(name):
+            os.remove(name)
+
+        with open(name, 'w') as new_pln:
+            print("writing to {0}".format(name))
 
             # Use the pln_template dictionary to create the file sections and
             # look up the names that may be in the parameters dictionary.
@@ -291,17 +337,20 @@ class Exoplanet(object):
                 new_pln.write("".join([comment, section, "\n"]))
                 new_pln.write("".join([comment, separator, "\n"]))
 
-                # Look for parameters in the parameters dictionary that match
-                # the field names defined in the .pln template.
+                # Look for attributes that match the field names defined in
+                # the .pln template.
                 for f in fields:
                     try:
                         exo_param = getattr(self, f.lower())
                     except AttributeError:
                         continue
 
-                    # Add whitespace between the keyword and value, then write
-                    # a new line to the .pln file.
+                    # exo_param is now an ExoParameter object.  Add the
+                    # keyword & value pair to the .pln file.
                     self.write_pln_line(new_pln, f, exo_param.value)
+
+                    # Add additional keywords for uncertainties and references
+                    # if they are present in the current ExoParameter.
                     if exo_param.uncertainty:
                         uf = "".join(["U", f])
                         self.write_pln_line(new_pln,
@@ -327,13 +376,84 @@ class Exoplanet(object):
                                             exo_param.url
                                             )
 
-    def save_to_yaml(self):
-        pass
+    def save_to_yaml(self, path=None):
+        """
+        Save an Exoplanet object to a YAML-formatted file.  This is not
+        currently in use by any routines.
+
+        :param path:  An optional kwarg to specify a certain file name/path to
+                      save the resulting YAML file.
+        :type path:  str
+        """
+
+        if not path:
+            path = ".".join([self.name.value, "yaml"])
+
+        planet_dict = {}
+        for a in sorted(self.attributes):
+            exo_param = getattr(self, a)
+            param_dict = exo_param.__dict__
+            param_dict = {k: str(v)
+                          for k, v in param_dict.items()
+                          if v and len(str(v)) > 0}
+            planet_dict[a] = param_dict
+
+        with open(path, 'w') as yamlfile:
+            yaml.dump(planet_dict, yamlfile, default_flow_style=False)
+
+    def verify_pln(self):
+        """
+        Some last-second tweaks are needed for proper .pln file formatting.
+        """
+
+        # The transitref and transiturl actually end up stored in the 'transit'
+        # ExoParam due to the ref and url splits.  Pull these out and set the
+        # transit entries to the proper pointers.
+        self.transitref.value = self.transit.reference
+        self.transiturl.value = self.transit.url
+        self.transit.reference = "__TRANSITREF"
+        self.transit.url = "__TRANSITURL"
+
+        # If the transit depth is not provided, but an Rp/R* ratio is,
+        # calculate the depth value.
+        if str(self.depth.value) == "NaN" and str(self.rr.value) != "NaN":
+            self.depth.value = self.rr.value ** 2
+            self.depth.uncertainty = self.rr.uncertainty * 2
+            self.depth.reference = "Calculated from Rp/R*"
+            self.depth.url = None
+
+        # If the orbital eccentricity value is 0 and a T0 value is provided,
+        # use the same values for TT as well.
+        if self.ecc.value == 0 and str(self.t0.value) == "NaN":
+            self.tt.copy_values(self.t0)
 
     def write_pln_line(self, file, field, value):
+        """
+        Format a line with whitespace and write this to the .pln file.
+
+        :param file:  The .pln file being written to.
+        :type file:  str
+
+        :param field:  The keyword being written (should already be all-caps).
+        :type field:  str
+
+        :param value:  The value being written.
+        :type field:  various
+        """
+
         field_str = "{:25}".format(field)
         value_str = str(value)
+        value_str = ("NaN" if value_str == "nan" else value_str)
         file.write("".join([field_str, value_str, "\n"]))
+
+
+def scrape_nasa_data(nasa_csv):
+    nasa_frame = pd.read_csv(nasa_csv, comment='#')
+    for row in nasa_frame.iterrows():
+        new_planet = Exoplanet()
+        new_planet.read_from_nasa(row)
+        new_planet.verify_pln()
+        new_planet.save_to_pln()
 
 
 def __test__():
@@ -343,7 +463,7 @@ def __test__():
 
     testfile = "HD 209458 b.pln"
     ep = Exoplanet(path=testfile)
-    ep.save_to_pln(path="rewrite.pln")
+    ep.save_to_yaml(path="rewrite.yaml")
 
 
 def __test_exoparameter__():

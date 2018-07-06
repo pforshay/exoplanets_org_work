@@ -34,6 +34,27 @@ SIMBADNAME:
     label: "Name of Host Star in SIMBAD"
     parent: "General Information"
     required: False
+CPSNAME:
+    label: "Old Naming Field"
+    parent: "General Information"
+    required: False
+SMENAME:
+    label: "Old Naming Field"
+    parent: "General Information"
+    required: False
+TABLENAME:
+    label: "Old Naming Field"
+    parent: "General Information"
+    required: False
+ETDNAME:
+    label: "Old Naming Field"
+    parent: "General Information"
+    required: False
+NSTEDID:
+    default: -1
+    label: "Used by NASA Exoplanet Archive (defunct?)"
+    parent: "General Information"
+    required: False
 HD:
     default: -1
     label: "HD Catalog Number"
@@ -91,6 +112,16 @@ DEC:
     parent: "General Information"
     required: False
     units: "degrees"
+COORDREF:
+    default: "Simbad"
+    label: "Target Coordinates Source"
+    parent: "General Information"
+    required: False
+COORDURL:
+    default: "http://simbad.u-strasbg.fr/simbad/"
+    label: "Target Coordinates URL"
+    parent: "General Information"
+    required: False
 V:
     default: "NaN"
     eu_field: "mag_v"
@@ -98,6 +129,8 @@ V:
     nasa_field: "st_vj"
     parent: "General Information"
     required: False
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     units: "mag"
 BMV:
     default: "NaN"
@@ -105,6 +138,8 @@ BMV:
     nasa_field: "st_bmvj"
     parent: "General Information"
     required: False
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     units: "mag"
 J:
     default: "NaN"
@@ -113,6 +148,8 @@ J:
     nasa_field: "st_j"
     parent: "General Information"
     required: False
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     units: "mag"
 H:
     default: "NaN"
@@ -121,6 +158,8 @@ H:
     nasa_field: "st_h"
     parent: "General Information"
     required: False
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     units: "mag"
 KS:
     default: "NaN"
@@ -129,12 +168,16 @@ KS:
     nasa_field: "st_k"
     parent: "General Information"
     required: False
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     units: "mag"
 KP:
     default: "NaN"
     label: "Kepler Bandpass Magnitude"
     parent: "General Information"
     required: False
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     units: "mag"
 SPTYPE:
     eu_field: "star_sp_type"
@@ -169,16 +212,22 @@ RMS:
     label: "RMS of Velocities"
     parent: "General Information"
     required: False
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     units: "km/s"
 CHI2:
     default: "NaN"
     label: "Reduced Chi Squared"
     parent: "General Information"
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     required: False
 JITTER:
     default: "NaN"
     label: "Jitter"
     parent: "General Information"
+    uncertainty: "NaN"
+    uncertainty_upper: "NaN"
     required: False
 FLAG:
     default: 1
@@ -280,7 +329,7 @@ FE:
     default: "NaN"
     eu_field: "star_metallicity"
     label: "Host Star Metallicity [Fe/H]"
-    nasa_field: "st_metratio"
+    nasa_field: "st_metfe"
     parent: "Stellar Parameters"
     reference: "__SPECREF"
     required: True
@@ -493,7 +542,7 @@ T0:
     required: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
-    units: "JD"
+    units: "JD - 2.44e6"
     url: "__ORBURL"
 DVDT:
     default: "NaN"
@@ -554,7 +603,7 @@ LAMBDA:
     units: "degrees"
 DEPTH:
     default: "NaN"
-    label: "Transit Depth"
+    label: "Transit Depth [(Rp/R*)^2]"
     nasa_field: "pl_trandep"
     parent: "Transit Parameters"
     reference: "__TRANSITREF"
@@ -713,6 +762,7 @@ FIRSTREF:
     required: False
 FIRSTURL:
     label: "First Reference URL"
+    nasa_field: "pl_disc_reflink"
     parent: "Main References and Website Flags"
     required: False
 ORBREF:
@@ -721,6 +771,7 @@ ORBREF:
     required: True
 ORBURL:
     label: "Orbital Data URL"
+    nasa_field: "pl_def_reflink"
     parent: "Main References and Website Flags"
     required: True
 INDEPORBREF:
