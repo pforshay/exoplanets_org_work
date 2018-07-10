@@ -129,8 +129,7 @@ V:
     nasa_field: "st_vj"
     parent: "General Information"
     required: False
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     units: "mag"
 BMV:
     default: "NaN"
@@ -138,8 +137,7 @@ BMV:
     nasa_field: "st_bmvj"
     parent: "General Information"
     required: False
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     units: "mag"
 J:
     default: "NaN"
@@ -148,18 +146,16 @@ J:
     nasa_field: "st_j"
     parent: "General Information"
     required: False
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     units: "mag"
 H:
     default: "NaN"
     eu_field: "mag_h"
-    label: "J Magnitude"
+    label: "H Magnitude"
     nasa_field: "st_h"
     parent: "General Information"
     required: False
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     units: "mag"
 KS:
     default: "NaN"
@@ -168,16 +164,14 @@ KS:
     nasa_field: "st_k"
     parent: "General Information"
     required: False
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     units: "mag"
 KP:
     default: "NaN"
     label: "Kepler Bandpass Magnitude"
     parent: "General Information"
     required: False
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     units: "mag"
 SPTYPE:
     eu_field: "star_sp_type"
@@ -212,22 +206,19 @@ RMS:
     label: "RMS of Velocities"
     parent: "General Information"
     required: False
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     units: "km/s"
 CHI2:
     default: "NaN"
     label: "Reduced Chi Squared"
     parent: "General Information"
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     required: False
 JITTER:
     default: "NaN"
     label: "Jitter"
     parent: "General Information"
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
+    uncertain_flag: True
     required: False
 FLAG:
     default: 1
@@ -297,6 +288,7 @@ MSTAR:
     parent: "Stellar Parameters"
     reference: "__SPECREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "Solar mass"
@@ -309,6 +301,7 @@ RSTAR:
     parent: "Stellar Parameters"
     reference: "__SPECREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "Solar radii"
@@ -321,6 +314,7 @@ TEFF:
     parent: "Stellar Parameters"
     reference: "__SPECREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "K"
@@ -333,6 +327,7 @@ FE:
     parent: "Stellar Parameters"
     reference: "__SPECREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     url: "__SPECURL"
@@ -344,6 +339,7 @@ DIST:
     parent: "Stellar Parameters"
     reference: "__SPECREF"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "Parsecs"
@@ -354,6 +350,7 @@ PAR:
     nasa_field: "st_plx"
     parent: "Stellar Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "mas"
@@ -365,6 +362,7 @@ LOGG:
     parent: "Stellar Parameters"
     reference: "__SPECREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "cm / s^2"
@@ -375,6 +373,7 @@ RHOSTAR:
     parent: "Stellar Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "g / cm^3"
@@ -391,6 +390,7 @@ VSINI:
     parent: "Stellar Parameters"
     reference: "__SPECREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "km / s"
@@ -401,18 +401,21 @@ SHK:
     nasa_field: "st_acts"
     parent: "Stellar Parameters"
     required: False
+    uncertain_flag: True
 RHK:
     default: "NaN"
     label: "Stellar Magnetic Activity Index"
     nasa_field: "st_actr"
     parent: "Stellar Parameters"
     required: False
+    uncertain_flag: True
 GAMMA:
     default: "NaN"
     label: "Systemic Radial Velocity"
     nasa_field: "st_radv"
     parent: "Stellar Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "km / s"
@@ -424,6 +427,7 @@ MASS:
     parent: "Planetary Parameters"
     reference: "Set to MSINI; I unknown"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "Jupiter mass"
@@ -435,6 +439,7 @@ MSINI:
     parent: "Planetary Parameters"
     reference: "Calculated"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "Jupiter mass"
@@ -447,6 +452,7 @@ R:
     parent: "Planetary Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "Jupiter radii"
@@ -458,6 +464,7 @@ DENSITY:
     parent: "Planetary Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "g / cm^3"
@@ -468,6 +475,7 @@ GRAVITY:
     parent: "Planetary Parameters"
     reference: "Calculated"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "cm / s^2"
@@ -476,6 +484,7 @@ MASSRAT:
     label: "Don't Know"
     parent: "Planetary Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 PER:
@@ -486,6 +495,7 @@ PER:
     parent: "Orbital Parameters"
     reference: "__ORBREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "days"
@@ -498,6 +508,7 @@ ECC:
     parent: "Orbital Parameters"
     reference: "__ORBREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     url: "__ORBURL"
@@ -509,6 +520,7 @@ OM:
     parent: "Orbital Parameters"
     reference: "__ORBREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "degrees"
@@ -518,6 +530,7 @@ BIGOM:
     label: "Longitude of Ascending Node"
     parent: "Orbital Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "degrees"
@@ -528,6 +541,7 @@ K:
     parent: "Orbital Parameters"
     reference: "__ORBREF"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "m / s"
@@ -540,6 +554,7 @@ T0:
     parent: "Orbital Parameters"
     reference: "__ORBREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "JD - 2.44e6"
@@ -550,6 +565,7 @@ DVDT:
     parent: "Orbital Parameters"
     reference: "__ORBREF"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "m / s / days"
@@ -567,6 +583,7 @@ I:
     parent: "Orbital Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "degrees"
@@ -579,6 +596,7 @@ A:
     parent: "Orbital Parameters"
     reference: "Calculated"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "AU"
@@ -589,6 +607,7 @@ SEP:
     parent: "Orbital Parameters"
     reference: "Set to A"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "AU"
@@ -598,6 +617,7 @@ LAMBDA:
     label: "Spin-Orbit Misalignment"
     parent: "Orbital Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "degrees"
@@ -608,6 +628,7 @@ DEPTH:
     parent: "Transit Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     url: "__TRANSITURL"
@@ -618,6 +639,7 @@ T14:
     parent: "Transit Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "days"
@@ -629,6 +651,7 @@ TT:
     parent: "Transit Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "JD - 2.44e6"
@@ -640,27 +663,30 @@ AR:
     parent: "Transit Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     url: "__TRANSITURL"
 B:
     default: "NaN"
     eu_field: "impact_parameter"
-    label: "Transit Impact Parameter [(Rp/R*)^2]"
+    label: "Transit Impact Parameter"
     nasa_field: "pl_imppar"
     parent: "Transit Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     url: "__TRANSITURL"
 RR:
     default: "NaN"
-    label: "Ratio of Planetary and Stellar Radii"
+    label: "Ratio of Planetary and Stellar Radii [Rp/R*]"
     nasa_field: "pl_ratror"
     parent: "Transit Parameters"
     reference: "__TRANSITREF"
     required: True
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     url: "__TRANSITURL"
@@ -670,6 +696,7 @@ DR:
     parent: "Transit Parameters"
     reference: "__TRANSITREF"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "stellar radii"
@@ -685,6 +712,7 @@ SEDEPTHJ:
     label: "Secondary Eclipse Depth in J"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 SEDEPTHH:
@@ -692,6 +720,7 @@ SEDEPTHH:
     label: "Secondary Eclipse Depth in H"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 SEDEPTHKS:
@@ -699,6 +728,7 @@ SEDEPTHKS:
     label: "Secondary Eclipse Depth in Ks"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 SEDEPTHKP:
@@ -706,6 +736,7 @@ SEDEPTHKP:
     label: "Secondary Eclipse Depth in Kepler Phot Band"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 SEDEPTH36:
@@ -713,6 +744,7 @@ SEDEPTH36:
     label: "Secondary Eclipse Depth in 3.6 micron"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 SEDEPTH45:
@@ -720,6 +752,7 @@ SEDEPTH45:
     label: "Secondary Eclipse Depth in 4.5 micron"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 SEDEPTH58:
@@ -727,6 +760,7 @@ SEDEPTH58:
     label: "Secondary Eclipse Depth in 5.8 micron"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 SEDEPTH80:
@@ -734,6 +768,7 @@ SEDEPTH80:
     label: "Secondary Eclipse Depth in 8.0 micron"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 SET:
@@ -742,6 +777,7 @@ SET:
     label: "Secondary Eclipse Central Time"
     parent: "Secondary Eclipse Parameters"
     required: False
+    uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 DATE:

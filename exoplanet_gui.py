@@ -75,16 +75,16 @@ class ExoParameterRow(QWidget):
             else:
                 self.url.setCurrentIndex(url)
 
-        if self.uncertainty.text() == "None":
-            self.uncertainty.setText("N/A")
-            self.uncertainty.setAlignment(Qt.AlignHCenter)
-            self.uncertainty.setEnabled(False)
-            self.uncertainty_upper.setText("N/A")
-            self.uncertainty_upper.setAlignment(Qt.AlignHCenter)
-            self.uncertainty_upper.setEnabled(False)
-            self.uncertainty_lower.setText("N/A")
-            self.uncertainty_lower.setAlignment(Qt.AlignHCenter)
-            self.uncertainty_lower.setEnabled(False)
+            if not parameter.uncertain_flag:
+                self.uncertainty.setText("N/A")
+                self.uncertainty.setAlignment(Qt.AlignHCenter)
+                self.uncertainty.setEnabled(False)
+                self.uncertainty_upper.setText("N/A")
+                self.uncertainty_upper.setAlignment(Qt.AlignHCenter)
+                self.uncertainty_upper.setEnabled(False)
+                self.uncertainty_lower.setText("N/A")
+                self.uncertainty_lower.setAlignment(Qt.AlignHCenter)
+                self.uncertainty_lower.setEnabled(False)
 
         hbox = QHBoxLayout()
         hbox.setContentsMargins(0, 3, 0, 3)

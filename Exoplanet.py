@@ -22,6 +22,7 @@ class ExoParameter(object):
         self.parent = "General Information"
         self.reference = None
         self.required = False
+        self.uncertain_flag = False
         self.uncertainty = None
         self.uncertainty_upper = None
         self.units = None
@@ -222,7 +223,9 @@ class Exoplanet(object):
                     # formatting specifies the uncertainty keywords being with
                     # 'U', uncertainty upper-limits end with 'D', references
                     # end with 'REF', and links end with 'URL'.
-                    if keyword[0] == "u" and keyword[1:] in self.attributes:
+                    if "transit" in keyword:
+                        attribute = "value"
+                    elif keyword[0] == "u" and keyword[1:] in self.attributes:
                         keyword = keyword[1:]
                         attribute = "uncertainty"
                     elif (keyword[0] == "u"
@@ -409,23 +412,43 @@ class Exoplanet(object):
         # The transitref and transiturl actually end up stored in the 'transit'
         # ExoParam due to the ref and url splits.  Pull these out and set the
         # transit entries to the proper pointers.
-        self.transitref.value = self.transit.reference
-        self.transiturl.value = self.transit.url
-        self.transit.reference = "__TRANSITREF"
-        self.transit.url = "__TRANSITURL"
+        if self.transit.value == 1:
+            if (self.transit.reference == "None"
+                or self.transit.reference == ""
+                ):
+                self.transit.reference = "__TRANSITREF"
+            if (self.transit.url == "None"
+                or self.transit.url == ""
+                ):
+                self.transit.url = "__TRANSITURL"
+
+        """
+        if (self.transit.reference != "__TRANSITREF"
+            and self.transit.reference != ""
+            ):
+            self.transitref.value = self.transit.reference
+            self.transit.reference = "__TRANSITREF"
+        if (self.transit.url != "__TRANSITURL"
+            and self.transit.url != ""
+            ):
+            self.transiturl.value = self.transit.url
+            self.transit.url = "__TRANSITURL"
+        """
 
         # If the transit depth is not provided, but an Rp/R* ratio is,
         # calculate the depth value.
         if str(self.depth.value) == "NaN" and str(self.rr.value) != "NaN":
             self.depth.value = self.rr.value ** 2
             self.depth.uncertainty = self.rr.uncertainty * 2
+            if isinstance(self.rr.uncertainty_upper, Decimal):
+                self.depth.uncertainty_upper = self.rr.uncertainty_upper * 2
             self.depth.reference = "Calculated from Rp/R*"
             self.depth.url = None
 
-        # If the orbital eccentricity value is 0 and a T0 value is provided,
-        # use the same values for TT as well.
-        if self.ecc.value == 0 and str(self.t0.value) == "NaN":
-            self.tt.copy_values(self.t0)
+        # If the orbital eccentricity value is 0 and a TT value is provided,
+        # use the same values for T0 as well.
+        if self.ecc.value == 0 and str(self.tt.value) != "NaN":
+            self.t0.copy_values(self.tt)
 
     def write_pln_line(self, file, field, value):
         """
@@ -443,6 +466,7 @@ class Exoplanet(object):
 
         field_str = "{:25}".format(field)
         value_str = str(value)
+        value_str = ("" if value_str == "None" else value_str)
         value_str = ("NaN" if value_str == "nan" else value_str)
         file.write("".join([field_str, value_str, "\n"]))
 
