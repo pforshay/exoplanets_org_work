@@ -222,7 +222,7 @@ JITTER:
     required: False
 FLAG:
     default: 1
-    label: "Don't Know"
+    label: "Don't Know - Ignore"
     parent: "General Information"
     required: False
 MULT:
@@ -380,9 +380,10 @@ RHOSTAR:
     url: "__TRANSITURL"
 PROT:
     default: "NaN"
-    label: "Don't Know"
+    label: "Stellar Rotation Period"
     parent: "Stellar Parameters"
     required: False
+    units: "Days"
 VSINI:
     default: "NaN"
     label: "Equatorial Velocity of Host and Sine of the Inclination [Vsin(i)]"
@@ -481,7 +482,7 @@ GRAVITY:
     units: "cm / s^2"
 MASSRAT:
     default: "NaN"
-    label: "Don't Know"
+    label: "Don't Know - Ignore"
     parent: "Planetary Parameters"
     required: False
     uncertain_flag: True
@@ -572,7 +573,7 @@ DVDT:
     url: "__ORBURL"
 TREND:
     default: 0
-    label: "Don't Know"
+    label: "DVDT != 0 Flag"
     parent: "Orbital Parameters"
     required: False
 I:

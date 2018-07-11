@@ -1,16 +1,16 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     TAP 26 b
-STAR                     TAP 26
+NAME                     POTS-1 b
+STAR                     POTS-1
 COMP                     b
 OTHERNAME                
-JSNAME                   TAP 26 b
-EANAME                   TAP 26 b
+JSNAME                   POTS-1 b
+EANAME                   POTS-1 b
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               HBC 376
+SIMBADNAME               POTS-1
 ETDNAME                  
 NSTEDID                  -1
 HD                       -1
@@ -19,22 +19,27 @@ GL                       NaN
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                04h18m51.70s
-DEC_STRING               +17d23m16.6s
-RA                       4.31436106
-DEC                      17.387936
+RA_STRING                13h34m26.13s
+DEC_STRING               -66d34m52.0s
+RA                       13.57392513
+DEC                      -66.581116
 COORDREF                 
 COORDURL                 
-V                        NaN
-BMV                      NaN
-J                        NaN
-H                        NaN
-KS                       NaN
+V                        17.94
+UV                       0.03
+BMV                      0.40
+UBMV                     0.05
+J                        15.17
+UJ                       0.06
+H                        14.38
+UH                       0.04
+KS                       14.24
+UKS                      0.08
 KP                       NaN
-SPTYPE                   
-OBSERVATORY              Canada-France-Hawaii Telescope
-SURVEY                   MaTYSSE
-NOBS                     29
+SPTYPE                   K5 V
+OBSERVATORY              La Silla Observatory
+SURVEY                   POTS
+NOBS                     13
 NCOMP                    1
 RMS                      NaN
 CHI2                     NaN
@@ -44,47 +49,49 @@ MULT                     0
 BINARY                   0
 BINARYREF                __ORBREF
 BINARYURL                __ORBURL
-TRANSIT                  0
+TRANSIT                  1
+TRANSITREF               __TRANSITREF
+TRANSITURL               __TRANSITURL
 TIMING                   0
 ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
 KDE                      0
-STARDISCMETH             RV
-PLANETDISCMETH           RV
+STARDISCMETH             Transit
+PLANETDISCMETH           Transit
 #* ================================================
 #* Stellar Parameters
 #* ================================================
-MSTAR                    1.04
-UMSTAR                   0.10
+MSTAR                    0.695
+UMSTAR                   0.050
 UMSTARD                  NaN
 MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
-RSTAR                    1.17
-URSTAR                   0.17
-URSTARD                  NaN
+RSTAR                    0.588
+URSTAR                   0.024
+URSTARD                  0.020
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     4620
-UTEFF                    50
+TEFF                     4400
+UTEFF                    200
 UTEFFD                   NaN
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
-FE                       NaN
-UFE                      NaN
+FE                       -0.03
+UFE                      0.15
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     147
-UDIST                    3
+DIST                     NaN
+UDIST                    NaN
 UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
 PAR                      NaN
 UPAR                     NaN
 UPARD                    NaN
-LOGG                     4.5
-ULOGG                    NaN
+LOGG                     4.63
+ULOGG                    0.05
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
@@ -94,8 +101,8 @@ URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
 PROT                     NaN
-VSINI                    68.2
-UVSINI                   0.5
+VSINI                    5.3
+UVSINI                   NaN
 UVSINID                  NaN
 VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
@@ -107,18 +114,19 @@ UGAMMAD                  NaN
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
+MASS                     2.31
+UMASS                    0.77
 UMASSD                   NaN
-MASSREF                  Set to MSINI; I unknown
-MSINI                    1.71
-UMSINI                   0.31
+MASSREF                  __TRANSITREF
+MASSURL                  __TRANSITURL
+MSINI                    NaN
+UMSINI                   NaN
 UMSINID                  NaN
-MSINIREF                 __ORBREF
-MSINIURL                 __ORBURL
-R                        NaN
-UR                       NaN
-URD                      NaN
+MSINIREF                 Calculated
+MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+R                        0.941
+UR                       0.0415
+URD                      0.036
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
 DENSITY                  NaN
@@ -126,18 +134,19 @@ UDENSITY                 NaN
 UDENSITYD                NaN
 DENSITYREF               __TRANSITREF
 DENSITYURL               __TRANSITURL
-GRAVITY                  NaN
-UGRAVITY                 NaN
+GRAVITY                  4.74
+UGRAVITY                 0.07
 UGRAVITYD                NaN
-GRAVITYREF               Calculated
+GRAVITYREF               __TRANSITREF
+GRAVITYURL               __TRANSITURL
 MASSRAT                  NaN
 UMASSRAT                 NaN
 UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      8.99
-UPER                     0.09
+PER                      3.1606296
+UPER                     0.00000157
 UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
@@ -154,13 +163,13 @@ OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        163
-UK                       28
+K                        NaN
+UK                       NaN
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       17350.54
-UT0                      0.27
+T0                       NaN
+UT0                      NaN
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -170,16 +179,16 @@ UDVDTD                   NaN
 DVDTREF                  __ORBREF
 DVDTURL                  __ORBURL
 TREND                    0
-I                        55
-UI                       10
-UID                      NaN
-IREF                     __ORBREF
-IURL                     __ORBURL
-A                        0.0858
-UA                       0.0028
+I                        88.06
+UI                       0.405
+UID                      0.47
+IREF                     __TRANSITREF
+IURL                     __TRANSITURL
+A                        0.03734
+UA                       0.00090
 UAD                      NaN
-AREF                     __ORBREF
-AURL                     __ORBURL
+AREF                     __TRANSITREF
+AURL                     __TRANSITURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN
@@ -190,18 +199,17 @@ ULAMBDAD                 NaN
 #* ================================================
 #* Transit Parameters
 #* ================================================
-DEPTH                    NaN
-UDEPTH                   NaN
-UDEPTHD                  NaN
-DEPTHREF                 __TRANSITREF
-DEPTHURL                 __TRANSITURL
+DEPTH                    0.0270010624
+UDEPTH                   0.00394
+UDEPTHD                  0.00352
+DEPTHREF                 Calculated from Rp/R*
 T14                      NaN
 UT14                     NaN
 UT14D                    NaN
 T14REF                   __TRANSITREF
 T14URL                   __TRANSITURL
-TT                       NaN
-UTT                      NaN
+TT                       14231.65488
+UTT                      0.00044
 UTTD                     NaN
 TTREF                    __TRANSITREF
 TTURL                    __TRANSITURL
@@ -210,14 +218,14 @@ UAR                      NaN
 UARD                     NaN
 ARREF                    __TRANSITREF
 ARURL                    __TRANSITURL
-B                        NaN
-UB                       NaN
-UBD                      NaN
+B                        0.459
+UB                       0.059
+UBD                      0.045
 BREF                     __TRANSITREF
 BURL                     __TRANSITURL
-RR                       NaN
-URR                      NaN
-URRD                     NaN
+RR                       0.16432
+URR                      0.00197
+URRD                     0.00176
 RRREF                    __TRANSITREF
 RRURL                    __TRANSITURL
 DR                       NaN
@@ -260,16 +268,16 @@ USETD                    NaN
 #* ================================================
 #* Main References and Website Flags
 #* ================================================
-DATE                     2017
-MONTH                    5
-FIRSTREF                 Yu et al. 2017
-FIRSTURL                 http://adsabs.harvard.edu/abs/2017MNRAS.467.1342Y
-ORBREF                   Yu et al. 2017
-ORBURL                   http://adsabs.harvard.edu/abs/2017MNRAS.467.1342Y
+DATE                     2013
+MONTH                    11
+FIRSTREF                 Koppenhoefer et al. 2013
+FIRSTURL                 http://adsabs.harvard.edu/abs/2013MNRAS.435.3133K
+ORBREF                   Koppenhoefer et al. 2013
+ORBURL                   http://adsabs.harvard.edu/abs/2013MNRAS.435.3133K
 INDEPORBREF              
-TRANSITREF               
-TRANSITURL               
-SPECREF                  Yu et al. 2017
-SPECURL                  http://adsabs.harvard.edu/abs/2017MNRAS.467.1342Y
+TRANSITREF               Koppenhoefer et al. 2013
+TRANSITURL               http://adsabs.harvard.edu/abs/2013MNRAS.435.3133K
+SPECREF                  Koppenhoefer et al. 2013
+SPECURL                  http://adsabs.harvard.edu/abs/2013MNRAS.435.3133K
 EOD                      1
 PUBLIC                   1

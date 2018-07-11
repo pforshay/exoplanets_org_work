@@ -1,40 +1,43 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     TAP 26 b
-STAR                     TAP 26
+NAME                     Ross 128 b
+STAR                     Ross 128
 COMP                     b
 OTHERNAME                
-JSNAME                   TAP 26 b
-EANAME                   TAP 26 b
+JSNAME                   Ross 128 b
+EANAME                   Ross 128 b
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               HBC 376
+SIMBADNAME               Ross 128
 ETDNAME                  
 NSTEDID                  -1
 HD                       -1
-HIPP                     -1
-GL                       NaN
+HIPP                     57548
+GL                       447
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                04h18m51.70s
-DEC_STRING               +17d23m16.6s
-RA                       4.31436106
-DEC                      17.387936
+RA_STRING                11h47m44.40s
+DEC_STRING               +00d48m16.4s
+RA                       11.79566549
+DEC                      0.804563
 COORDREF                 
 COORDURL                 
-V                        NaN
+V                        11.15
 BMV                      NaN
-J                        NaN
-H                        NaN
-KS                       NaN
+J                        6.505
+UJ                       0.023
+H                        5.945
+UH                       0.024
+KS                       5.654
+UKS                      0.024
 KP                       NaN
-SPTYPE                   
-OBSERVATORY              Canada-France-Hawaii Telescope
-SURVEY                   MaTYSSE
-NOBS                     29
+SPTYPE                   M4
+OBSERVATORY              La Silla Observatory
+SURVEY                   
+NOBS                     158
 NCOMP                    1
 RMS                      NaN
 CHI2                     NaN
@@ -55,35 +58,35 @@ PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters
 #* ================================================
-MSTAR                    1.04
-UMSTAR                   0.10
+MSTAR                    0.168
+UMSTAR                   0.017
 UMSTARD                  NaN
 MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
-RSTAR                    1.17
-URSTAR                   0.17
+RSTAR                    0.1967
+URSTAR                   0.0077
 URSTARD                  NaN
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     4620
-UTEFF                    50
+TEFF                     3192
+UTEFF                    60
 UTEFFD                   NaN
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
-FE                       NaN
-UFE                      NaN
+FE                       -0.02
+UFE                      0.08
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     147
-UDIST                    3
+DIST                     3.3806
+UDIST                    0.0064
 UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
-PAR                      NaN
-UPAR                     NaN
+PAR                      295.80
+UPAR                     0.54
 UPARD                    NaN
-LOGG                     4.5
+LOGG                     NaN
 ULOGG                    NaN
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
@@ -94,15 +97,16 @@ URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
 PROT                     NaN
-VSINI                    68.2
-UVSINI                   0.5
+VSINI                    NaN
+UVSINI                   NaN
 UVSINID                  NaN
 VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
 SHK                      NaN
-RHK                      NaN
-GAMMA                    NaN
-UGAMMA                   NaN
+RHK                      -5.573
+URHK                     0.082
+GAMMA                    -30.89946
+UGAMMA                   0.00058
 UGAMMAD                  NaN
 #* ================================================
 #* Planetary Parameters
@@ -111,8 +115,8 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    1.71
-UMSINI                   0.31
+MSINI                    0.00441
+UMSINI                   0.00066
 UMSINID                  NaN
 MSINIREF                 __ORBREF
 MSINIURL                 __ORBURL
@@ -136,13 +140,13 @@ UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      8.99
-UPER                     0.09
+PER                      9.8658
+UPER                     0.0070
 UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      NaN
-UECC                     NaN
+ECC                      0.116
+UECC                     0.097
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
@@ -154,13 +158,13 @@ OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        163
-UK                       28
+K                        1.39
+UK                       0.18
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       17350.54
-UT0                      0.27
+T0                       16740.07
+UT0                      0.39
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -170,13 +174,13 @@ UDVDTD                   NaN
 DVDTREF                  __ORBREF
 DVDTURL                  __ORBURL
 TREND                    0
-I                        55
-UI                       10
+I                        NaN
+UI                       NaN
 UID                      NaN
-IREF                     __ORBREF
-IURL                     __ORBURL
-A                        0.0858
-UA                       0.0028
+IREF                     __TRANSITREF
+IURL                     __TRANSITURL
+A                        0.0496
+UA                       0.0017
 UAD                      NaN
 AREF                     __ORBREF
 AURL                     __ORBURL
@@ -260,16 +264,16 @@ USETD                    NaN
 #* ================================================
 #* Main References and Website Flags
 #* ================================================
-DATE                     2017
+DATE                     2018
 MONTH                    5
-FIRSTREF                 Yu et al. 2017
-FIRSTURL                 http://adsabs.harvard.edu/abs/2017MNRAS.467.1342Y
-ORBREF                   Yu et al. 2017
-ORBURL                   http://adsabs.harvard.edu/abs/2017MNRAS.467.1342Y
+FIRSTREF                 Bonfils et al. 2018
+FIRSTURL                 http://adsabs.harvard.edu/abs/2018A%26A...613A..25B
+ORBREF                   Bonfils et al. 2018
+ORBURL                   http://adsabs.harvard.edu/abs/2018A%26A...613A..25B
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
-SPECREF                  Yu et al. 2017
-SPECURL                  http://adsabs.harvard.edu/abs/2017MNRAS.467.1342Y
+SPECREF                  Bonfils et al. 2018
+SPECURL                  http://adsabs.harvard.edu/abs/2018A%26A...613A..25B
 EOD                      1
 PUBLIC                   1
