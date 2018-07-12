@@ -113,12 +113,10 @@ DEC:
     required: False
     units: "degrees"
 COORDREF:
-    default: "Simbad"
     label: "Target Coordinates Source"
     parent: "General Information"
     required: False
 COORDURL:
-    default: "http://simbad.u-strasbg.fr/simbad/"
     label: "Target Coordinates URL"
     parent: "General Information"
     required: False
@@ -206,19 +204,16 @@ RMS:
     label: "RMS of Velocities"
     parent: "General Information"
     required: False
-    uncertain_flag: True
-    units: "km/s"
+    units: "m / s"
 CHI2:
     default: "NaN"
     label: "Reduced Chi Squared"
     parent: "General Information"
-    uncertain_flag: True
     required: False
 JITTER:
     default: "NaN"
     label: "Jitter"
     parent: "General Information"
-    uncertain_flag: True
     required: False
 FLAG:
     default: 1
@@ -383,6 +378,7 @@ PROT:
     label: "Stellar Rotation Period"
     parent: "Stellar Parameters"
     required: False
+    uncertain_flag: True
     units: "Days"
 VSINI:
     default: "NaN"
@@ -485,7 +481,7 @@ MASSRAT:
     label: "Don't Know - Ignore"
     parent: "Planetary Parameters"
     required: False
-    uncertain_flag: True
+    uncertain_flag: False
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
 PER:

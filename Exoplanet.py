@@ -175,6 +175,18 @@ class Exoplanet(object):
             new_value = nasa_dict[nasa_field]
             if str(new_value) == "nan":
                 new_value = exo_param.default
+            elif nasa_field == "ra_str":
+                new_value = new_value.replace("h", ":")
+                new_value = new_value.replace("m", ":")
+                new_value = new_value[:-1]
+            elif nasa_field == "dec_str":
+                new_value = new_value.replace("d", ":")
+                new_value = new_value.replace("m", ":")
+                new_value = new_value[:-1]
+            elif nasa_field == "pl_trandep" and isinstance(new_value, Decimal):
+                new_value = new_value / 100
+            elif nasa_field == "st_nrvc" and new_value == 0:
+                new_value = -1
             exo_param.value = new_value
             setattr(self, att, exo_param)
 
@@ -447,8 +459,11 @@ class Exoplanet(object):
 
         # If the orbital eccentricity value is 0 and a TT value is provided,
         # use the same values for T0 as well.
-        if self.ecc.value == 0 and str(self.tt.value) != "NaN":
-            self.t0.copy_values(self.tt)
+        if self.ecc.value == 0 and str(self.om.value) == "NaN":
+            self.om.value = Decimal(90)
+            self.om.reference = "Set to 90 deg with ecc~0"
+            if str(self.tt.value) != "NaN":
+                self.t0.copy_values(self.tt)
 
     def write_pln_line(self, file, field, value):
         """
