@@ -462,7 +462,7 @@ class Exoplanet(object):
         if self.ecc.value == 0 and str(self.om.value) == "NaN":
             self.om.value = Decimal(90)
             self.om.reference = "Set to 90 deg with ecc~0"
-            if str(self.tt.value) != "NaN":
+            if str(self.tt.value) == "NaN":
                 self.t0.copy_values(self.tt)
 
     def write_pln_line(self, file, field, value):
