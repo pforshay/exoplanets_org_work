@@ -24,6 +24,7 @@ class ExoParameter(object):
         self.required = False
         self.uncertain_flag = False
         self.uncertainty = None
+        self.uncertainty_lower = None
         self.uncertainty_upper = None
         self.units = None
         self.url = None
@@ -132,6 +133,28 @@ class Exoplanet(object):
                     )
             self.attributes.append(param.lower())
 
+    def calculate_lower_uncert(self):
+        for att in self.attributes:
+            exo_param = getattr(self, att)
+            if not exo_param.uncertain_flag:
+                continue
+            elif exo_param.uncertainty_upper:
+                u_hi = Decimal(exo_param.uncertainty_upper)
+                u_avg = Decimal(exo_param.uncertainty)
+                u_lo = (2 * u_avg) - u_hi
+                exo_param.uncertainty_lower = Decimal(u_lo)
+
+    def calculate_mean_uncert(self):
+        for att in self.attributes:
+            exo_param = getattr(self, att)
+            if not exo_param.uncertain_flag:
+                continue
+            elif exo_param.uncertainty_lower:
+                u_hi = Decimal(exo_param.uncertainty_upper)
+                u_lo = Decimal(exo_param.uncertainty_lower)
+                u_avg = (u_lo + u_hi) / 2
+                exo_param.uncertainty = Decimal(u_avg)
+
     def find_all_names(self):
         """
         Aggregate all the potential exoplanet names stored in pln file fields.
@@ -185,9 +208,25 @@ class Exoplanet(object):
                 new_value = new_value[:-1]
             elif nasa_field == "pl_trandep" and isinstance(new_value, Decimal):
                 new_value = new_value / 100
-            elif nasa_field == "st_nrvc" and new_value == 0:
+            elif nasa_field == "st_nrvc" and new_value == "0":
                 new_value = -1
-            exo_param.value = new_value
+
+            try:
+                exo_param.value = Decimal(new_value)
+            except (InvalidOperation, TypeError):
+                exo_param.value = new_value
+
+            if exo_param.uncertain_flag:
+                nasa_err1 = "".join([nasa_field, "err1"])
+                nasa_err2 = "".join([nasa_field, "err2"])
+                try:
+                    shi = str(nasa_dict[nasa_err1])
+                    exo_param.uncertainty_upper = Decimal(shi)
+                    slo = str(nasa_dict[nasa_err2])
+                    exo_param.uncertainty_lower = Decimal(slo) * -1
+                except KeyError:
+                    pass
+
             setattr(self, att, exo_param)
 
     def read_from_pln(self, path):
@@ -222,7 +261,8 @@ class Exoplanet(object):
 
                     # Assign the value if present.
                     elif num == 2:
-                        value = keyword_value_pair[1]
+                        value = str(keyword_value_pair[1])
+                        value = (None if value == "None" else value)
 
                         # Try turning the value into a Decimal (this will
                         # preserve significant figures).
@@ -264,50 +304,7 @@ class Exoplanet(object):
                     except AttributeError:
                         pass
 
-    def read_from_pln_old(self, path):
-        """
-        Read exoplanet parameters from a .pln file assuming certain commenting
-        and text structures.  This can be done without a .pln template.
-
-        :param path:  File path to the desired .pln file.
-        :type path:  str
-        """
-
-        with open(path, encoding='latin-1') as f:
-            for line in f:
-                line = line.strip()
-
-                # Parameter names and values are separated by whitespace, so
-                # split the line on this.
-                keyword_value_pair = [x.strip() for x in line.split(' ', 1)]
-
-                # Comment lines begin with '#'.
-                if not keyword_value_pair[0].startswith('#'):
-                    num = len(keyword_value_pair)
-
-                    # Skip if this line is empty.
-                    if num == 0:
-                        continue
-
-                    # Use an empty string if this keyword has no value.
-                    keyword = keyword_value_pair[0]
-                    if num == 1:
-                        value = ''
-
-                    # Assign the value if present.
-                    elif num == 2:
-                        value = keyword_value_pair[1]
-
-                        # Try turning the value into an integer or float.
-                        try:
-                            value = (int(value) if float(value).is_integer()
-                                     else float(value)
-                                     )
-                        except ValueError:
-                            pass
-
-                    # Add this pair to the parameters dictionary.
-                    self.parameters[keyword] = value
+        self.calculate_lower_uncert()
 
     def save_to_pln(self, name=None, dir=None, gui=False):
         """
@@ -324,6 +321,8 @@ class Exoplanet(object):
                      generated by the GUI.
         :type gui:  bool
         """
+
+        self.calculate_mean_uncert()
 
         # Set the file name to the exoplanet name if not provided.
         if not name:
@@ -426,26 +425,13 @@ class Exoplanet(object):
         # transit entries to the proper pointers.
         if self.transit.value == 1:
             if (self.transit.reference == "None"
-                or self.transit.reference == ""
-                ):
+                        or self.transit.reference == ""
+                    ):
                 self.transit.reference = "__TRANSITREF"
             if (self.transit.url == "None"
-                or self.transit.url == ""
-                ):
+                        or self.transit.url == ""
+                    ):
                 self.transit.url = "__TRANSITURL"
-
-        """
-        if (self.transit.reference != "__TRANSITREF"
-            and self.transit.reference != ""
-            ):
-            self.transitref.value = self.transit.reference
-            self.transit.reference = "__TRANSITREF"
-        if (self.transit.url != "__TRANSITURL"
-            and self.transit.url != ""
-            ):
-            self.transiturl.value = self.transit.url
-            self.transit.url = "__TRANSITURL"
-        """
 
         # If the transit depth is not provided, but an Rp/R* ratio is,
         # calculate the depth value.
@@ -462,7 +448,9 @@ class Exoplanet(object):
         if self.ecc.value == 0 and str(self.om.value) == "NaN":
             self.om.value = Decimal(90)
             self.om.reference = "Set to 90 deg with ecc~0"
-            if str(self.tt.value) == "NaN":
+            print("set omega to 90")
+            if str(self.tt.value) != "NaN":
+                print("copying TT to T0")
                 self.t0.copy_values(self.tt)
 
     def write_pln_line(self, file, field, value):

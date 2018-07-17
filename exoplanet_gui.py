@@ -62,6 +62,7 @@ class ExoParameterRow(QWidget):
             self.units.setText(parameter.units)
             self.uncertainty.setText(str(parameter.uncertainty))
             self.uncertainty_upper.setText(str(parameter.uncertainty_upper))
+            self.uncertainty_lower.setText(str(parameter.uncertainty_lower))
             ref = self.reference.findText(parameter.reference)
             if ref == -1:
                 self.reference.insertItem(1, parameter.reference)
@@ -125,11 +126,11 @@ class ExoParameterRow(QWidget):
 
         unc_lo = self.uncertainty_lower.text()
         try:
-            unc_lo = Decimal(unc_lo)
-            unc = (d["uncertainty_upper"] + unc_lo) / 2
-            d["uncertainty"] = unc
+            d["uncertainty_lower"] = Decimal(unc_lo)
+            #unc = (d["uncertainty_upper"] + unc_lo) / 2
+            #d["uncertainty"] = unc
         except InvalidOperation:
-            pass
+            d["uncertainty_lower"] = None
 
         d["reference"] = self.reference.currentText()
         d["url"] = self.url.currentText()
