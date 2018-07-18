@@ -50,6 +50,7 @@ class ExoParameter(object):
         if isinstance(another, ExoParameter):
             self.reference = another.reference
             self.uncertainty = another.uncertainty
+            self.uncertainty_lower = another.uncertainty_lower
             self.uncertainty_upper = another.uncertainty_upper
             self.units = another.units
             self.url = another.url
@@ -62,6 +63,14 @@ class ExoParameter(object):
 
     def set_from_template(self, attribute_dict):
         for attr, value in attribute_dict.items():
+            try:
+                old_value = getattr(self, attr)
+            except AttributeError:
+                old_value = None
+            # Uncertainty values from the GUI will either be None or Decimals.
+            # We want to prevent overwriting "NaN" with None.
+            if (value is None and is_empty(old_value)):
+                continue
             setattr(self, attr, value)
         if self.value is None:
             self.value = self.default
@@ -134,6 +143,12 @@ class Exoplanet(object):
             self.attributes.append(param.lower())
 
     def calculate_lower_uncert(self):
+        """
+        Use mean and upper uncertainty values to calculate a lower
+        uncertainty.  Do this after reading in a .pln file, since lower
+        uncertainties are not stored.
+        """
+
         for att in self.attributes:
             exo_param = getattr(self, att)
             if not exo_param.uncertain_flag:
@@ -145,11 +160,16 @@ class Exoplanet(object):
                 exo_param.uncertainty_lower = Decimal(u_lo)
 
     def calculate_mean_uncert(self):
+        """
+        Use upper and lower uncertainty values to calculate a mean
+        uncertainty.  Do this before writing to a .pln file.
+        """
+
         for att in self.attributes:
             exo_param = getattr(self, att)
             if not exo_param.uncertain_flag:
                 continue
-            elif exo_param.uncertainty_lower:
+            elif not is_empty(exo_param.uncertainty_lower):
                 u_hi = Decimal(exo_param.uncertainty_upper)
                 u_lo = Decimal(exo_param.uncertainty_lower)
                 u_avg = (u_lo + u_hi) / 2
@@ -186,15 +206,27 @@ class Exoplanet(object):
         return self.all_names
 
     def read_from_nasa(self, nasa_series):
+        """
+        Construct an Exoplanet from data scraped from the NASA Exoplanet
+        Archive.
+        """
 
+        # Transform the Pandas Series containing NASA parameters into a dict.
         nasa_dict = nasa_series.to_dict()
 
+        # Look for every attribute added during Exoplanet initialization.
         for att in self.attributes:
+
+            # getattr will return an ExoParameter object for this attribute.
             exo_param = getattr(self, att)
+
+            # Check for a corresponding data field in the NASA data.
             nasa_field = exo_param.nasa_field
             if nasa_field is None:
                 continue
 
+            # Get the NASA value and apply some changes based on which
+            # ExoParameter we are working on.
             new_value = nasa_dict[nasa_field]
             if str(new_value) == "nan":
                 new_value = exo_param.default
@@ -211,11 +243,14 @@ class Exoplanet(object):
             elif nasa_field == "st_nrvc" and new_value == "0":
                 new_value = -1
 
+            # Try changing the new value into a Decimal.
             try:
                 exo_param.value = Decimal(new_value)
             except (InvalidOperation, TypeError):
                 exo_param.value = new_value
 
+            # Try looking for corresponding uncertainty values in the NASA
+            # data.
             if exo_param.uncertain_flag:
                 nasa_err1 = "".join([nasa_field, "err1"])
                 nasa_err2 = "".join([nasa_field, "err2"])
@@ -227,6 +262,8 @@ class Exoplanet(object):
                 except KeyError:
                     pass
 
+            # Reset the current Exoplanet attribute to the now-updated
+            # ExoParameter.
             setattr(self, att, exo_param)
 
     def read_from_pln(self, path):
@@ -322,8 +359,6 @@ class Exoplanet(object):
         :type gui:  bool
         """
 
-        self.calculate_mean_uncert()
-
         # Set the file name to the exoplanet name if not provided.
         if not name:
             name = ".".join([self.name.value, "pln"])
@@ -361,6 +396,8 @@ class Exoplanet(object):
 
                     # exo_param is now an ExoParameter object.  Add the
                     # keyword & value pair to the .pln file.
+                    if is_empty(exo_param.value):
+                        exo_param.value = exo_param.default
                     self.write_pln_line(new_pln, f, exo_param.value)
 
                     # Add additional keywords for uncertainties and references
@@ -420,6 +457,8 @@ class Exoplanet(object):
         Some last-second tweaks are needed for proper .pln file formatting.
         """
 
+        self.calculate_mean_uncert()
+
         # The transitref and transiturl actually end up stored in the 'transit'
         # ExoParam due to the ref and url splits.  Pull these out and set the
         # transit entries to the proper pointers.
@@ -435,9 +474,10 @@ class Exoplanet(object):
 
         # If the transit depth is not provided, but an Rp/R* ratio is,
         # calculate the depth value.
-        if str(self.depth.value) == "NaN" and str(self.rr.value) != "NaN":
+        if is_empty(self.depth.value) and not is_empty(self.rr.value):
             self.depth.value = self.rr.value ** 2
-            self.depth.uncertainty = self.rr.uncertainty * 2
+            if isinstance(self.rr.uncertainty, Decimal):
+                self.depth.uncertainty = self.rr.uncertainty * 2
             if isinstance(self.rr.uncertainty_upper, Decimal):
                 self.depth.uncertainty_upper = self.rr.uncertainty_upper * 2
             self.depth.reference = "Calculated from Rp/R*"
@@ -445,7 +485,7 @@ class Exoplanet(object):
 
         # If the orbital eccentricity value is 0 and a TT value is provided,
         # use the same values for T0 as well.
-        if self.ecc.value == 0 and str(self.om.value) == "NaN":
+        if self.ecc.value == 0 and is_empty(self.om.value):
             self.om.value = Decimal(90)
             self.om.reference = "Set to 90 deg with ecc~0"
             print("set omega to 90")
@@ -472,6 +512,14 @@ class Exoplanet(object):
         value_str = ("" if value_str == "None" else value_str)
         value_str = ("NaN" if value_str == "nan" else value_str)
         file.write("".join([field_str, value_str, "\n"]))
+
+
+def is_empty(var):
+    as_str = str(var)
+    if (as_str == "NaN" or as_str == "None" or as_str == ""):
+        return True
+    else:
+        return False
 
 
 def scrape_nasa_data(nasa_csv):
