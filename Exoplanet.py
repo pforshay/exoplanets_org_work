@@ -238,7 +238,7 @@ class Exoplanet(object):
                 new_value = new_value.replace("d", ":")
                 new_value = new_value.replace("m", ":")
                 new_value = new_value[:-1]
-            elif nasa_field == "pl_trandep" and isinstance(new_value, Decimal):
+            elif nasa_field == "pl_trandep" and not is_empty(new_value):
                 new_value = new_value / 100
             elif nasa_field == "st_nrvc" and new_value == "0":
                 new_value = -1
