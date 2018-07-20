@@ -492,6 +492,11 @@ class Exoplanet(object):
             if str(self.tt.value) != "NaN":
                 print("copying TT to T0")
                 self.t0.copy_values(self.tt)
+        # OM may already be set to 90.
+        elif self.ecc.value == 0 and self.om.value == 90:
+            if str(self.tt.value) != "NaN":
+                print("copying TT to T0")
+                self.t0.copy_values(self.tt)
 
     def write_pln_line(self, file, field, value):
         """
