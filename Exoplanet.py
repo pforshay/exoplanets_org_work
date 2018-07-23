@@ -305,7 +305,7 @@ class Exoplanet(object):
                         # preserve significant figures).
                         try:
                             value = Decimal(value)
-                        except InvalidOperation:
+                        except (InvalidOperation, TypeError):
                             pass
 
                     # Examine the keyword more closely.  Current .pln
