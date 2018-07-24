@@ -228,18 +228,22 @@ class Exoplanet(object):
             # Get the NASA value and apply some changes based on which
             # ExoParameter we are working on.
             new_value = nasa_dict[nasa_field]
-            if str(new_value) == "nan":
+            if is_empty(new_value):
                 new_value = exo_param.default
-            elif nasa_field == "ra_str":
-                new_value = new_value.replace("h", ":")
-                new_value = new_value.replace("m", ":")
-                new_value = new_value[:-1]
             elif nasa_field == "dec_str":
                 new_value = new_value.replace("d", ":")
                 new_value = new_value.replace("m", ":")
                 new_value = new_value[:-1]
+            elif nasa_field == "hd_name":
+                new_value = " ".join(new_value.split(" ")[1:])
+            elif nasa_field == "hip_name":
+                new_value = " ".join(new_value.split(" ")[1:])
             elif nasa_field == "pl_trandep" and not is_empty(new_value):
-                new_value = new_value / 100
+                new_value = Decimal(new_value) / 100
+            elif nasa_field == "ra_str":
+                new_value = new_value.replace("h", ":")
+                new_value = new_value.replace("m", ":")
+                new_value = new_value[:-1]
             elif nasa_field == "st_nrvc" and new_value == "0":
                 new_value = -1
 
@@ -309,7 +313,7 @@ class Exoplanet(object):
                             pass
 
                     # Examine the keyword more closely.  Current .pln
-                    # formatting specifies the uncertainty keywords being with
+                    # formatting specifies the uncertainty keywords begin with
                     # 'U', uncertainty upper-limits end with 'D', references
                     # end with 'REF', and links end with 'URL'.
                     if "transit" in keyword:
@@ -520,8 +524,8 @@ class Exoplanet(object):
 
 
 def is_empty(var):
-    as_str = str(var)
-    if (as_str == "NaN" or as_str == "None" or as_str == ""):
+    as_str = str(var).lower()
+    if (as_str == "nan" or as_str == "none" or as_str == ""):
         return True
     else:
         return False

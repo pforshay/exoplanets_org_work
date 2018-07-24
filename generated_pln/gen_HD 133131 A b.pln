@@ -1,0 +1,273 @@
+#* ================================================
+#* General Information
+#* ================================================
+NAME                     HD 133131 A b
+STAR                     HD 133131 A
+COMP                     b
+OTHERNAME                
+JSNAME                   HD 133131 A b
+EANAME                   HD 133131 A b
+CPSNAME                  
+SMENAME                  
+TABLENAME                
+SIMBADNAME               HD 133131A
+ETDNAME                  
+NSTEDID                  -1
+HD                       133131A
+HIPP                     73674
+GL                       NaN
+HR                       -1
+SAO                      183128
+KOI                      -1
+RA_STRING                15:03:35.45
+DEC_STRING               -27:50:33.3
+RA                       15.05984701
+DEC                      -27.842573
+COORDREF                 
+COORDURL                 
+V                        8.40
+BMV                      NaN
+J                        NaN
+H                        NaN
+KS                       NaN
+KP                       NaN
+SPTYPE                   
+OBSERVATORY              Las Campanas Observatory
+SURVEY                   Magellan Planet Search Program
+NOBS                     43
+NCOMP                    2
+RMS                      9.38
+CHI2                     0.980
+JITTER                   NaN
+FLAG                     1
+MULT                     1
+BINARY                   0
+BINARYREF                __ORBREF
+BINARYURL                __ORBURL
+TRANSIT                  0
+TIMING                   0
+ASTROMETRY               0
+MICROLENSING             0
+IMAGING                  0
+KDE                      0
+STARDISCMETH             RV
+PLANETDISCMETH           RV
+#* ================================================
+#* Stellar Parameters
+#* ================================================
+MSTAR                    0.95
+UMSTAR                   NaN
+UMSTARD                  NaN
+MSTARREF                 __SPECREF
+MSTARURL                 __SPECURL
+RSTAR                    NaN
+URSTAR                   NaN
+URSTARD                  NaN
+RSTARREF                 __SPECREF
+RSTARURL                 __SPECURL
+TEFF                     5799
+UTEFF                    19
+UTEFFD                   NaN
+TEFFREF                  __SPECREF
+TEFFURL                  __SPECURL
+FE                       -0.306
+UFE                      0.016
+UFED                     NaN
+FEREF                    __SPECREF
+FEURL                    __SPECURL
+DIST                     NaN
+UDIST                    NaN
+UDISTD                   NaN
+DISTREF                  __SPECREF
+DISTURL                  __SPECURL
+PAR                      NaN
+UPAR                     NaN
+UPARD                    NaN
+LOGG                     4.39
+ULOGG                    0.050
+ULOGGD                   NaN
+LOGGREF                  __SPECREF
+LOGGURL                  __SPECURL
+RHOSTAR                  NaN
+URHOSTAR                 NaN
+URHOSTARD                NaN
+RHOSTARREF               __TRANSITREF
+RHOSTARURL               __TRANSITURL
+PROT                     NaN
+VSINI                    NaN
+UVSINI                   NaN
+UVSINID                  NaN
+VSINIREF                 __SPECREF
+VSINIURL                 __SPECURL
+SHK                      NaN
+RHK                      NaN
+GAMMA                    NaN
+UGAMMA                   NaN
+UGAMMAD                  NaN
+#* ================================================
+#* Planetary Parameters
+#* ================================================
+MASS                     NaN
+UMASS                    NaN
+UMASSD                   NaN
+MASSREF                  Set to MSINI; I unknown
+MSINI                    1.42
+UMSINI                   0.04
+UMSINID                  NaN
+MSINIREF                 __ORBREF
+MSINIURL                 __ORBURL
+R                        NaN
+UR                       NaN
+URD                      NaN
+RREF                     __TRANSITREF
+RURL                     __TRANSITURL
+DENSITY                  NaN
+UDENSITY                 NaN
+UDENSITYD                NaN
+DENSITYREF               __TRANSITREF
+DENSITYURL               __TRANSITURL
+GRAVITY                  NaN
+UGRAVITY                 NaN
+UGRAVITYD                NaN
+GRAVITYREF               Calculated
+MASSRAT                  NaN
+#* ================================================
+#* Orbital Parameters
+#* ================================================
+PER                      649
+UPER                     3
+UPERD                    NaN
+PERREF                   __ORBREF
+PERURL                   __ORBURL
+ECC                      0.33
+UECC                     0.03
+UECCD                    NaN
+ECCREF                   __ORBREF
+ECCURL                   __ORBURL
+OM                       16
+UOM                      4.7
+UOMD                     NaN
+OMREF                    __ORBREF
+OMURL                    __ORBURL
+BIGOM                    NaN
+UBIGOM                   NaN
+UBIGOMD                  NaN
+K                        36.52
+UK                       0.93
+UKD                      NaN
+KREF                     __ORBREF
+KURL                     __ORBURL
+T0                       12327
+UT0                      23
+UT0D                     NaN
+T0REF                    __ORBREF
+T0URL                    __ORBURL
+DVDT                     NaN
+UDVDT                    NaN
+UDVDTD                   NaN
+DVDTREF                  __ORBREF
+DVDTURL                  __ORBURL
+TREND                    0
+I                        NaN
+UI                       NaN
+UID                      NaN
+IREF                     __TRANSITREF
+IURL                     __TRANSITURL
+A                        1.44
+UA                       0.005
+UAD                      NaN
+AREF                     __ORBREF
+AURL                     __ORBURL
+SEP                      NaN
+USEP                     NaN
+USEPD                    NaN
+SEPREF                   Set to A
+LAMBDA                   NaN
+ULAMBDA                  NaN
+ULAMBDAD                 NaN
+#* ================================================
+#* Transit Parameters
+#* ================================================
+DEPTH                    NaN
+UDEPTH                   NaN
+UDEPTHD                  NaN
+DEPTHREF                 __TRANSITREF
+DEPTHURL                 __TRANSITURL
+T14                      NaN
+UT14                     NaN
+UT14D                    NaN
+T14REF                   __TRANSITREF
+T14URL                   __TRANSITURL
+TT                       NaN
+UTT                      NaN
+UTTD                     NaN
+TTREF                    __TRANSITREF
+TTURL                    __TRANSITURL
+AR                       NaN
+UAR                      NaN
+UARD                     NaN
+ARREF                    __TRANSITREF
+ARURL                    __TRANSITURL
+B                        NaN
+UB                       NaN
+UBD                      NaN
+BREF                     __TRANSITREF
+BURL                     __TRANSITURL
+RR                       NaN
+URR                      NaN
+URRD                     NaN
+RRREF                    __TRANSITREF
+RRURL                    __TRANSITURL
+DR                       NaN
+UDR                      NaN
+UDRD                     NaN
+DRREF                    __TRANSITREF
+DRURL                    __TRANSITURL
+#* ================================================
+#* Secondary Eclipse Parameters
+#* ================================================
+SE                       0
+SEREF                    Predicted
+SEDEPTHJ                 NaN
+USEDEPTHJ                NaN
+USEDEPTHJD               NaN
+SEDEPTHH                 NaN
+USEDEPTHH                NaN
+USEDEPTHHD               NaN
+SEDEPTHKS                NaN
+USEDEPTHKS               NaN
+USEDEPTHKSD              NaN
+SEDEPTHKP                NaN
+USEDEPTHKP               NaN
+USEDEPTHKPD              NaN
+SEDEPTH36                NaN
+USEDEPTH36               NaN
+USEDEPTH36D              NaN
+SEDEPTH45                NaN
+USEDEPTH45               NaN
+USEDEPTH45D              NaN
+SEDEPTH58                NaN
+USEDEPTH58               NaN
+USEDEPTH58D              NaN
+SEDEPTH80                NaN
+USEDEPTH80               NaN
+USEDEPTH80D              NaN
+SET                      NaN
+USET                     NaN
+USETD                    NaN
+#* ================================================
+#* Main References and Website Flags
+#* ================================================
+DATE                     2016
+MONTH                    12
+FIRSTREF                 Teske et al. 2016
+FIRSTURL                 http://adsabs.harvard.edu/abs/2016AJ....152..167T
+ORBREF                   Teske et al. 2016
+ORBURL                   http://adsabs.harvard.edu/abs/2016AJ....152..167T
+INDEPORBREF              
+TRANSITREF               
+TRANSITURL               
+SPECREF                  Teske et al. 2016
+SPECURL                  http://adsabs.harvard.edu/abs/2016AJ....152..167T
+EOD                      1
+PUBLIC                   1

@@ -482,8 +482,6 @@ MASSRAT:
     parent: "Planetary Parameters"
     required: False
     uncertain_flag: False
-    uncertainty: "NaN"
-    uncertainty_upper: "NaN"
 PER:
     default: "NaN"
     eu_field: "orbital_period"
