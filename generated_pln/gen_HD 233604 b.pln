@@ -1,44 +1,45 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     HD 224538 b
-STAR                     HD 224538
+NAME                     HD 233604 b
+STAR                     HD 233604
 COMP                     b
 OTHERNAME                
-JSNAME                   HD 224538 b
-EANAME                   HD 224538 b
+JSNAME                   HD 233604 b
+EANAME                   HD 233604 b
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               HD 224538
+SIMBADNAME               HD 233604
 ETDNAME                  
 NSTEDID                  -1
-HD                       224538
-HIPP                     118228
+HD                       233604
+HIPP                     -1
 GL                       NaN
 HR                       -1
-SAO                      255614
+SAO                      27142
 KOI                      -1
-RA_STRING                23:58:51.76
-DEC_STRING               -61:35:12.4
-RA                       23.98104452
-DEC                      -61.586773
+RA_STRING                09:09:48.81
+DEC_STRING               +53:34:05.6
+RA                       9.16355867
+DEC                      53.568230
 COORDREF                 
 COORDURL                 
-V                        8.06
-BMV                      0.581
-UBMV                     0.006
+V                        10.406
+UV                       0.049
+BMV                      1.006
+UBMV                     0.036
 J                        NaN
 H                        NaN
 KS                       NaN
 KP                       NaN
-SPTYPE                   F9 IV/V
-OBSERVATORY              Multiple Observatories
-SURVEY                   CHEPS
-NOBS                     50
+SPTYPE                   K5
+OBSERVATORY              McDonald Observatory
+SURVEY                   
+NOBS                     33
 NCOMP                    1
 RMS                      NaN
-CHI2                     NaN
+CHI2                     2.76
 JITTER                   NaN
 FLAG                     1
 MULT                     0
@@ -56,36 +57,36 @@ PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters
 #* ================================================
-MSTAR                    1.34
-UMSTAR                   0.05
+MSTAR                    1.50
+UMSTAR                   0.30
 UMSTARD                  NaN
 MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
-RSTAR                    1.54
-URSTAR                   0.06
+RSTAR                    10.9
+URSTAR                   0.6
 URSTARD                  NaN
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     6097
-UTEFF                    100
+TEFF                     4791
+UTEFF                    45
 UTEFFD                   NaN
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
-FE                       0.27
-UFE                      0.10
+FE                       -0.36
+UFE                      0.04
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     77.76
-UDIST                    4.41
+DIST                     NaN
+UDIST                    NaN
 UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
-PAR                      12.86
-UPAR                     0.73
+PAR                      NaN
+UPAR                     NaN
 UPARD                    NaN
-LOGG                     4.19
-ULOGG                    0.04
+LOGG                     2.55
+ULOGG                    0.18
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
@@ -94,16 +95,17 @@ URHOSTAR                 NaN
 URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
-PROT                     NaN
-VSINI                    3.9
-UVSINI                   0.3
+PROT                     282
+UPROT                    111
+VSINI                    2.0
+UVSINI                   0.8
 UVSINID                  NaN
 VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
 SHK                      NaN
-RHK                      -4.99
-GAMMA                    NaN
-UGAMMA                   NaN
+RHK                      NaN
+GAMMA                    -0.0169
+UGAMMA                   0.0037
 UGAMMAD                  NaN
 #* ================================================
 #* Planetary Parameters
@@ -112,8 +114,8 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    5.97
-UMSINI                   0.42
+MSINI                    6.575
+UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 __ORBREF
 MSINIURL                 __ORBURL
@@ -132,36 +134,34 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      1189.1
-UPER                     5.1
+PER                      192.00
+UPER                     0.22
 UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0.464
-UECC                     0.022
+ECC                      0.05
+UECC                     0.03
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-OM                       23
-UOM                      2
+OM                       281
+UOM                      43
 UOMD                     NaN
 OMREF                    __ORBREF
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        107.0
-UK                       2.4
+K                        177.8
+UK                       4.3
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       NaN
-UT0                      NaN
+T0                       13022
+UT0                      77
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -176,8 +176,8 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        2.28
-UA                       0.08
+A                        0.747
+UA                       NaN
 UAD                      NaN
 AREF                     __ORBREF
 AURL                     __ORBURL
@@ -261,16 +261,16 @@ USETD                    NaN
 #* ================================================
 #* Main References and Website Flags
 #* ================================================
-DATE                     2017
-MONTH                    4
-FIRSTREF                 Jenkins et al. 2017
-FIRSTURL                 http://adsabs.harvard.edu/abs/2017MNRAS.466..443J
-ORBREF                   Jenkins et al. 2017
-ORBURL                   http://adsabs.harvard.edu/abs/2017MNRAS.466..443J
+DATE                     2013
+MONTH                    6
+FIRSTREF                 Nowak et al. 2013
+FIRSTURL                 http://adsabs.harvard.edu/abs/2013ApJ...770...53N
+ORBREF                   Nowak et al. 2013
+ORBURL                   http://adsabs.harvard.edu/abs/2013ApJ...770...53N
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
-SPECREF                  Jenkins et al. 2017
-SPECURL                  http://adsabs.harvard.edu/abs/2017MNRAS.466..443J
+SPECREF                  Nowak et al. 2013
+SPECURL                  http://adsabs.harvard.edu/abs/2013ApJ...770...53N
 EOD                      1
 PUBLIC                   1

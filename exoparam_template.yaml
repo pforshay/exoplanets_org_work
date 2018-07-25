@@ -507,6 +507,12 @@ ECC:
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     url: "__ORBURL"
+FREEZE_ECC:
+    default: 0
+    label: "Fixed Eccentricity flag"
+    parent: "Orbital Parameters"
+    required: False
+    uncertain_flag: False
 OM:
     default: "NaN"
     eu_field: "omega"
