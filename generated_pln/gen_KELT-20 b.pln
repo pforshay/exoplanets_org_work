@@ -25,8 +25,8 @@ RA                       19.64409383
 DEC                      31.219225
 COORDREF                 
 COORDURL                 
-V                        NaN
-BMV                      NaN
+V                        7.58
+BMV                      0.09
 J                        7.424
 UJ                       0.024
 H                        7.446
@@ -109,6 +109,8 @@ RHK                      NaN
 GAMMA                    -23.3
 UGAMMA                   0.3
 UGAMMAD                  NaN
+GAMMAREF                 __FIRSTREF
+GAMMAURL                 __FIRSTURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -149,6 +151,7 @@ UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       NaN
 UOM                      NaN
 UOMD                     NaN

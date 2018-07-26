@@ -98,14 +98,14 @@ DEC_STRING:
     parent: "General Information"
     required: False
 RA:
-    default: -999
+    default: -999.0000000000000
     label: "RA in Hours"
     nasa_field: "st_rah"
     parent: "General Information"
     required: False
     units: "hours"
 DEC:
-    default: -999
+    default: -999.0000000000000
     eu_field: "dec"
     label: "DEC in Degrees"
     nasa_field: "dec"
@@ -411,11 +411,13 @@ GAMMA:
     label: "Systemic Radial Velocity"
     nasa_field: "st_radv"
     parent: "Stellar Parameters"
+    reference: "__SPECREF"
     required: False
     uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "km / s"
+    url: "__SPECURL"
 MASS:
     default: "NaN"
     eu_field: "mass"
@@ -617,11 +619,13 @@ LAMBDA:
     eu_field: "lambda_angle"
     label: "Spin-Orbit Misalignment"
     parent: "Orbital Parameters"
+    reference: "__ORBREF"
     required: False
     uncertain_flag: True
     uncertainty: "NaN"
     uncertainty_upper: "NaN"
     units: "degrees"
+    url: "__ORBURL"
 DEPTH:
     default: "NaN"
     label: "Transit Depth [(Rp/R*)^2]"

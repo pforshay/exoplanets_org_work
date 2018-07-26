@@ -67,6 +67,7 @@ MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
 RSTAR                    1.638
 URSTAR                   0.034
+URSTARD                  NaN
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
 TEFF                     7598
@@ -81,10 +82,12 @@ FEREF                    __SPECREF
 FEURL                    __SPECURL
 DIST                     415
 UDIST                    49
+UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
 PAR                      2.41
 UPAR                     0.28
+UPARD                    NaN
 LOGG                     4.173
 ULOGG                    0.0145
 ULOGGD                   0.015
@@ -98,12 +101,16 @@ RHOSTARURL               __TRANSITURL
 PROT                     NaN
 VSINI                    146.03
 UVSINI                   0.48
+UVSINID                  NaN
 VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
 SHK                      NaN
 RHK                      NaN
 GAMMA                    -13.0
 UGAMMA                   1.0
+UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -136,17 +143,19 @@ MASSRAT                  NaN
 #* ================================================
 PER                      3.6127647
 UPER                     0.0000033
+UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      NaN
+ECC                      0
 UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-OM                       NaN
+FREEZE_ECC               1
+OM                       90
 UOM                      NaN
 UOMD                     NaN
-OMREF                    __ORBREF
+OMREF                    Set to 90 deg with ecc~0
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
@@ -156,8 +165,8 @@ UK                       NaN
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       NaN
-UT0                      NaN
+T0                       17382.640727
+UT0                      0.00041
 UT0D                     NaN
 T0REF                    __TRANSITREF
 T0URL                    __TRANSITURL
@@ -184,11 +193,14 @@ SEPREF                   Set to A
 LAMBDA                   -5.6
 ULAMBDA                  1.8
 ULAMBDAD                 1.7
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
 DEPTH                    0.00990
 UDEPTH                   0.00014
+UDEPTHD                  NaN
 DEPTHREF                 __TRANSITREF
 DEPTHURL                 __TRANSITURL
 T14                      0.17106
@@ -198,6 +210,7 @@ T14REF                   __TRANSITREF
 T14URL                   __TRANSITURL
 TT                       17382.640727
 UTT                      0.00041
+UTTD                     NaN
 TTREF                    __TRANSITREF
 TTURL                    __TRANSITURL
 AR                       6.86

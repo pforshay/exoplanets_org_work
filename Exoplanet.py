@@ -8,8 +8,7 @@ class ExoParameter(object):
     """
     The ExoParameter class is intended to define an exoplanet parameter and a
     number of other properties that go along with it.  This includes value
-    uncertainties, default values, and units.  Not a lot has been done with
-    this class in practice yet.
+    uncertainties, default values, and units.
     """
 
     def __init__(self, parameter, attr_dict=None):
@@ -347,7 +346,7 @@ class Exoplanet(object):
 
         self.calculate_lower_uncert()
 
-    def save_to_pln(self, name=None, dir=None, gui=False):
+    def save_to_pln(self, name=None, dir=None, gui=False, disp=True):
         """
         Save an Exoplanet object into a .pln text file.  A .pln template is
         needed here to recreate the sections of the text file and where to
@@ -371,13 +370,14 @@ class Exoplanet(object):
         if dir:
             name = os.path.join(dir, name)
             home = os.getcwd()
-            name = "".join([home, name])
+            name = os.path.join(home, name)
 
         if os.path.isfile(name):
             os.remove(name)
 
         with open(name, 'w') as new_pln:
-            print("writing to {0}".format(name))
+            if disp:
+                print("writing to {0}".format(name))
 
             # Use the pln_template dictionary to create the file sections and
             # look up the names that may be in the parameters dictionary.
