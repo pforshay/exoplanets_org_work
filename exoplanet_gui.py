@@ -264,7 +264,7 @@ class MainGUI(QWidget):
             # print(exo_param)
             setattr(new_planet, parameter_name, exo_param)
         new_planet.verify_pln()
-        new_planet.save_to_pln(dir="/generated_pln", gui=True)
+        new_planet.save_to_pln(dir="generated_pln", gui=True)
 
 
 def __test__():

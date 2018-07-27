@@ -1,41 +1,43 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     
-STAR                     
-COMP                     
+NAME                     GJ 625 b
+STAR                     GJ 625
+COMP                     b
 OTHERNAME                
-JSNAME                   
-EANAME                   
+JSNAME                   GJ 625 b
+EANAME                   GJ 625 b
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               
+SIMBADNAME               G 202-48
 ETDNAME                  
 NSTEDID                  -1
 HD                       -1
-HIPP                     -1
-GL                       NaN
+HIPP                     80459
+GL                       625
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                
-DEC_STRING               
-RA                       -999.0
-DEC                      -999.0
+RA_STRING                16:25:24.62
+DEC_STRING               +54:18:14.8
+RA                       16.42350667
+DEC                      54.304104
 COORDREF                 
 COORDURL                 
-V                        NaN
-BMV                      NaN
+V                        10.17
+UV                       0.04
+BMV                      1.63
+UBMV                     0.20
 J                        NaN
 H                        NaN
 KS                       NaN
 KP                       NaN
-SPTYPE                   
-OBSERVATORY              
-SURVEY                   
-NOBS                     -1
-NCOMP                    0
+SPTYPE                   M2
+OBSERVATORY              Roque de los Muchachos Observatory
+SURVEY                   HADES
+NOBS                     151
+NCOMP                    1
 RMS                      NaN
 CHI2                     NaN
 JITTER                   NaN
@@ -50,32 +52,32 @@ ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
 KDE                      0
-STARDISCMETH             
-PLANETDISCMETH           
+STARDISCMETH             RV
+PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters
 #* ================================================
-MSTAR                    NaN
-UMSTAR                   NaN
+MSTAR                    0.30
+UMSTAR                   0.07
 UMSTARD                  NaN
 MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
-RSTAR                    NaN
-URSTAR                   NaN
+RSTAR                    0.31
+URSTAR                   0.06
 URSTARD                  NaN
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     NaN
-UTEFF                    NaN
+TEFF                     3499
+UTEFF                    68
 UTEFFD                   NaN
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
-FE                       NaN
-UFE                      NaN
+FE                       -0.38
+UFE                      0.09
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     NaN
+DIST                     6.49
 UDIST                    NaN
 UDISTD                   NaN
 DISTREF                  __SPECREF
@@ -83,8 +85,8 @@ DISTURL                  __SPECURL
 PAR                      NaN
 UPAR                     NaN
 UPARD                    NaN
-LOGG                     NaN
-ULOGG                    NaN
+LOGG                     4.94
+ULOGG                    0.06
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
@@ -93,17 +95,19 @@ URHOSTAR                 NaN
 URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
-PROT                     NaN
-VSINI                    NaN
-UVSINI                   NaN
-UVSINID                  NaN
+PROT                     77.8
+UPROT                    5.5
+VSINI                    0
+UVSINI                   0.1
+UVSINID                  0.2
 VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
 SHK                      NaN
-RHK                      NaN
-GAMMA                    NaN
-UGAMMA                   NaN
-UGAMMAD                  NaN
+RHK                      -5.5
+URHK                     0.2
+GAMMA                    -12.85011
+UGAMMA                   0.00018
+UGAMMAD                  0.00018
 GAMMAREF                 __SPECREF
 GAMMAURL                 __SPECURL
 #* ================================================
@@ -113,11 +117,11 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    NaN
-UMSINI                   NaN
-UMSINID                  NaN
-MSINIREF                 Calculated
-MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+MSINI                    0.00887
+UMSINI                   0.00160
+UMSINID                  0.00160
+MSINIREF                 __ORBREF
+MSINIURL                 __ORBURL
 R                        NaN
 UR                       NaN
 URD                      NaN
@@ -136,28 +140,28 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      NaN
-UPER                     NaN
-UPERD                    NaN
+PER                      14.628
+UPER                     0.0125
+UPERD                    0.012
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      NaN
-UECC                     NaN
-UECCD                    NaN
+ECC                      0.13
+UECC                     0.105
+UECCD                    0.12
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
 FREEZE_ECC               0
-OM                       NaN
-UOM                      NaN
-UOMD                     NaN
+OM                       343.1
+UOM                      12.2
+UOMD                     9.6
 OMREF                    __ORBREF
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        NaN
-UK                       NaN
-UKD                      NaN
+K                        1.67
+UK                       0.29
+UKD                      0.29
 KREF                     __ORBREF
 KURL                     __ORBURL
 T0                       NaN
@@ -176,9 +180,9 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
-UAD                      NaN
+A                        0.078361
+UA                       0.000045
+UAD                      0.000044
 AREF                     Calculated
 AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
 SEP                      NaN
@@ -263,16 +267,16 @@ USETD                    NaN
 #* ================================================
 #* Main References and Website Flags
 #* ================================================
-DATE                     0
-MONTH                    -1
-FIRSTREF                 
-FIRSTURL                 
-ORBREF                   
-ORBURL                   
+DATE                     2017
+MONTH                    9
+FIRSTREF                 Suarez Mascareno 2017
+FIRSTURL                 http://adsabs.harvard.edu/abs/2017A%26A...605A..92S
+ORBREF                   Suarez Mascareno 2017
+ORBURL                   http://adsabs.harvard.edu/abs/2017A%26A...605A..92S
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
-SPECREF                  
-SPECURL                  
+SPECREF                  Suarez Mascareno 2017
+SPECURL                  http://adsabs.harvard.edu/abs/2017A%26A...605A..92S
 EOD                      1
-PUBLIC                   0
+PUBLIC                   1

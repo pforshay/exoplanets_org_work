@@ -1,46 +1,46 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     
-STAR                     
-COMP                     
+NAME                     HD 215152 c
+STAR                     HD 215152
+COMP                     c
 OTHERNAME                
-JSNAME                   
-EANAME                   
+JSNAME                   HD 215152 c
+EANAME                   HD 215152 c
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               
+SIMBADNAME               HD 215152
 ETDNAME                  
 NSTEDID                  -1
-HD                       -1
-HIPP                     -1
-GL                       NaN
+HD                       215152
+HIPP                     112190
+GL                       4291
 HR                       -1
-SAO                      -1
+SAO                      146275
 KOI                      -1
-RA_STRING                
-DEC_STRING               
-RA                       -999.0
-DEC                      -999.0
+RA_STRING                22:43:21.30
+DEC_STRING               -06:24:03.0
+RA                       22.72258301
+DEC                      -6.400821
 COORDREF                 
 COORDURL                 
-V                        NaN
-BMV                      NaN
+V                        6.45
+BMV                      0.99
 J                        NaN
 H                        NaN
 KS                       NaN
 KP                       NaN
-SPTYPE                   
-OBSERVATORY              
-SURVEY                   
-NOBS                     -1
-NCOMP                    0
+SPTYPE                   K3 V
+OBSERVATORY              La Silla Observatory
+SURVEY                   HARPS
+NOBS                     373
+NCOMP                    4
 RMS                      NaN
 CHI2                     NaN
 JITTER                   NaN
 FLAG                     1
-MULT                     0
+MULT                     1
 BINARY                   0
 BINARYREF                __ORBREF
 BINARYURL                __ORBURL
@@ -50,28 +50,28 @@ ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
 KDE                      0
-STARDISCMETH             
-PLANETDISCMETH           
+STARDISCMETH             RV
+PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters
 #* ================================================
-MSTAR                    NaN
-UMSTAR                   NaN
+MSTAR                    0.77
+UMSTAR                   0.015
 UMSTARD                  NaN
 MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
-RSTAR                    NaN
-URSTAR                   NaN
+RSTAR                    0.73
+URSTAR                   0.018
 URSTARD                  NaN
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     NaN
-UTEFF                    NaN
+TEFF                     4935
+UTEFF                    76
 UTEFFD                   NaN
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
-FE                       NaN
-UFE                      NaN
+FE                       -0.10
+UFE                      0.04
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
@@ -80,10 +80,10 @@ UDIST                    NaN
 UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
-PAR                      NaN
-UPAR                     NaN
+PAR                      46.24
+UPAR                     0.26
 UPARD                    NaN
-LOGG                     NaN
+LOGG                     4.40
 ULOGG                    NaN
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
@@ -93,17 +93,17 @@ URHOSTAR                 NaN
 URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
-PROT                     NaN
-VSINI                    NaN
+PROT                     42
+VSINI                    3.35
 UVSINI                   NaN
 UVSINID                  NaN
 VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
 SHK                      NaN
-RHK                      NaN
-GAMMA                    NaN
-UGAMMA                   NaN
-UGAMMAD                  NaN
+RHK                      -4.86
+GAMMA                    -13.687517
+UGAMMA                   0.0002715
+UGAMMAD                  0.000269
 GAMMAREF                 __SPECREF
 GAMMAURL                 __SPECURL
 #* ================================================
@@ -113,11 +113,11 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    NaN
-UMSINI                   NaN
-UMSINID                  NaN
-MSINIREF                 Calculated
-MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+MSINI                    0.005412
+UMSINI                   0.0021125
+UMSINID                  0.001944
+MSINIREF                 __ORBREF
+MSINIURL                 __ORBURL
 R                        NaN
 UR                       NaN
 URD                      NaN
@@ -136,28 +136,28 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      NaN
-UPER                     NaN
-UPERD                    NaN
+PER                      7.28243
+UPER                     0.00639
+UPERD                    0.00451
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      NaN
+ECC                      0
 UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-FREEZE_ECC               0
-OM                       NaN
+FREEZE_ECC               1
+OM                       90
 UOM                      NaN
 UOMD                     NaN
-OMREF                    __ORBREF
+OMREF                    Set to 90 deg with ecc~0
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        NaN
-UK                       NaN
-UKD                      NaN
+K                        0.675
+UK                       0.263
+UKD                      0.242
 KREF                     __ORBREF
 KURL                     __ORBURL
 T0                       NaN
@@ -176,11 +176,11 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
-UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+A                        0.067393
+UA                       0.0008765
+UAD                      0.000860
+AREF                     __ORBREF
+AURL                     __ORBURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN
@@ -263,16 +263,16 @@ USETD                    NaN
 #* ================================================
 #* Main References and Website Flags
 #* ================================================
-DATE                     0
-MONTH                    -1
-FIRSTREF                 
-FIRSTURL                 
-ORBREF                   
-ORBURL                   
+DATE                     2018
+MONTH                    6
+FIRSTREF                 Delisle 2018
+FIRSTURL                 http://adsabs.harvard.edu/abs/2018A%26A...614A.133D
+ORBREF                   Delisle 2018
+ORBURL                   http://adsabs.harvard.edu/abs/2018A%26A...614A.133D
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
-SPECREF                  
-SPECURL                  
+SPECREF                  Delisle 2018
+SPECURL                  http://adsabs.harvard.edu/abs/2018A%26A...614A.133D
 EOD                      1
-PUBLIC                   0
+PUBLIC                   1

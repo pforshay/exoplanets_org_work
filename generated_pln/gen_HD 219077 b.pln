@@ -1,43 +1,43 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     
-STAR                     
-COMP                     
+NAME                     HD 219077 b
+STAR                     HD 219077
+COMP                     b
 OTHERNAME                
-JSNAME                   
-EANAME                   
+JSNAME                   HD 219077 b
+EANAME                   HD 219077 b
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               
+SIMBADNAME               HD 219077
 ETDNAME                  
 NSTEDID                  -1
-HD                       -1
-HIPP                     -1
+HD                       219077
+HIPP                     114699
 GL                       NaN
 HR                       -1
-SAO                      -1
+SAO                      255435
 KOI                      -1
-RA_STRING                
-DEC_STRING               
-RA                       -999.0
-DEC                      -999.0
+RA_STRING                23:14:06.58
+DEC_STRING               -62:42:00.0
+RA                       23.23516235
+DEC                      -62.700005
 COORDREF                 
 COORDURL                 
-V                        NaN
-BMV                      NaN
+V                        6.12
+BMV                      0.787
 J                        NaN
 H                        NaN
 KS                       NaN
 KP                       NaN
-SPTYPE                   
-OBSERVATORY              
-SURVEY                   
-NOBS                     -1
-NCOMP                    0
+SPTYPE                   G8 V
+OBSERVATORY              La Silla Observatory
+SURVEY                   CORALIE
+NOBS                     93
+NCOMP                    1
 RMS                      NaN
-CHI2                     NaN
+CHI2                     1.15
 JITTER                   NaN
 FLAG                     1
 MULT                     0
@@ -50,28 +50,28 @@ ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
 KDE                      0
-STARDISCMETH             
-PLANETDISCMETH           
+STARDISCMETH             RV
+PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters
 #* ================================================
-MSTAR                    NaN
-UMSTAR                   NaN
+MSTAR                    1.05
+UMSTAR                   0.02
 UMSTARD                  NaN
 MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
-RSTAR                    NaN
-URSTAR                   NaN
+RSTAR                    1.91
+URSTAR                   0.03
 URSTARD                  NaN
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     NaN
-UTEFF                    NaN
+TEFF                     5362
+UTEFF                    18
 UTEFFD                   NaN
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
-FE                       NaN
-UFE                      NaN
+FE                       -0.13
+UFE                      0.01
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
@@ -80,11 +80,11 @@ UDIST                    NaN
 UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
-PAR                      NaN
-UPAR                     NaN
+PAR                      34.07
+UPAR                     0.37
 UPARD                    NaN
-LOGG                     NaN
-ULOGG                    NaN
+LOGG                     4.00
+ULOGG                    0.03
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
@@ -93,16 +93,18 @@ URHOSTAR                 NaN
 URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
-PROT                     NaN
-VSINI                    NaN
+PROT                     49
+UPROT                    4
+VSINI                    1.46
 UVSINI                   NaN
 UVSINID                  NaN
 VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
 SHK                      NaN
-RHK                      NaN
-GAMMA                    NaN
-UGAMMA                   NaN
+RHK                      -5.12
+URHK                     0.01
+GAMMA                    -30.8691
+UGAMMA                   0.0033
 UGAMMAD                  NaN
 GAMMAREF                 __SPECREF
 GAMMAURL                 __SPECURL
@@ -113,11 +115,11 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    NaN
-UMSINI                   NaN
+MSINI                    10.39
+UMSINI                   0.09
 UMSINID                  NaN
-MSINIREF                 Calculated
-MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+MSINIREF                 __ORBREF
+MSINIURL                 __ORBURL
 R                        NaN
 UR                       NaN
 URD                      NaN
@@ -136,32 +138,32 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      NaN
-UPER                     NaN
-UPERD                    NaN
+PER                      5501
+UPER                     124.5
+UPERD                    130
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      NaN
-UECC                     NaN
+ECC                      0.770
+UECC                     0.003
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
 FREEZE_ECC               0
-OM                       NaN
-UOM                      NaN
+OM                       57.61
+UOM                      0.42
 UOMD                     NaN
 OMREF                    __ORBREF
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        NaN
-UK                       NaN
+K                        181.4
+UK                       0.8
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       NaN
-UT0                      NaN
+T0                       10455.8
+UT0                      1.4
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -176,11 +178,11 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        6.22
+UA                       0.09
 UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+AREF                     __ORBREF
+AURL                     __ORBURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN
@@ -263,16 +265,16 @@ USETD                    NaN
 #* ================================================
 #* Main References and Website Flags
 #* ================================================
-DATE                     0
-MONTH                    -1
-FIRSTREF                 
-FIRSTURL                 
-ORBREF                   
-ORBURL                   
+DATE                     2013
+MONTH                    3
+FIRSTREF                 Marmier 2013
+FIRSTURL                 http://adsabs.harvard.edu/abs/2013A%26A...551A..90M
+ORBREF                   Marmier 2013
+ORBURL                   http://adsabs.harvard.edu/abs/2013A%26A...551A..90M
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
-SPECREF                  
-SPECURL                  
+SPECREF                  Marmier 2013
+SPECURL                  http://adsabs.harvard.edu/abs/2013A%26A...551A..90M
 EOD                      1
-PUBLIC                   0
+PUBLIC                   1
