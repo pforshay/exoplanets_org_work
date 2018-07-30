@@ -1,48 +1,49 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     HD 5583 b
-STAR                     HD 5583
+NAME                     GJ 3138 b
+STAR                     GJ 3138
 COMP                     b
 OTHERNAME                
-JSNAME                   HD 5583 b
-EANAME                   HD 5583 b
+JSNAME                   GJ 3138 b
+EANAME                   GJ 3138 b
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               HD 5583
+SIMBADNAME               BD-17 400
 ETDNAME                  
 NSTEDID                  -1
-HD                       5583
-HIPP                     -1
-GL                       NaN
+HD                       -1
+HIPP                     10037
+GL                       3138
 HR                       -1
-SAO                      54296
+SAO                      -1
 KOI                      -1
-RA_STRING                00:57:56.70
-DEC_STRING               +34:59:08.0
-RA                       0.96575033
-DEC                      34.985561
+RA_STRING                02:09:10.90
+DEC_STRING               -16:20:22.5
+RA                       2.15302836
+DEC                      -16.339592
 COORDREF                 
 COORDURL                 
-V                        7.60
-UV                       0.01
-BMV                      0.94
-UBMV                     0.03
-J                        NaN
-H                        NaN
-KS                       NaN
+V                        10.98
+BMV                      NaN
+J                        8.076
+UJ                       0.019
+H                        7.412
+UH                       0.031
+KS                       7.246
+UKS                      0.016
 KP                       NaN
-SPTYPE                   
-OBSERVATORY              Multiple Observatories
-SURVEY                   TAPAS
-NOBS                     36
-NCOMP                    1
-RMS                      NaN
-CHI2                     1.88
+SPTYPE                   M0
+OBSERVATORY              La Silla Observatory
+SURVEY                   HARPS
+NOBS                     198
+NCOMP                    3
+RMS                      2.87
+CHI2                     NaN
 JITTER                   NaN
 FLAG                     1
-MULT                     0
+MULT                     1
 BINARY                   0
 BINARYREF                __ORBREF
 BINARYURL                __ORBURL
@@ -57,36 +58,36 @@ PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters
 #* ================================================
-MSTAR                    1.01
-UMSTAR                   0.1
+MSTAR                    0.681
+UMSTAR                   NaN
 UMSTARD                  NaN
 MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
-RSTAR                    9.09
-URSTAR                   1.5
+RSTAR                    0.50
+URSTAR                   0.03
 URSTARD                  NaN
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     4830
-UTEFF                    45
+TEFF                     3717
+UTEFF                    49
 UTEFFD                   NaN
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
-FE                       -0.50
-UFE                      0.18
+FE                       -0.30
+UFE                      0.12
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     221
-UDIST                    14
+DIST                     NaN
+UDIST                    NaN
 UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
-PAR                      NaN
-UPAR                     NaN
+PAR                      33.44
+UPAR                     2.17
 UPARD                    NaN
-LOGG                     2.53
-ULOGG                    0.14
+LOGG                     NaN
+ULOGG                    NaN
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
@@ -95,17 +96,16 @@ URHOSTAR                 NaN
 URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
-PROT                     209
-UPROT                    221
-VSINI                    2.2
-UVSINI                   2.3
+PROT                     42.5
+VSINI                    NaN
+UVSINI                   NaN
 UVSINID                  NaN
 VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
 SHK                      NaN
-RHK                      NaN
-GAMMA                    11.68
-UGAMMA                   0.03
+RHK                      -4.855
+GAMMA                    13.5973
+UGAMMA                   0.0002
 UGAMMAD                  NaN
 GAMMAREF                 __SPECREF
 GAMMAURL                 __SPECURL
@@ -116,9 +116,9 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    5.78
-UMSINI                   0.53
-UMSINID                  NaN
+MSINI                    0.0132
+UMSINI                   0.0019
+UMSINID                  0.0019
 MSINIREF                 __ORBREF
 MSINIURL                 __ORBURL
 R                        NaN
@@ -139,49 +139,49 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      139.35
-UPER                     0.215
-UPERD                    0.21
+PER                      5.974
+UPER                     0.001
+UPERD                    0.001
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0.076
-UECC                     0.0465
-UECCD                    0.070
+ECC                      0.11
+UECC                     0.09
+UECCD                    0.11
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
 FREEZE_ECC               0
-OM                       12
-UOM                      168
-UOMD                     330
+OM                       NaN
+UOM                      NaN
+UOMD                     NaN
 OMREF                    __ORBREF
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        225.8
-UK                       4.25
-UKD                      4.5
+K                        1.93
+UK                       0.26
+UKD                      0.26
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       16021
-UT0                      17.5
-UT0D                     18
+T0                       NaN
+UT0                      NaN
+UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
-DVDT                     NaN
-UDVDT                    NaN
+DVDT                     0.000515
+UDVDT                    0.000038
 UDVDTD                   NaN
 DVDTREF                  __ORBREF
 DVDTURL                  __ORBURL
-TREND                    0
+TREND                    1
 I                        NaN
 UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        0.53
-UA                       0.02
-UAD                      NaN
+A                        0.057
+UA                       0.001
+UAD                      0.001
 AREF                     __ORBREF
 AURL                     __ORBURL
 SEP                      NaN
@@ -206,11 +206,11 @@ UT14                     NaN
 UT14D                    NaN
 T14REF                   __TRANSITREF
 T14URL                   __TRANSITURL
-TT                       NaN
-UTT                      NaN
-UTTD                     NaN
-TTREF                    __TRANSITREF
-TTURL                    __TRANSITURL
+TT                       16685.47
+UTT                      0.245
+UTTD                     0.25
+TTREF                    __ORBREF
+TTURL                    __ORBURL
 AR                       NaN
 UAR                      NaN
 UARD                     NaN
@@ -266,16 +266,16 @@ USETD                    NaN
 #* ================================================
 #* Main References and Website Flags
 #* ================================================
-DATE                     2016
-MONTH                    4
-FIRSTREF                 Niedzielski 2016
-FIRSTURL                 http://adsabs.harvard.edu/abs/2016A%26A...588A..62N
-ORBREF                   Niedzielski 2016
-ORBURL                   http://adsabs.harvard.edu/abs/2016A%26A...588A..62N
+DATE                     2017
+MONTH                    6
+FIRSTREF                 Astudillo-Defru 2017
+FIRSTURL                 http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
+ORBREF                   Astudillo-Defru 2017
+ORBURL                   http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
-SPECREF                  Niedzielski 2016
-SPECURL                  http://adsabs.harvard.edu/abs/2016A%26A...588A..62N
+SPECREF                  Astudillo-Defru 2017
+SPECURL                  http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
 EOD                      1
 PUBLIC                   1
