@@ -107,6 +107,8 @@ URHK                     0.10
 GAMMA                    -8.720
 UGAMMA                   0.003
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -134,8 +136,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -149,6 +149,7 @@ UECC                     0.07
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       50
 UOM                      150
 UOMD                     NaN
@@ -162,8 +163,8 @@ UK                       1.6
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       16990.8
-UT0                      2.5
+T0                       NaN
+UT0                      NaN
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -190,6 +191,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -203,8 +206,8 @@ UT14                     NaN
 UT14D                    NaN
 T14REF                   __TRANSITREF
 T14URL                   __TRANSITURL
-TT                       NaN
-UTT                      NaN
+TT                       16990.8
+UTT                      2.5
 UTTD                     NaN
 TTREF                    __TRANSITREF
 TTURL                    __TRANSITURL
