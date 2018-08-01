@@ -36,7 +36,7 @@ KS                       NaN
 KP                       NaN
 SPTYPE                   F5
 OBSERVATORY              XO
-SURVEY                   
+SURVEY                   XO
 NOBS                     36
 NCOMP                    1
 RMS                      NaN
@@ -111,6 +111,8 @@ RHK                      NaN
 GAMMA                    NaN
 UGAMMA                   NaN
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -139,8 +141,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -149,15 +149,16 @@ UPER                     0.0000081
 UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0.0
+ECC                      0
 UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-OM                       NaN
+FREEZE_ECC               1
+OM                       90
 UOM                      NaN
 UOMD                     NaN
-OMREF                    __ORBREF
+OMREF                    Set to 90 deg with ecc~0
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
@@ -205,8 +206,8 @@ UDEPTH                   0.012
 UDEPTHD                  NaN
 DEPTHREF                 Calculated from Rp/R*
 DEPTHURL                 __TRANSITURL
-T14                      0.1208333
-UT14                     0.004167
+T14                      0.121
+UT14                     0.004
 UT14D                    NaN
 T14REF                   __TRANSITREF
 T14URL                   __TRANSITURL

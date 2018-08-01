@@ -1,4 +1,5 @@
 from decimal import Decimal, InvalidOperation
+import numpy as np
 import os
 import pandas as pd
 import yaml
@@ -96,10 +97,22 @@ class Exoplanet(object):
         :type path:  str
         """
 
-        # Initialize the Exoplanet object with an empty 'attributes' list and
-        # use the 'self.template_file' to create the default attributes.
+        # Initialize the Exoplanet object with an empty 'attributes' list.
         self.attributes = []
-        self.build_from_template(self.template_file)
+
+        # Load the YAML-formatted template file.
+        with open(self.template_file, 'r') as template:
+            template_parameters = yaml.load(template)
+
+        # For each attribute defined in the template file, add this attribute
+        # to the Exoplanet object and link it to a new ExoParameter defined
+        # by the information supplied.
+        for param, attributes in template_parameters.items():
+            setattr(self, param.lower(), ExoParameter(param,
+                                                      attr_dict=attributes
+                                                      )
+                    )
+            self.attributes.append(param.lower())
 
         # If an existing .pln file is provided, read this file information.
         if path:
@@ -117,31 +130,7 @@ class Exoplanet(object):
 
         return "<Exoplanet>: {0}".format(self.__dict__)
 
-    def build_from_template(self, template_file):
-        """
-        Use a template file to add default attributes to an Exoplanet and set
-        these attributes to default ExoParameter objects.
-
-        :param template_file:  The template file defining default Exoplanet
-                               attributes.
-        :type template_file:  str
-        """
-
-        # Load the YAML-formatted template file.
-        with open(template_file, 'r') as template:
-            template_parameters = yaml.load(template)
-
-        # For each attribute defined in the template file, add this attribute
-        # to the Exoplanet object and link it to a new ExoParameter defined
-        # by the information supplied.
-        for param, attributes in template_parameters.items():
-            setattr(self, param.lower(), ExoParameter(param,
-                                                      attr_dict=attributes
-                                                      )
-                    )
-            self.attributes.append(param.lower())
-
-    def calculate_lower_uncert(self):
+    def _calculate_lower_uncert(self):
         """
         Use mean and upper uncertainty values to calculate a lower
         uncertainty.  Do this after reading in a .pln file, since lower
@@ -158,7 +147,7 @@ class Exoplanet(object):
                 u_lo = (2 * u_avg) - u_hi
                 exo_param.uncertainty_lower = Decimal(u_lo)
 
-    def calculate_mean_uncert(self):
+    def _calculate_mean_uncert(self):
         """
         Use upper and lower uncertainty values to calculate a mean
         uncertainty.  Do this before writing to a .pln file.
@@ -173,6 +162,26 @@ class Exoplanet(object):
                 u_lo = Decimal(exo_param.uncertainty_lower)
                 u_avg = (u_lo + u_hi) / 2
                 exo_param.uncertainty = Decimal(u_avg)
+
+    def _write_pln_line(self, file, field, value):
+        """
+        Format a line with whitespace and write this to the .pln file.
+
+        :param file:  The .pln file being written to.
+        :type file:  str
+
+        :param field:  The keyword being written (should already be all-caps).
+        :type field:  str
+
+        :param value:  The value being written.
+        :type field:  various
+        """
+
+        field_str = "{:25}".format(field)
+        value_str = str(value)
+        value_str = ("" if value_str == "None" else value_str)
+        value_str = ("NaN" if value_str == "nan" else value_str)
+        file.write("".join([field_str, value_str, "\n"]))
 
     def find_all_names(self):
         """
@@ -287,64 +296,66 @@ class Exoplanet(object):
                 keyword_value_pair = [x.strip() for x in line.split(' ', 1)]
 
                 # Comment lines begin with '#'.
-                if not keyword_value_pair[0].startswith('#'):
-                    num = len(keyword_value_pair)
+                if keyword_value_pair[0].startswith('#'):
+                    continue
 
-                    # Skip if this line is empty.
-                    if num == 0:
-                        continue
+                num = len(keyword_value_pair)
 
-                    # Use an empty string if this keyword has no value.
-                    keyword = keyword_value_pair[0].lower()
-                    if num == 1:
-                        value = ''
+                # Skip if this line is empty.
+                if num == 0:
+                    continue
 
-                    # Assign the value if present.
-                    elif num == 2:
-                        value = str(keyword_value_pair[1])
-                        value = (None if value == "None" else value)
+                # Use an empty string if this keyword has no value.
+                if num == 1:
+                    value = ''
 
-                        # Try turning the value into a Decimal (this will
-                        # preserve significant figures).
-                        try:
-                            value = Decimal(value)
-                        except (InvalidOperation, TypeError):
-                            pass
+                # Assign the value if present.
+                elif num == 2:
+                    value = str(keyword_value_pair[1])
+                    value = (None if value == "None" else value)
 
-                    # Examine the keyword more closely.  Current .pln
-                    # formatting specifies the uncertainty keywords begin with
-                    # 'U', uncertainty upper-limits end with 'D', references
-                    # end with 'REF', and links end with 'URL'.
-                    if "transit" in keyword:
-                        attribute = "value"
-                    elif keyword[0] == "u" and keyword[1:] in self.attributes:
-                        keyword = keyword[1:]
-                        attribute = "uncertainty"
-                    elif (keyword[0] == "u"
-                          and keyword[-1] == "d"
-                          and keyword[1:-1] in self.attributes):
-                        keyword = keyword[1:-1]
-                        attribute = "uncertainty_upper"
-                    elif (keyword[-3:] == "ref"
-                          and keyword[:-3] in self.attributes):
-                        keyword = keyword[:-3]
-                        attribute = "reference"
-                    elif (keyword[-3:] == "url"
-                          and keyword[:-3] in self.attributes):
-                        keyword = keyword[:-3]
-                        attribute = "url"
-                    else:
-                        attribute = "value"
-
-                    # If this keyword exists as an ExoParameter, set the
-                    # designated attribute and value.
+                    # Try turning the value into a Decimal (this will
+                    # preserve significant figures).
                     try:
-                        param = getattr(self, keyword)
-                        setattr(param, attribute, value)
-                    except AttributeError:
+                        value = Decimal(value)
+                    except (InvalidOperation, TypeError):
                         pass
 
-        self.calculate_lower_uncert()
+                # Examine the keyword.  Current .pln formatting specifies the
+                # uncertainty keywords begin with 'U', uncertainty
+                # upper-limits end with 'D', references end with 'REF', and
+                # links end with 'URL'.
+                keyword = keyword_value_pair[0].lower()
+                if "transit" in keyword:
+                    attribute = "value"
+                elif keyword[0] == "u" and keyword[1:] in self.attributes:
+                    keyword = keyword[1:]
+                    attribute = "uncertainty"
+                elif (keyword[0] == "u"
+                      and keyword[-1] == "d"
+                      and keyword[1:-1] in self.attributes):
+                    keyword = keyword[1:-1]
+                    attribute = "uncertainty_upper"
+                elif (keyword[-3:] == "ref"
+                      and keyword[:-3] in self.attributes):
+                    keyword = keyword[:-3]
+                    attribute = "reference"
+                elif (keyword[-3:] == "url"
+                      and keyword[:-3] in self.attributes):
+                    keyword = keyword[:-3]
+                    attribute = "url"
+                else:
+                    attribute = "value"
+
+                # If this keyword exists as an ExoParameter, set the
+                # designated attribute and value.
+                try:
+                    param = getattr(self, keyword)
+                    setattr(param, attribute, value)
+                except AttributeError:
+                    pass
+
+        self._calculate_lower_uncert()
 
     def save_to_pln(self, name=None, dir=None, gui=False, disp=True):
         """
@@ -402,34 +413,34 @@ class Exoplanet(object):
                     # keyword & value pair to the .pln file.
                     if is_empty(exo_param.value):
                         exo_param.value = exo_param.default
-                    self.write_pln_line(new_pln, f, exo_param.value)
+                    self._write_pln_line(new_pln, f, exo_param.value)
 
                     # Add additional keywords for uncertainties and references
                     # if they are present in the current ExoParameter.
                     if exo_param.uncertainty:
                         uf = "".join(["U", f])
-                        self.write_pln_line(new_pln,
-                                            uf,
-                                            exo_param.uncertainty
-                                            )
+                        self._write_pln_line(new_pln,
+                                             uf,
+                                             exo_param.uncertainty
+                                             )
                     if exo_param.uncertainty_upper:
                         ufd = "".join(["U", f, "D"])
-                        self.write_pln_line(new_pln,
-                                            ufd,
-                                            exo_param.uncertainty_upper
-                                            )
+                        self._write_pln_line(new_pln,
+                                             ufd,
+                                             exo_param.uncertainty_upper
+                                             )
                     if exo_param.reference:
                         fref = "".join([f, "REF"])
-                        self.write_pln_line(new_pln,
-                                            fref,
-                                            exo_param.reference
-                                            )
+                        self._write_pln_line(new_pln,
+                                             fref,
+                                             exo_param.reference
+                                             )
                     if exo_param.url:
                         furl = "".join([f, "URL"])
-                        self.write_pln_line(new_pln,
-                                            furl,
-                                            exo_param.url
-                                            )
+                        self._write_pln_line(new_pln,
+                                             furl,
+                                             exo_param.url
+                                             )
 
     def save_to_yaml(self, path=None):
         """
@@ -461,19 +472,15 @@ class Exoplanet(object):
         Some last-second tweaks are needed for proper .pln file formatting.
         """
 
-        self.calculate_mean_uncert()
+        self._calculate_mean_uncert()
 
         # The transitref and transiturl actually end up stored in the 'transit'
         # ExoParam due to the ref and url splits.  Pull these out and set the
         # transit entries to the proper pointers.
         if self.transit.value == 1:
-            if (self.transit.reference == "None"
-                        or self.transit.reference == ""
-                    ):
+            if is_empty(self.transit.reference):
                 self.transit.reference = "__TRANSITREF"
-            if (self.transit.url == "None"
-                        or self.transit.url == ""
-                    ):
+            if is_empty(self.transit.url):
                 self.transit.url = "__TRANSITURL"
 
         # If the transit depth is not provided, but an Rp/R* ratio is,
@@ -502,25 +509,41 @@ class Exoplanet(object):
                 print("copying TT to T0")
                 self.t0.copy_values(self.tt)
 
-    def write_pln_line(self, file, field, value):
+        # Set the FREEZE_ECC flag if ECC=0 and no uncertainty is provided.
+        if self.ecc.value == 0 and is_empty(self.ecc.uncertainty):
+            self.freeze_ecc.value = 1
+
+        # Set the MULT flag if NCOMP is more than 1 planet.
+        if self.ncomp.value > 1:
+            self.mult.value = 1
+
+        # Set the TREND flag if a DVDT value is provided.
+        if not is_empty(self.dvdt.value):
+            self.trend.value = 1
+
         """
-        Format a line with whitespace and write this to the .pln file.
-
-        :param file:  The .pln file being written to.
-        :type file:  str
-
-        :param field:  The keyword being written (should already be all-caps).
-        :type field:  str
-
-        :param value:  The value being written.
-        :type field:  various
+        if (is_empty(self.t0.value)
+                and not is_empty(self.tt.value)
+                and not is_empty(self.om.value)
+                and not is_empty(self.ecc.value)):
+            p = float(self.per.value)
+            sig = len(str(self.tt.value))
+            tc = float(self.tt.value)
+            rad = np.radians(float(self.om.value))
+            f = (np.pi / 2) - rad
+            if f != 0:
+                ec = float(self.ecc.value)
+                ea = 2 * np.arctan(np.tan(f/2) * np.sqrt((1-ec) / (1+ec)))
+                tp = tc - (p / (2*np.pi)) * (ea - ec * np.sin(ea))
+                tp = np.round(tp, decimals=(sig-6))
+                print("------------{}".format(tp))
+                self.t0.value = Decimal(str(tp))
+                self.t0.uncertainty = self.tt.uncertainty
+                self.t0.uncertainty_upper = self.tt.uncertainty_upper
+                self.t0.reference = "Computed from TT"
+                self.t0.url = None
+                print("T0 computed from TT")
         """
-
-        field_str = "{:25}".format(field)
-        value_str = str(value)
-        value_str = ("" if value_str == "None" else value_str)
-        value_str = ("NaN" if value_str == "nan" else value_str)
-        file.write("".join([field_str, value_str, "\n"]))
 
 
 def is_empty(var):

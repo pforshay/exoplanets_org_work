@@ -105,6 +105,8 @@ URHK                     0.13
 GAMMA                    NaN
 UGAMMA                   NaN
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -132,8 +134,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -147,6 +147,7 @@ UECC                     0.1
 UECCD                    0.2
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       90
 UOM                      NaN
 UOMD                     NaN
@@ -188,6 +189,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================

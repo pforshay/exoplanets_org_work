@@ -52,10 +52,8 @@ ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
 KDE                      1
-KDEREF                   __FIRSTREF
-KDEURL                   __FIRSTURL
-STARDISCMETH             Kepler
-PLANETDISCMETH           Kepler
+STARDISCMETH             Transit
+PLANETDISCMETH           Transit
 #* ================================================
 #* Stellar Parameters
 #* ================================================
@@ -109,6 +107,8 @@ RHK                      NaN
 GAMMA                    NaN
 UGAMMA                   NaN
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -149,6 +149,7 @@ UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       NaN
 UOM                      NaN
 UOMD                     NaN
@@ -190,6 +191,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -197,6 +200,7 @@ DEPTH                    0.0011909401
 UDEPTH                   0.0026
 UDEPTHD                  NaN
 DEPTHREF                 Calculated from Rp/R*
+DEPTHURL                 __TRANSITURL
 T14                      NaN
 UT14                     NaN
 UT14D                    NaN

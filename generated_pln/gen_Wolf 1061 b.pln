@@ -36,7 +36,7 @@ UKS                      0.024
 KP                       NaN
 SPTYPE                   M3.5
 OBSERVATORY              La Silla Observatory
-SURVEY                   
+SURVEY                   HARPS
 NOBS                     187
 NCOMP                    3
 RMS                      NaN
@@ -48,8 +48,6 @@ BINARY                   0
 BINARYREF                __ORBREF
 BINARYURL                __ORBURL
 TRANSIT                  0
-TRANSITREF               __TRANSITREF
-TRANSITURL               __TRANSITURL
 TIMING                   0
 ASTROMETRY               0
 MICROLENSING             0
@@ -109,6 +107,8 @@ RHK                      NaN
 GAMMA                    -21.03738
 UGAMMA                   0.00015
 UGAMMAD                  0.00015
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -136,8 +136,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -151,6 +149,7 @@ UECC                     0.115
 UECCD                    0.13
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       NaN
 UOM                      NaN
 UOMD                     NaN
@@ -192,6 +191,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -205,9 +206,9 @@ UT14                     NaN
 UT14D                    NaN
 T14REF                   __TRANSITREF
 T14URL                   __TRANSITURL
-TT                       NaN
-UTT                      NaN
-UTTD                     NaN
+TT                       16311.498
+UTT                      0.1975
+UTTD                     0.191
 TTREF                    __TRANSITREF
 TTURL                    __TRANSITURL
 AR                       NaN

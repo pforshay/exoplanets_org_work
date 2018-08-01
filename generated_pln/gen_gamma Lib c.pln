@@ -4,24 +4,23 @@
 NAME                     gamma Lib c
 STAR                     gamma Lib c
 COMP                     c
-OTHERNAME                None
+OTHERNAME                
 JSNAME                   gamma Lib c
 EANAME                   gam Lib c
-CPSNAME                  None
-SMENAME                  None
-TABLENAME                None
+CPSNAME                  
+SMENAME                  
+TABLENAME                
 SIMBADNAME               gam Lib
-ETDNAME                  None
+ETDNAME                  
 NSTEDID                  -1
 HD                       138905
-UHD                      NaN
 HIPP                     76333
 GL                       3912
 HR                       5787
 SAO                      159370
 KOI                      -1
-RA_STRING                None
-DEC_STRING               None
+RA_STRING                
+DEC_STRING               
 RA                       -999
 DEC                      -999
 COORDREF                 Simbad
@@ -37,7 +36,6 @@ UJ                       NaN
 UJD                      NaN
 H                        NaN
 UH                       NaN
-UHD                      NaN
 KS                       NaN
 UKS                      NaN
 UKSD                     NaN
@@ -51,38 +49,30 @@ OBSERVATORY              Okayama Astrophysical Observatory
 SURVEY                   Okayama Planet Search Program
 NOBS                     146
 NCOMP                    2
-RMS                      NaN
-URMS                     NaN
-URMSD                    NaN
+RMS                      16.41
 RMSREF                   __ORBREF
 RMSURL                   __ORBURL
 CHI2                     NaN
-UCHI2                    NaN
-UCHI2D                   NaN
 JITTER                   NaN
-UJITTER                  NaN
-UJITTERD                 NaN
 FLAG                     1
 MULT                     1
 BINARY                   0
 BINARYREF                __ORBREF
 BINARYURL                __ORBURL
 TRANSIT                  0
-TRANSITREF               __TRANSITREF
-TRANSITURL               __TRANSITURL
 TIMING                   0
 ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
 KDE                      0
-STARDISCMETH             None
+STARDISCMETH             RV
 PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters
 #* ================================================
 MSTAR                    1.47
 UMSTAR                   0.20
-UMSTARD                  NaN
+UMSTARD                  0.20
 MSTARREF                 __SPECREF
 MSTARURL                 __SPECURL
 RSTAR                    11.1
@@ -108,9 +98,9 @@ DISTURL                  __SPECURL
 PAR                      NaN
 UPAR                     NaN
 UPARD                    NaN
-LOGG                     2.47
-ULOGG                    0.08
-ULOGGD                   0.07
+LOGG                     2.56
+ULOGG                    0.05
+ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  NaN
@@ -129,6 +119,8 @@ RHK                      NaN
 GAMMA                    NaN
 UGAMMA                   NaN
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -156,8 +148,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -171,6 +161,7 @@ UECC                     0.033
 UECCD                    0.034
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       146
 UOM                      37.5
 UOMD                     32
@@ -212,6 +203,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -291,7 +284,7 @@ FIRSTREF                 Takarada 2018
 FIRSTURL                 http://adsabs.harvard.edu/abs/2018PASJ..tmp...64T
 ORBREF                   Takarada 2018
 ORBURL                   http://adsabs.harvard.edu/abs/2018PASJ..tmp...64T
-INDEPORBREF              None
+INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
 SPECREF                  Takarada 2018
