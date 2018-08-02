@@ -19,8 +19,8 @@ GL                       NaN
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                04h18m51.70s
-DEC_STRING               +17d23m16.6s
+RA_STRING                04:18:51.70
+DEC_STRING               +17:23:16.6
 RA                       4.31436106
 DEC                      17.387936
 COORDREF                 
@@ -104,6 +104,8 @@ RHK                      NaN
 GAMMA                    NaN
 UGAMMA                   NaN
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -131,8 +133,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -146,6 +146,7 @@ UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       NaN
 UOM                      NaN
 UOMD                     NaN
@@ -187,6 +188,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -271,5 +274,5 @@ TRANSITREF
 TRANSITURL               
 SPECREF                  Yu et al. 2017
 SPECURL                  http://adsabs.harvard.edu/abs/2017MNRAS.467.1342Y
-EOD                      1
-PUBLIC                   1
+EOD                      0
+PUBLIC                   0

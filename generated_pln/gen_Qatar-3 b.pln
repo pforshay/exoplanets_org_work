@@ -19,8 +19,8 @@ GL                       NaN
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                23h56m36.48s
-DEC_STRING               +36d12m46.7s
+RA_STRING                23:56:36.48
+DEC_STRING               +36:12:46.7
 RA                       23.9434672
 DEC                      36.212971
 COORDREF                 
@@ -106,6 +106,8 @@ RHK                      NaN
 GAMMA                    0.542
 UGAMMA                   0.036
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -135,25 +137,24 @@ UGRAVITYD                NaN
 GRAVITYREF               __TRANSITREF
 GRAVITYURL               __TRANSITURL
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
 PER                      2.5079204
-UPER                     NaN
+UPER                     0.0000100
 UPERD                    NaN
-PERREF                   __ORBREF
+PERREF                   Uncertainty not reported in paper, use value from Qatar-1b
 PERURL                   __ORBURL
 ECC                      0
 UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-OM                       NaN
+FREEZE_ECC               1
+OM                       90
 UOM                      NaN
 UOMD                     NaN
-OMREF                    __ORBREF
+OMREF                    Set to 90 deg with ecc~0
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
@@ -191,6 +192,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================

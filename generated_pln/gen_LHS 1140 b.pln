@@ -19,8 +19,8 @@ GL                       3053
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                00h44m59.34s
-DEC_STRING               -15d16m17.5s
+RA_STRING                00:44:59.34
+DEC_STRING               -15:16:17.5
 RA                       0.749816
 DEC                      -15.271532
 COORDREF                 
@@ -35,14 +35,14 @@ UH                       0.026
 KS                       8.821
 UKS                      0.024
 KP                       NaN
-SPTYPE                   NaN
+SPTYPE                   
 OBSERVATORY              MEarth Project
 SURVEY                   MEarth Project
 NOBS                     144
 NCOMP                    1
 RMS                      NaN
 CHI2                     NaN
-JITTER                   0.0041
+JITTER                   NaN
 FLAG                     1
 MULT                     0
 BINARY                   0
@@ -110,6 +110,8 @@ RHK                      NaN
 GAMMA                    -13.23
 UGAMMA                   0.60
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -138,8 +140,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -153,10 +153,11 @@ UECC                     0.145
 UECCD                    0.29
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-OM                       NaN
+FREEZE_ECC               0
+OM                       90
 UOM                      NaN
 UOMD                     NaN
-OMREF                    __ORBREF
+OMREF                    Set to 90 deg with ecc~0
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
@@ -194,6 +195,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -201,6 +204,7 @@ DEPTH                    0.00501264
 UDEPTH                   0.0026
 UDEPTHD                  NaN
 DEPTHREF                 Calculated from Rp/R*
+DEPTHURL                 __TRANSITURL
 T14                      NaN
 UT14                     NaN
 UT14D                    NaN

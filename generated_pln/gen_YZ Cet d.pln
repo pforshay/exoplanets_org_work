@@ -19,8 +19,8 @@ GL                       54.1
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                01h12m30.64s
-DEC_STRING               -16d59m56.3s
+RA_STRING                01:12:30.64
+DEC_STRING               -16:59:56.3
 RA                       1.20851123
 DEC                      -16.998966
 COORDREF                 
@@ -41,16 +41,10 @@ SURVEY
 NOBS                     211
 NCOMP                    3
 RMS                      NaN
-URMS                     NaN
-URMSD                    NaN
 CHI2                     NaN
-UCHI2                    NaN
-UCHI2D                   NaN
 JITTER                   NaN
-UJITTER                  NaN
-UJITTERD                 NaN
 FLAG                     1
-MULT                     0
+MULT                     1
 BINARY                   0
 BINARYREF                __ORBREF
 BINARYURL                __ORBURL
@@ -143,8 +137,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -158,6 +150,7 @@ UECC                     0.096
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       NaN
 UOM                      NaN
 UOMD                     NaN
@@ -199,6 +192,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -283,5 +278,5 @@ TRANSITREF
 TRANSITURL               
 SPECREF                  Mann et al. 2015
 SPECURL                  https://ui.adsabs.harvard.edu/#abs/2015ApJ...804...64M
-EOD                      1
-PUBLIC                   1
+EOD                      0
+PUBLIC                   0

@@ -38,7 +38,7 @@ OBSERVATORY              La Silla Observatory
 SURVEY                   HARPS
 NOBS                     95
 NCOMP                    2
-RMS                      NaN
+RMS                      6
 CHI2                     NaN
 JITTER                   NaN
 FLAG                     1
@@ -104,9 +104,11 @@ VSINIURL                 __SPECURL
 SHK                      NaN
 RHK                      -4.99
 URHK                     0.08
-GAMMA                    NaN
-UGAMMA                   NaN
+GAMMA                    -4.903
+UGAMMA                   0.001
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -147,6 +149,7 @@ UECC                     0.08
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       -64
 UOM                      20
 UOMD                     NaN
@@ -188,6 +191,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================

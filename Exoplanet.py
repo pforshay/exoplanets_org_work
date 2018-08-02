@@ -29,6 +29,7 @@ class ExoParameter(object):
         self.units = None
         self.url = None
         self.value = None
+        self.well_constrained = True
 
         if attr_dict:
             self.set_from_template(attr_dict)
@@ -39,6 +40,20 @@ class ExoParameter(object):
         else:
             raise TypeError("Tried to compare an ExoParameter object with "
                             "another class!")
+
+    """
+    def __setattr__(self, attr, new_val):
+        if attr == "uncertainty":
+            # print("attr={0}, new_val={1}".format(attr, new_val))
+            try:
+                if new_val > (self.value * 0.1):
+                    self.well_constrained = False
+                else:
+                    self.well_constrained = True
+            except (AttributeError, TypeError):
+                pass
+        super().__setattr__(attr, new_val)
+    """
 
     def __str__(self):
         return "<ExoParameter>: {0}".format(self.__dict__)
@@ -57,6 +72,12 @@ class ExoParameter(object):
             self.value = another.value
         else:
             raise TypeError("Cannot copy values from a non-ExoParameter obj!")
+
+    def report_var_types(self):
+        print("<ExoParameter: {0}>".format(self.parameter))
+        vars = ["default", "uncertainty", "uncertainty_upper", "value"]
+        for v in vars:
+            print("    {0} is a {1}".format(v, type(getattr(self, v))))
 
     def rm_comment(self, index):
         del self.comments[index]
@@ -162,6 +183,9 @@ class Exoplanet(object):
                 u_lo = Decimal(exo_param.uncertainty_lower)
                 u_avg = (u_lo + u_hi) / 2
                 exo_param.uncertainty = Decimal(u_avg)
+            if not is_empty(exo_param.uncertainty):
+                if exo_param.uncertainty > (exo_param.value / 10):
+                    exo_param.well_constrained = False
 
     def _write_pln_line(self, file, field, value):
         """
@@ -182,6 +206,10 @@ class Exoplanet(object):
         value_str = ("" if value_str == "None" else value_str)
         value_str = ("NaN" if value_str == "nan" else value_str)
         file.write("".join([field_str, value_str, "\n"]))
+
+    def exclude(self):
+        self.eod.value = 0
+        self.public.value = 0
 
     def find_all_names(self):
         """
@@ -472,12 +500,14 @@ class Exoplanet(object):
         Some last-second tweaks are needed for proper .pln file formatting.
         """
 
+        warnings = []
+
         self._calculate_mean_uncert()
 
         # The transitref and transiturl actually end up stored in the 'transit'
         # ExoParam due to the ref and url splits.  Pull these out and set the
         # transit entries to the proper pointers.
-        if self.transit.value == 1:
+        if self.transit.value in [1, "1"]:
             if is_empty(self.transit.reference):
                 self.transit.reference = "__TRANSITREF"
             if is_empty(self.transit.url):
@@ -520,6 +550,36 @@ class Exoplanet(object):
         # Set the TREND flag if a DVDT value is provided.
         if not is_empty(self.dvdt.value):
             self.trend.value = 1
+
+        if not self.per.well_constrained:
+            self.exclude()
+            warnings.append("<uncertain PER>")
+
+        if not is_empty(self.k.value):
+            if self.k.value < 2:
+                self.exclude()
+                warnings.append("<low K value>")
+
+        if not is_empty(self.ra_string.value):
+            if "h" in self.ra_string.value:
+                new_value = self.ra_string.value.replace("h", ":")
+                new_value = new_value.replace("m", ":")
+                new_value = new_value.replace("s", "")
+                self.ra_string.value = new_value
+
+        if not is_empty(self.dec_string.value):
+            if "d" in self.dec_string.value:
+                new_value = self.dec_string.value.replace("d", ":")
+                new_value = new_value.replace("m", ":")
+                new_value = new_value.replace("s", "")
+                self.dec_string.value = new_value
+
+        if len(warnings) > 0:
+            print("<<<{0} GOT {1} WARNING(S)>>>".format(self.name.value,
+                                                        len(warnings)
+                                                        )
+                  )
+            [print(x) for x in warnings]
 
         """
         if (is_empty(self.t0.value)
