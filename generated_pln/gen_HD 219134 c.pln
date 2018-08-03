@@ -35,7 +35,7 @@ SPTYPE                   K3 V
 OBSERVATORY              Roque de los Muchachos Observatory
 SURVEY                   RPS
 NOBS                     663
-NCOMP                    5
+NCOMP                    6
 RMS                      NaN
 CHI2                     NaN
 JITTER                   1.1
@@ -44,7 +44,9 @@ MULT                     1
 BINARY                   0
 BINARYREF                __ORBREF
 BINARYURL                __ORBURL
-TRANSIT                  0
+TRANSIT                  1
+TRANSITREF               __TRANSITREF
+TRANSITURL               __TRANSITURL
 TIMING                   0
 ASTROMETRY               0
 MICROLENSING             0
@@ -277,5 +279,5 @@ TRANSITREF               Gillon 2017
 TRANSITURL               http://adsabs.harvard.edu/abs/2017NatAs...1E..56G
 SPECREF                  Gillon 2017
 SPECURL                  http://adsabs.harvard.edu/abs/2017NatAs...1E..56G
-EOD                      1
-PUBLIC                   1
+EOD                      0
+PUBLIC                   0

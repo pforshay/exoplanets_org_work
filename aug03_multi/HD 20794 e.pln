@@ -1,44 +1,44 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     HD 219134 g
-STAR                     HD 219134
-COMP                     g
+NAME                     HD 20794 e
+STAR                     HD 20794
+COMP                     e
 OTHERNAME                
-JSNAME                   HD 219134 g
-EANAME                   HD 219134 g
+JSNAME                   HD 20794 e
+EANAME                   HD 20794 e
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               HD 219134
+SIMBADNAME               * e Eri
 ETDNAME                  
 NSTEDID                  -1
-HD                       219134
-HIPP                     114622
-GL                       892
-HR                       8832
-SAO                      35236
+HD                       20794
+HIPP                     15510
+GL                       139
+HR                       1008
+SAO                      216263
 KOI                      -1
-RA_STRING                23:13:16.98
-DEC_STRING               +57:10:06.1
-RA                       23.22138265
-DEC                      57.168354
+RA_STRING                03:19:55.65
+DEC_STRING               -43:04:11.2
+RA                       3.33212509
+DEC                      -43.069782
 COORDREF                 
 COORDURL                 
-V                        5.57
-BMV                      0.99
+V                        4.26
+BMV                      NaN
 J                        NaN
 H                        NaN
 KS                       NaN
 KP                       NaN
-SPTYPE                   K3 V
-OBSERVATORY              Multiple Observatories
-SURVEY                   
-NOBS                     276
-NCOMP                    6
-RMS                      2.223
+SPTYPE                   G8
+OBSERVATORY              La Silla Observatory
+SURVEY                   HARPS
+NOBS                     4882
+NCOMP                    4
+RMS                      NaN
 CHI2                     NaN
-JITTER                   2.038
+JITTER                   NaN
 FLAG                     1
 MULT                     1
 BINARY                   0
@@ -55,55 +55,54 @@ PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters
 #* ================================================
-MSTAR                    0.78
-UMSTAR                   0.02
-UMSTARD                  NaN
-MSTARREF                 Motalebi 2015
-MSTARURL                 http://adsabs.harvard.edu/abs/2015A%26A...584A..72M
-RSTAR                    0.778
-URSTAR                   0.005
+MSTAR                    0.813
+UMSTAR                   0.015
+UMSTARD                  0.018
+MSTARREF                 __SPECREF
+MSTARURL                 __SPECURL
+RSTAR                    NaN
+URSTAR                   NaN
 URSTARD                  NaN
-RSTARREF                 Motalebi 2015
-RSTARURL                 http://adsabs.harvard.edu/abs/2015A%26A...584A..72M
-TEFF                     4699
-UTEFF                    16
+RSTARREF                 __SPECREF
+RSTARURL                 __SPECURL
+TEFF                     5446
+UTEFF                    44
 UTEFFD                   NaN
-TEFFREF                  Motalebi 2015
-TEFFURL                  http://adsabs.harvard.edu/abs/2015A%26A...584A..72M
-FE                       0.11
-UFE                      0.04
+TEFFREF                  __SPECREF
+TEFFURL                  __SPECURL
+FE                       -0.38
+UFE                      0.06
 UFED                     NaN
-FEREF                    Motalebi 2015
-FEURL                    http://adsabs.harvard.edu/abs/2015A%26A...584A..72M
-DIST                     6.546
-UDIST                    0.012
+FEREF                    __SPECREF
+FEURL                    __SPECURL
+DIST                     NaN
+UDIST                    NaN
 UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
-PAR                      NaN
-UPAR                     NaN
+PAR                      165.47
+UPAR                     0.19
 UPARD                    NaN
-LOGG                     4.63
-ULOGG                    0.10
+LOGG                     4.43
+ULOGG                    0.01
 ULOGGD                   NaN
-LOGGREF                  Motalebi 2015
-LOGGURL                  http://adsabs.harvard.edu/abs/2015A%26A...584A..72M
+LOGGREF                  __SPECREF
+LOGGURL                  __SPECURL
 RHOSTAR                  NaN
 URHOSTAR                 NaN
 URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
-PROT                     42.3
-UPROT                    0.1
-VSINI                    0.4
-UVSINI                   0.5
+PROT                     NaN
+VSINI                    NaN
+UVSINI                   NaN
 UVSINID                  NaN
-VSINIREF                 Motalebi 2015
-VSINIURL                 http://adsabs.harvard.edu/abs/2015A%26A...584A..72M
-SHK                      0.25
+VSINIREF                 __SPECREF
+VSINIURL                 __SPECURL
+SHK                      NaN
 RHK                      NaN
-GAMMA                    NaN
-UGAMMA                   NaN
+GAMMA                    87.2
+UGAMMA                   0.5
 UGAMMAD                  NaN
 GAMMAREF                 __SPECREF
 GAMMAURL                 __SPECURL
@@ -114,11 +113,11 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    0.034
-UMSINI                   0.004
+MSINI                    NaN
+UMSINI                   NaN
 UMSINID                  NaN
-MSINIREF                 __ORBREF
-MSINIURL                 __ORBURL
+MSINIREF                 Calculated
+MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
 R                        NaN
 UR                       NaN
 URD                      NaN
@@ -137,32 +136,32 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      94.2
-UPER                     0.2
-UPERD                    NaN
+PER                      147.02
+UPER                     1.17
+UPERD                    1.43
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0
-UECC                     NaN
-UECCD                    NaN
+ECC                      0.29
+UECC                     0.16
+UECCD                    0.14
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-FREEZE_ECC               1
-OM                       90
-UOM                      NaN
-UOMD                     NaN
-OMREF                    Set to 90 deg with ecc~0
+FREEZE_ECC               0
+OM                       268
+UOM                      40.5
+UOMD                     48
+OMREF                    __ORBREF
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        1.8
-UK                       0.2
-UKD                      NaN
+K                        0.69
+UK                       0.14
+UKD                      0.15
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       9972
-UT0                      9
+T0                       NaN
+UT0                      NaN
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -177,11 +176,11 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        0.3753
-UA                       0.0004
+A                        NaN
+UA                       NaN
 UAD                      NaN
-AREF                     __ORBREF
-AURL                     __ORBURL
+AREF                     Calculated
+AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN
@@ -264,16 +263,16 @@ USETD                    NaN
 #* ================================================
 #* Main References and Website Flags
 #* ================================================
-DATE                     2015
-MONTH                    11
-FIRSTREF                 Vogt 2015
-FIRSTURL                 http://adsabs.harvard.edu/abs/2015ApJ...814...12V
-ORBREF                   Vogt 2015
-ORBURL                   http://adsabs.harvard.edu/abs/2015ApJ...814...12V
+DATE                     2017
+MONTH                    9
+FIRSTREF                 Feng 2017
+FIRSTURL                 http://adsabs.harvard.edu/abs/2017A%26A...605A.103F
+ORBREF                   Feng 2017
+ORBURL                   http://adsabs.harvard.edu/abs/2017A%26A...605A.103F
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
-SPECREF                  Vogt 2015
-SPECURL                  http://adsabs.harvard.edu/abs/2015ApJ...814...12V
+SPECREF                  Ramirez 2013
+SPECURL                  https://ui.adsabs.harvard.edu/#abs/2013ApJ...764...78R
 EOD                      0
 PUBLIC                   0

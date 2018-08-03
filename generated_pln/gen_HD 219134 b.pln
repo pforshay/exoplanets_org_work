@@ -35,7 +35,7 @@ SPTYPE                   K3 V
 OBSERVATORY              Roque de los Muchachos Observatory
 SURVEY                   RPS
 NOBS                     663
-NCOMP                    5
+NCOMP                    6
 RMS                      NaN
 CHI2                     NaN
 JITTER                   1.1

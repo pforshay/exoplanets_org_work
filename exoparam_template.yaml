@@ -422,6 +422,8 @@ MASS:
     default: "NaN"
     eu_field: "mass"
     label: "Planetary Mass"
+    limit_action: "exclude"
+    limit_upper: 24
     nasa_field: "pl_bmassj"
     parent: "Planetary Parameters"
     reference: "Set to MSINI; I unknown"
@@ -434,6 +436,8 @@ MSINI:
     default: "NaN"
     eu_field: "mass_sini"
     label: "Planetary Mass [sin(i)]"
+    limit_action: "exclude"
+    limit_upper: 24
     nasa_field: "pl_bmassj"
     parent: "Planetary Parameters"
     reference: "Calculated"
@@ -541,6 +545,8 @@ K:
     default: "NaN"
     eu_field: "k"
     label: "Planetary Velocity Semiamplitude"
+    limit_action: "warn"
+    limit_lower: 2
     parent: "Orbital Parameters"
     reference: "__ORBREF"
     required: False

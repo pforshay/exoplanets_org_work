@@ -1,12 +1,12 @@
 #* ================================================
 #* General Information
 #* ================================================
-NAME                     HD 219134 g
+NAME                     HD 219134 h
 STAR                     HD 219134
-COMP                     g
+COMP                     h
 OTHERNAME                
-JSNAME                   HD 219134 g
-EANAME                   HD 219134 g
+JSNAME                   HD 219134 h
+EANAME                   HD 219134 h
 CPSNAME                  
 SMENAME                  
 TABLENAME                
@@ -114,11 +114,11 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    0.034
-UMSINI                   0.004
+MSINI                    NaN
+UMSINI                   NaN
 UMSINID                  NaN
-MSINIREF                 __ORBREF
-MSINIURL                 __ORBURL
+MSINIREF                 Calculated
+MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
 R                        NaN
 UR                       NaN
 URD                      NaN
@@ -137,32 +137,32 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      94.2
-UPER                     0.2
+PER                      2247
+UPER                     43
 UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0
-UECC                     NaN
+ECC                      0.06
+UECC                     0.04
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-FREEZE_ECC               1
-OM                       90
-UOM                      NaN
+FREEZE_ECC               0
+OM                       215
+UOM                      50
 UOMD                     NaN
-OMREF                    Set to 90 deg with ecc~0
+OMREF                    __ORBREF
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        1.8
-UK                       0.2
+K                        6.1
+UK                       0.3
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       9972
-UT0                      9
+T0                       8725
+UT0                      356
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -177,11 +177,11 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        0.3753
-UA                       0.0004
+A                        NaN
+UA                       NaN
 UAD                      NaN
-AREF                     __ORBREF
-AURL                     __ORBURL
+AREF                     Calculated
+AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN
@@ -275,5 +275,5 @@ TRANSITREF
 TRANSITURL               
 SPECREF                  Vogt 2015
 SPECURL                  http://adsabs.harvard.edu/abs/2015ApJ...814...12V
-EOD                      0
-PUBLIC                   0
+EOD                      1
+PUBLIC                   1
