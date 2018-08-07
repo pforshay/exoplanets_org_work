@@ -44,23 +44,13 @@ KP                       NaN
 UKP                      NaN
 UKPD                     NaN
 SPTYPE                   G3 IV
-SPTYPEREF                __SPECREF
-SPTYPEURL                __SPECURL
 OBSERVATORY              Okayama Astrophysical Observatory
 SURVEY                   Okayama Planet Search Program
 NOBS                     149
 NCOMP                    1
 RMS                      0.02651
-URMS                     NaN
-URMSD                    NaN
-RMSREF                   __ORBREF
-RMSURL                   __ORBURL
 CHI2                     NaN
-UCHI2                    NaN
-UCHI2D                   NaN
 JITTER                   NaN
-UJITTER                  NaN
-UJITTERD                 NaN
 FLAG                     1
 MULT                     0
 BINARY                   0
@@ -74,7 +64,7 @@ ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
 KDE                      0
-STARDISCMETH             None
+STARDISCMETH             RV
 PLANETDISCMETH           RV
 #* ================================================
 #* Stellar Parameters

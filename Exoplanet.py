@@ -60,6 +60,21 @@ class ExoParameter(object):
             self.well_constrained = True
         return self.well_constrained
 
+    def check_limits(self):
+        too_hi = False
+        too_lo = False
+        if is_empty(self.value):
+            return None
+        elif not is_empty(self.limit_lower):
+            too_lo = (self.value < self.limit_lower)
+        elif not is_empty(self.limit_upper):
+            too_hi = (self.value > self.limit_upper)
+
+        if too_hi or too_lo:
+            return self.limit_action
+        else:
+            return None
+
     def copy_values(self, another):
         if isinstance(another, ExoParameter):
             self.reference = another.reference

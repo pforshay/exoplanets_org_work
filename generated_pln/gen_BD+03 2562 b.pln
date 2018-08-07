@@ -46,18 +46,10 @@ SPTYPE
 OBSERVATORY              Multiple Observatories
 SURVEY                   TAPAS
 NOBS                     64
-NOBSREF                  __ORBREF
-NOBSURL                  __ORBURL
 NCOMP                    1
 RMS                      69.8
-RMSREF                   __ORBREF
-RMSURL                   __ORBURL
 CHI2                     1.11
-CHI2REF                  __ORBREF
-CHI2URL                  __ORBURL
 JITTER                   64.7
-JITTERREF                __ORBREF
-JITTERURL                __ORBURL
 FLAG                     1
 MULT                     0
 BINARY                   0
@@ -70,11 +62,7 @@ MICROLENSING             0
 IMAGING                  0
 KDE                      0
 STARDISCMETH             RV
-STARDISCMETHREF          __FIRSTREF
-STARDISCMETHURL          __FIRSTURL
 PLANETDISCMETH           RV
-PLANETDISCMETHREF        __FIRSTREF
-PLANETDISCMETHURL        __FIRSTURL
 #* ================================================
 #* Stellar Parameters
 #* ================================================

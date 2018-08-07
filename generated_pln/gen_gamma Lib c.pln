@@ -43,15 +43,11 @@ KP                       NaN
 UKP                      NaN
 UKPD                     NaN
 SPTYPE                   K0 III
-SPTYPEREF                __SPECREF
-SPTYPEURL                __SPECURL
 OBSERVATORY              Okayama Astrophysical Observatory
 SURVEY                   Okayama Planet Search Program
 NOBS                     146
 NCOMP                    2
 RMS                      16.41
-RMSREF                   __ORBREF
-RMSURL                   __ORBURL
 CHI2                     NaN
 JITTER                   NaN
 FLAG                     1
