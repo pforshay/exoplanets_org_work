@@ -23,7 +23,7 @@ A list of planet names to omit from EOD.
 ### Workflow
 1.  We started by comparing confirmed exoplanets in both the [Extrasolar Planets Encyclopaedia](http://exoplanet.eu) and the [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/index.html) with the current contents of exoplanets.org.  This resulted in a list of 366 exoplanets to add.  This work is documented in *exoplanets_org_work.ipynb*.  
 2.  We then used the Exoplanet class in *Exoplanet.py* and the data already retrieved for these missing exoplanets to generate .pln files for all 366 exoplanets with pre-loaded parameters.  
-3.  It was then a matter of navigating to the source materials to confirm and refine the entered parameters, and add any missing information, before generating a finalized .pln file to be run through the IDL reconciler code.  
+3.  It was then a matter of navigating to the source materials to confirm and refine the entered parameters, and add any missing information, before generating a finalized .pln file to be run through the IDL reconciler code.  The updates were done by loading the generated .pln files into the exoplanet_gui.  
 4.  Microlensing targets in the list were skipped, and some updates to older planets and new planets around previously-known hosts were added, resulting in a set of 347 .pln files, each of which was manually updated to varying extents.  
 5.  These files will need to be processed through the IDL reconciler code and then pushed to the exoplanets.org data Github repo before they are visible on the live site.  
   
