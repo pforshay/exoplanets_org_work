@@ -65,9 +65,9 @@ class ExoParameter(object):
         too_lo = False
         if is_empty(self.value):
             return None
-        elif not is_empty(self.limit_lower):
+        if not is_empty(self.limit_lower):
             too_lo = (self.value < self.limit_lower)
-        elif not is_empty(self.limit_upper):
+        if not is_empty(self.limit_upper):
             too_hi = (self.value > self.limit_upper)
 
         if too_hi or too_lo:
@@ -538,7 +538,7 @@ class Exoplanet(object):
 
         # If the orbital eccentricity value is 0 and a TT value is provided,
         # use the same values for T0 as well.
-        if self.ecc.value == 0 and is_empty(self.om.value):
+        if self.ecc.value == Decimal(0) and is_empty(self.om.value):
             self.om.value = Decimal(90)
             self.om.reference = "Set to 90 deg with ecc~0"
             print("set omega to 90")
@@ -577,16 +577,16 @@ class Exoplanet(object):
         # Make sure RA string uses colons.
         if not is_empty(self.ra_string.value):
             if "h" in self.ra_string.value:
-                new_value = self.ra_string.value.replace("h", ":")
-                new_value = new_value.replace("m", ":")
+                new_value = self.ra_string.value.replace("h", " ")
+                new_value = new_value.replace("m", " ")
                 new_value = new_value.replace("s", "")
                 self.ra_string.value = new_value
 
         # Make sure DEC string uses colons.
         if not is_empty(self.dec_string.value):
             if "d" in self.dec_string.value:
-                new_value = self.dec_string.value.replace("d", ":")
-                new_value = new_value.replace("m", ":")
+                new_value = self.dec_string.value.replace("d", " ")
+                new_value = new_value.replace("m", " ")
                 new_value = new_value.replace("s", "")
                 self.dec_string.value = new_value
 
