@@ -1,0 +1,283 @@
+#* ================================================
+#* General Information
+#* ================================================
+NAME                     NGTS-1 b
+STAR                     NGTS-1
+COMP                     b
+OTHERNAME                
+JSNAME                   NGTS-1 b
+EANAME                   NGTS-1 b
+CPSNAME                  
+SMENAME                  
+TABLENAME                
+SIMBADNAME               2MASS J05305145-3637508
+ETDNAME                  
+NSTEDID                  -1
+HD                       -1
+HIPP                     -1
+GL                       NaN
+HR                       -1
+SAO                      -1
+KOI                      -1
+RA_STRING                05 30 51.4522
+DEC_STRING               -36 37 50.896
+RA                       5.51429228
+DEC                      -36.63080444
+COORDREF                 Simbad
+COORDURL                 http://simbad.u-strasbg.fr/simbad/sim-basic?ident=2MASS+J05305145-3637508
+V                        15.57
+UV                       0.03
+BMV                      1.37
+UBMV                     0.12
+J                        12.702
+UJ                       0.024
+H                        12.058
+UH                       0.022
+KS                       11.936
+UKS                      0.027
+KP                       NaN
+SPTYPE                   
+OBSERVATORY              Paranal Observatory
+SURVEY                   NGTS
+NOBS                     7
+NCOMP                    1
+RMS                      NaN
+CHI2                     NaN
+JITTER                   NaN
+FLAG                     1
+MULT                     0
+BINARY                   0
+TRANSIT                  1
+TRANSITREF               __TRANSITREF
+TRANSITURL               __TRANSITURL
+TIMING                   0
+ASTROMETRY               0
+MICROLENSING             0
+IMAGING                  0
+KDE                      0
+STARDISCMETH             Transit
+PLANETDISCMETH           Transit
+#* ================================================
+#* Stellar Parameters
+#* ================================================
+MSTAR                    0.617
+UMSTAR                   0.0425
+UMSTARD                  0.023
+MSTARREF                 __SPECREF
+MSTARURL                 __SPECURL
+RSTAR                    0.573
+URSTAR                   0.08
+URSTARD                  0.08
+RSTARREF                 __SPECREF
+RSTARURL                 __SPECURL
+TEFF                     3916
+UTEFF                    67
+UTEFFD                   71
+TEFFREF                  __SPECREF
+TEFFURL                  __SPECURL
+FE                       0
+UFE                      NaN
+UFED                     NaN
+FEREF                    __SPECREF
+FEURL                    __SPECURL
+DIST                     224
+UDIST                    40.5
+UDISTD                   37
+DISTREF                  __SPECREF
+DISTURL                  __SPECURL
+PAR                      NaN
+UPAR                     NaN
+UPARD                    NaN
+LOGG                     4.71
+ULOGG                    0.23
+ULOGGD                   NaN
+LOGGREF                  __SPECREF
+LOGGURL                  __SPECURL
+RHOSTAR                  4.4
+URHOSTAR                 1.9
+URHOSTARD                2.4
+RHOSTARREF               __TRANSITREF
+RHOSTARURL               __TRANSITURL
+PROT                     NaN
+VSINI                    0
+UVSINI                   0.5
+UVSINID                  1.0
+VSINIREF                 __SPECREF
+VSINIURL                 __SPECURL
+SHK                      NaN
+RHK                      NaN
+GAMMA                    97.1808
+UGAMMA                   0.0070
+UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
+#* ================================================
+#* Planetary Parameters
+#* ================================================
+MASS                     NaN
+UMASS                    NaN
+UMASSD                   NaN
+MASSREF                  Set to MSINI; I unknown
+MSINI                    NaN
+UMSINI                   NaN
+UMSINID                  NaN
+MSINIREF                 Calculated
+MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+R                        NaN
+UR                       NaN
+URD                      NaN
+RREF                     __TRANSITREF
+RURL                     __TRANSITURL
+DENSITY                  0.42
+UDENSITY                 0.435
+UDENSITYD                0.59
+DENSITYREF               __TRANSITREF
+DENSITYURL               __TRANSITURL
+GRAVITY                  NaN
+UGRAVITY                 NaN
+UGRAVITYD                NaN
+GRAVITYREF               Calculated
+MASSRAT                  NaN
+#* ================================================
+#* Orbital Parameters
+#* ================================================
+PER                      2.647298
+UPER                     0.000020
+UPERD                    NaN
+PERREF                   __ORBREF
+PERURL                   __ORBURL
+ECC                      0.016
+UECC                     0.0175
+UECCD                    0.023
+ECCREF                   __ORBREF
+ECCURL                   __ORBURL
+FREEZE_ECC               0
+OM                       NaN
+UOM                      NaN
+UOMD                     NaN
+OMREF                    __ORBREF
+OMURL                    __ORBURL
+BIGOM                    NaN
+UBIGOM                   NaN
+UBIGOMD                  NaN
+K                        166
+UK                       11
+UKD                      NaN
+KREF                     __ORBREF
+KURL                     __ORBURL
+T0                       NaN
+UT0                      NaN
+UT0D                     NaN
+T0REF                    __ORBREF
+T0URL                    __ORBURL
+DVDT                     NaN
+UDVDT                    NaN
+UDVDTD                   NaN
+DVDTREF                  __ORBREF
+DVDTURL                  __ORBURL
+TREND                    0
+I                        NaN
+UI                       NaN
+UID                      NaN
+IREF                     __TRANSITREF
+IURL                     __TRANSITURL
+A                        NaN
+UA                       NaN
+UAD                      NaN
+AREF                     Calculated
+AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+SEP                      NaN
+USEP                     NaN
+USEPD                    NaN
+SEPREF                   Set to A
+LAMBDA                   NaN
+ULAMBDA                  NaN
+ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
+#* ================================================
+#* Transit Parameters
+#* ================================================
+DEPTH                    NaN
+UDEPTH                   NaN
+UDEPTHD                  NaN
+DEPTHREF                 Calculated from Rp/R*
+DEPTHURL                 __TRANSITURL
+T14                      0.0513
+UT14                     0.0017
+UT14D                    NaN
+T14REF                   __TRANSITREF
+T14URL                   __TRANSITURL
+TT                       17720.6593965
+UTT                      0.00062
+UTTD                     NaN
+TTREF                    __TRANSITREF
+TTURL                    __TRANSITURL
+AR                       12.2
+UAR                      0.7
+UARD                     NaN
+ARREF                    __TRANSITREF
+ARURL                    __TRANSITURL
+B                        0.9948
+UB                       0.109
+UBD                      0.13
+BREF                     __TRANSITREF
+BURL                     __TRANSITURL
+RR                       NaN
+URR                      NaN
+URRD                     NaN
+RRREF                    __TRANSITREF
+RRURL                    __TRANSITURL
+DR                       NaN
+UDR                      NaN
+UDRD                     NaN
+DRREF                    __TRANSITREF
+DRURL                    __TRANSITURL
+#* ================================================
+#* Secondary Eclipse Parameters
+#* ================================================
+SE                       0
+SEREF                    Predicted
+SEDEPTHJ                 NaN
+USEDEPTHJ                NaN
+USEDEPTHJD               NaN
+SEDEPTHH                 NaN
+USEDEPTHH                NaN
+USEDEPTHHD               NaN
+SEDEPTHKS                NaN
+USEDEPTHKS               NaN
+USEDEPTHKSD              NaN
+SEDEPTHKP                NaN
+USEDEPTHKP               NaN
+USEDEPTHKPD              NaN
+SEDEPTH36                NaN
+USEDEPTH36               NaN
+USEDEPTH36D              NaN
+SEDEPTH45                NaN
+USEDEPTH45               NaN
+USEDEPTH45D              NaN
+SEDEPTH58                NaN
+USEDEPTH58               NaN
+USEDEPTH58D              NaN
+SEDEPTH80                NaN
+USEDEPTH80               NaN
+USEDEPTH80D              NaN
+SET                      NaN
+USET                     NaN
+USETD                    NaN
+#* ================================================
+#* Main References and Website Flags
+#* ================================================
+DATE                     2018
+MONTH                    4
+FIRSTREF                 Bayliss 2018
+FIRSTURL                 http://adsabs.harvard.edu/abs/2018MNRAS.475.4467B
+ORBREF                   Bayliss 2018
+ORBURL                   http://adsabs.harvard.edu/abs/2018MNRAS.475.4467B
+INDEPORBREF              
+TRANSITREF               Bayliss 2018
+TRANSITURL               http://adsabs.harvard.edu/abs/2018MNRAS.475.4467B
+SPECREF                  Bayliss 2018
+SPECURL                  http://adsabs.harvard.edu/abs/2018MNRAS.475.4467B
+EOD                      1
+PUBLIC                   1

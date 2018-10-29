@@ -1,0 +1,84 @@
+GJ 273 b.pln
+GJ 273 c.pln
+GJ 273 d.pln
+GJ 273 e.pln
+GJ 3138 b.pln
+GJ 3138 c.pln
+GJ 3138 d.pln
+GJ 3293 b.pln
+GJ 3293 c.pln
+GJ 3293 d.pln
+GJ 3293 e.pln
+GJ 3323 b.pln
+GJ 3323 c.pln
+GJ 628 b.pln
+GJ 628 c.pln
+GJ 628 d.pln
+GJ 667 C b.pln
+GJ 667 C c.pln
+GJ 667 C d.pln
+GJ 667 C f.pln
+GJ 667 C g.pln
+GJ 676 A b.pln
+HD 10180 h.pln
+HD 141399 b.pln
+HD 141399 c.pln
+HD 141399 d.pln
+HD 141399 e.pln
+HD 215152 b.pln
+HD 215152 c.pln
+HD 215152 d.pln
+HD 215152 e.pln
+HD 219134 b.pln
+HD 219134 c.pln
+HD 219134 d.pln
+HD 219134 f.pln
+HD 219134 g.pln
+HD 219134 h.pln
+HD 34445 b.pln
+HD 34445 c.pln
+HD 34445 d.pln
+HD 34445 e.pln
+HD 34445 f.pln
+HD 40307 b.pln
+HD 40307 c.pln
+HD 40307 d.pln
+HD 40307 e.pln
+HD 40307 f.pln
+HD 40307 g.pln
+Proxima Cen b.pln
+WASP-105 b.pln
+WASP-107 b.pln
+WASP-113 b.pln
+WASP-114 b.pln
+WASP-119 b.pln
+WASP-120 b.pln
+WASP-121 b.pln
+WASP-123 b.pln
+WASP-124 b.pln
+WASP-126 b.pln
+WASP-127 b.pln
+WASP-129 b.pln
+WASP-130 b.pln
+WASP-131 b.pln
+WASP-132 b.pln
+WASP-133 b.pln
+WASP-136 b.pln
+WASP-138 b.pln
+WASP-139 b.pln
+WASP-140 b.pln
+WASP-141 b.pln
+WASP-142 b.pln
+WASP-151 b.pln
+WASP-153 b.pln
+WASP-156 b.pln
+WASP-157 b.pln
+WASP-53 b.pln
+WASP-65 b.pln
+WASP-76 b.pln
+WASP-81 b.pln
+WASP-91 b.pln
+XO-6 b.pln
+YZ Cet b.pln
+YZ Cet c.pln
+YZ Cet d.pln

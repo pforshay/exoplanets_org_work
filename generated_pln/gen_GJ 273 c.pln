@@ -116,9 +116,9 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    0.00371
-UMSINI                   0.00050
-UMSINID                  0.00050
+MSINI                    NaN
+UMSINI                   NaN
+UMSINID                  NaN
 MSINIREF                 __ORBREF
 MSINIURL                 __ORBURL
 R                        NaN
@@ -139,32 +139,32 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      4.7234
-UPER                     0.0004
+PER                      4.72335022
+UPER                     0.00045
 UPERD                    0.0004
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0.17
-UECC                     0.125
-UECCD                    0.13
+ECC                      0.16927843
+UECC                     0.12825
+UECCD                    0.1401
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
 FREEZE_ECC               0
-OM                       NaN
-UOM                      NaN
-UOMD                     NaN
+OM                       150.97310795
+UOM                      58.2935
+UOMD                     53.2092
 OMREF                    __ORBREF
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        1.06
-UK                       0.15
-UKD                      0.15
+K                        1.05157905
+UK                       0.1418
+UKD                      0.1432
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       NaN
-UT0                      NaN
+T0                       16234.6922407044
+UT0                      0.2183
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -179,9 +179,9 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        0.036467
-UA                       0.000002
-UAD                      0.000002
+A                        NaN
+UA                       NaN
+UAD                      NaN
 AREF                     __ORBREF
 AURL                     __ORBURL
 SEP                      NaN
@@ -270,12 +270,12 @@ DATE                     2017
 MONTH                    6
 FIRSTREF                 Astudillo-Defru 2017
 FIRSTURL                 http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
-ORBREF                   Astudillo-Defru 2017
+ORBREF                   Astudillo-Defru 2017 (corrected; private communication)
 ORBURL                   http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
 SPECREF                  Astudillo-Defru 2017
 SPECURL                  http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
-EOD                      0
-PUBLIC                   0
+EOD                      1
+PUBLIC                   1

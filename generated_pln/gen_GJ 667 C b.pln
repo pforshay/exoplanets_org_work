@@ -10,12 +10,12 @@ EANAME                   GJ 667 C b
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               GJ 667 C
+SIMBADNAME               HD 156384C
 ETDNAME                  
 NSTEDID                  207067
-HD                       -1
+HD                       156384C
 HIPP                     -1
-GL                       667.000
+GL                       667 C
 HR                       -1
 SAO                      -1
 KOI                      -1
@@ -63,6 +63,8 @@ MSTARURL                 http://adsabs.harvard.edu/abs/2013A%26A...553A...8D
 RSTAR                    NaN
 URSTAR                   NaN
 URSTARD                  NaN
+RSTARREF                 __SPECREF
+RSTARURL                 __SPECURL
 TEFF                     3350.00
 UTEFF                    50.0000
 UTEFFD                   NaN
@@ -187,6 +189,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -218,6 +222,8 @@ BURL                     __TRANSITURL
 RR                       NaN
 URR                      NaN
 URRD                     NaN
+RRREF                    __TRANSITREF
+RRURL                    __TRANSITURL
 DR                       NaN
 UDR                      NaN
 UDRD                     NaN

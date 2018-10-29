@@ -10,7 +10,7 @@ EANAME                   YZ Cet b
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               
+SIMBADNAME               V* YZ Cet
 ETDNAME                  
 NSTEDID                  -1
 HD                       -1
@@ -19,14 +19,14 @@ GL                       54.1
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                01h12m30.64s
-DEC_STRING               -16d59m56.3s
+RA_STRING                01 12 30.64
+DEC_STRING               -16 59 56.3
 RA                       1.20851123
 DEC                      -16.998966
 COORDREF                 
 COORDURL                 
 V                        12.074
-BMV                      NaN
+BMV                      1.811
 J                        7.258
 UJ                       0.020
 H                        NaN
@@ -35,8 +35,8 @@ UKS                      0.017
 KP                       NaN
 SPTYPE                   M4.5
 OBSERVATORY              La Silla Observatory
-SURVEY                   
-NOBS                     0
+SURVEY                   HARPS
+NOBS                     211
 NCOMP                    3
 RMS                      NaN
 CHI2                     NaN
@@ -105,7 +105,7 @@ SHK                      NaN
 RHK                      -4.71
 URHK                     0.21
 GAMMA                    28.30100
-UGAMMA                   0.30
+UGAMMA                   0.00030
 UGAMMAD                  NaN
 GAMMAREF                 __SPECREF
 GAMMAURL                 __SPECURL
@@ -144,16 +144,16 @@ UPER                     0.00021
 UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0.0
-UECC                     0.12
+ECC                      0
+UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-FREEZE_ECC               0
-OM                       90
+FREEZE_ECC               1
+OM                       -63.4
 UOM                      NaN
 UOMD                     NaN
-OMREF                    Set to 90 deg with ecc~0
+OMREF                    __ORBREF
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
@@ -163,8 +163,8 @@ UK                       0.25
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       NaN
-UT0                      NaN
+T0                       16844.45
+UT0                      0.1
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -277,5 +277,5 @@ TRANSITREF
 TRANSITURL               
 SPECREF                  Mann et al. 2015
 SPECURL                  https://ui.adsabs.harvard.edu/#abs/2015ApJ...804...64M
-EOD                      0
-PUBLIC                   0
+EOD                      1
+PUBLIC                   1

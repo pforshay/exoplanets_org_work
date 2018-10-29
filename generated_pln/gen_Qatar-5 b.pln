@@ -143,7 +143,7 @@ MASSRAT                  NaN
 PER                      2.8792319
 UPER                     0.0000100
 UPERD                    NaN
-PERREF                   Uncertainty not reported in paper, use value from Qatar-1b
+PERREF                   Uncertainty not reported in paper; use value from Qatar-1b
 PERURL                   __ORBURL
 ECC                      0
 UECC                     NaN

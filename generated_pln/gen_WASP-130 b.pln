@@ -19,14 +19,14 @@ GL                       NaN
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                13h32m25.44s
-DEC_STRING               -42d28m31.0s
+RA_STRING                13 32 25.44
+DEC_STRING               -42 28 31.0
 RA                       13.54039917
 DEC                      -42.475273
 COORDREF                 
 COORDURL                 
 V                        11.1
-BMV                      NaN
+BMV                      0.67
 J                        NaN
 H                        NaN
 KS                       NaN
@@ -67,8 +67,8 @@ URSTAR                   0.03
 URSTARD                  NaN
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     5600
-UTEFF                    100
+TEFF                     5625
+UTEFF                    90
 UTEFFD                   NaN
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
@@ -85,13 +85,13 @@ DISTURL                  __SPECURL
 PAR                      NaN
 UPAR                     NaN
 UPARD                    NaN
-LOGG                     4.4
-ULOGG                    0.1
+LOGG                     4.49
+ULOGG                    0.02
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
-RHOSTAR                  NaN
-URHOSTAR                 NaN
+RHOSTAR                  1.18
+URHOSTAR                 0.09
 URHOSTARD                NaN
 RHOSTARREF               __TRANSITREF
 RHOSTARURL               __TRANSITURL
@@ -106,6 +106,8 @@ RHK                      NaN
 GAMMA                    1.462
 UGAMMA                   0.002
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -134,8 +136,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -145,20 +145,21 @@ UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
 ECC                      0
-UECC                     0.02
-UECCD                    0.04
+UECC                     NaN
+UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-OM                       NaN
+FREEZE_ECC               1
+OM                       90
 UOM                      NaN
 UOMD                     NaN
-OMREF                    __ORBREF
+OMREF                    Set to 90 deg with ecc~0
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        NaN
-UK                       NaN
+K                        108
+UK                       2
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
@@ -190,6 +191,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================

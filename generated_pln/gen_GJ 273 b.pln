@@ -104,11 +104,11 @@ VSINIREF                 __SPECREF
 VSINIURL                 __SPECURL
 SHK                      NaN
 RHK                      -5.560
-GAMMA                    18.41
-UGAMMA                   NaN
-UGAMMAD                  NaN
-GAMMAREF                 __SPECREF
-GAMMAURL                 __SPECURL
+GAMMA                    18.40861
+UGAMMA                   0.0001756
+UGAMMAD                  0.0001650
+GAMMAREF                 __ORBREF
+GAMMAURL                 __ORBURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -116,9 +116,9 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    0.00909
-UMSINI                   0.000835
-UMSINID                  0.00085
+MSINI                    NaN
+UMSINI                   NaN
+UMSINID                  NaN
 MSINIREF                 __ORBREF
 MSINIURL                 __ORBURL
 R                        NaN
@@ -139,18 +139,18 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      18.6498
-UPER                     0.00555
-UPERD                    0.0059
+PER                      18.64968369
+UPER                     0.0056
+UPERD                    0.0061
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0.10
-UECC                     0.08
-UECCD                    0.09
+ECC                      0.10499933
+UECC                     0.08475
+UECCD                    0.0976
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
 FREEZE_ECC               0
-OM                       NaN
+OM                       70.61322873
 UOM                      NaN
 UOMD                     NaN
 OMREF                    __ORBREF
@@ -158,13 +158,13 @@ OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        1.61
-UK                       0.15
-UKD                      0.15
+K                        1.60118179
+UK                       0.1498
+UKD                      0.1505
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       NaN
-UT0                      NaN
+T0                       16227.8324024531
+UT0                      0.5568
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -179,9 +179,9 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        0.091101
-UA                       0.000018
-UAD                      0.000019
+A                        NaN
+UA                       NaN
+UAD                      NaN
 AREF                     __ORBREF
 AURL                     __ORBURL
 SEP                      NaN
@@ -270,12 +270,12 @@ DATE                     2017
 MONTH                    6
 FIRSTREF                 Astudillo-Defru 2017
 FIRSTURL                 http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
-ORBREF                   Astudillo-Defru 2017
+ORBREF                   Astudillo-Defru 2017 (corrected; private communication)
 ORBURL                   http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
 INDEPORBREF              
 TRANSITREF               
 TRANSITURL               
 SPECREF                  Astudillo-Defru 2017
 SPECURL                  http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
-EOD                      0
-PUBLIC                   0
+EOD                      1
+PUBLIC                   1

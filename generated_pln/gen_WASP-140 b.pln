@@ -19,14 +19,14 @@ GL                       NaN
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                04h01m32.55s
-DEC_STRING               -20d27m03.9s
+RA_STRING                04 01 32.55
+DEC_STRING               -20 27 03.9
 RA                       4.02570801
-DEC                      -20.451092000000003
-COORDREF                 Simbad
-COORDURL                 http://simbad.u-strasbg.fr/simbad/
+DEC                      -20.451092
+COORDREF                 
+COORDURL                 
 V                        11.1
-BMV                      NaN
+BMV                      0.74
 J                        NaN
 H                        NaN
 KS                       NaN
@@ -106,6 +106,8 @@ RHK                      NaN
 GAMMA                    2.125
 UGAMMA                   0.003
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -134,8 +136,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -149,6 +149,7 @@ UECC                     0.0035
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
+FREEZE_ECC               0
 OM                       -4
 UOM                      8
 UOMD                     NaN
@@ -157,8 +158,8 @@ OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        NaN
-UK                       NaN
+K                        403
+UK                       3
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
@@ -190,6 +191,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================

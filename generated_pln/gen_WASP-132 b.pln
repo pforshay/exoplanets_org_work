@@ -19,8 +19,8 @@ GL                       NaN
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                14h30m26.19s
-DEC_STRING               -46d09m33.0s
+RA_STRING                14 30 26.19
+DEC_STRING               -46 09 33.0
 RA                       14.50727539
 DEC                      -46.15918
 COORDREF                 
@@ -85,8 +85,8 @@ DISTURL                  __SPECURL
 PAR                      NaN
 UPAR                     NaN
 UPARD                    NaN
-LOGG                     4.6
-ULOGG                    0.1
+LOGG                     4.61
+ULOGG                    0.02
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
@@ -106,6 +106,8 @@ RHK                      NaN
 GAMMA                    31.067
 UGAMMA                   0.003
 UGAMMAD                  NaN
+GAMMAREF                 __SPECREF
+GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
@@ -134,8 +136,6 @@ UGRAVITY                 NaN
 UGRAVITYD                NaN
 GRAVITYREF               Calculated
 MASSRAT                  NaN
-UMASSRAT                 NaN
-UMASSRATD                NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
@@ -145,20 +145,21 @@ UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
 ECC                      0
-UECC                     0.05
-UECCD                    0.10
+UECC                     NaN
+UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-OM                       NaN
+FREEZE_ECC               1
+OM                       90
 UOM                      NaN
 UOMD                     NaN
-OMREF                    __ORBREF
+OMREF                    Set to 90 deg with ecc~0
 OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        0.051
-UK                       0.003
+K                        51
+UK                       3
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
@@ -190,6 +191,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================

@@ -5,12 +5,12 @@ NAME                     YZ Cet c
 STAR                     YZ Cet
 COMP                     c
 OTHERNAME                
-JSNAME                   
+JSNAME                   YZ Cet c
 EANAME                   YZ Cet c
 CPSNAME                  
 SMENAME                  
 TABLENAME                
-SIMBADNAME               
+SIMBADNAME               V* YZ Cet
 ETDNAME                  
 NSTEDID                  -1
 HD                       -1
@@ -19,14 +19,14 @@ GL                       54.1
 HR                       -1
 SAO                      -1
 KOI                      -1
-RA_STRING                01h12m30.64s
-DEC_STRING               -16d59m56.3s
+RA_STRING                01 12 30.64
+DEC_STRING               -16 59 56.3
 RA                       1.20851123
 DEC                      -16.998966
 COORDREF                 
 COORDURL                 
 V                        12.074
-BMV                      NaN
+BMV                      1.811
 J                        7.258
 UJ                       0.020
 UJD                      NaN
@@ -37,7 +37,7 @@ UKSD                     NaN
 KP                       NaN
 SPTYPE                   M4.5
 OBSERVATORY              La Silla Observatory
-SURVEY                   
+SURVEY                   HARPS
 NOBS                     211
 NCOMP                    3
 RMS                      NaN
@@ -145,13 +145,13 @@ UPER                     0.00022
 UPERD                    NaN
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0.04
-UECC                     0.11
+ECC                      0
+UECC                     NaN
 UECCD                    NaN
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
-FREEZE_ECC               0
-OM                       NaN
+FREEZE_ECC               1
+OM                       -159.8
 UOM                      NaN
 UOMD                     NaN
 OMREF                    __ORBREF
@@ -164,8 +164,8 @@ UK                       0.23
 UKD                      NaN
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       NaN
-UT0                      NaN
+T0                       16843.19
+UT0                      0.1
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -278,5 +278,5 @@ TRANSITREF
 TRANSITURL               
 SPECREF                  Mann et al. 2015
 SPECURL                  https://ui.adsabs.harvard.edu/#abs/2015ApJ...804...64M
-EOD                      0
-PUBLIC                   0
+EOD                      1
+PUBLIC                   1

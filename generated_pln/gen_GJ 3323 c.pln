@@ -139,18 +139,18 @@ MASSRAT                  NaN
 #* ================================================
 #* Orbital Parameters
 #* ================================================
-PER                      40.54
-UPER                     0.20
-UPERD                    0.21
+PER                      40.54148365
+UPER                     0.2185
+UPERD                    0.2403
 PERREF                   __ORBREF
 PERURL                   __ORBURL
-ECC                      0.17
-UECC                     0.165
-UECCD                    0.21
+ECC                      0.17880207
+UECC                     0.1854
+UECCD                    0.2429
 ECCREF                   __ORBREF
 ECCURL                   __ORBURL
 FREEZE_ECC               0
-OM                       NaN
+OM                       155.88459826
 UOM                      NaN
 UOMD                     NaN
 OMREF                    __ORBREF
@@ -158,13 +158,13 @@ OMURL                    __ORBURL
 BIGOM                    NaN
 UBIGOM                   NaN
 UBIGOMD                  NaN
-K                        1.49
-UK                       0.32
-UKD                      0.33
+K                        1.49726309
+UK                       0.34095
+UKD                      0.3544
 KREF                     __ORBREF
 KURL                     __ORBURL
-T0                       NaN
-UT0                      NaN
+T0                       16778.1630143167
+UT0                      2.6386
 UT0D                     NaN
 T0REF                    __ORBREF
 T0URL                    __ORBURL
@@ -270,7 +270,7 @@ DATE                     2017
 MONTH                    6
 FIRSTREF                 Astudillo-Defru 2017
 FIRSTURL                 http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
-ORBREF                   Astudillo-Defru 2017
+ORBREF                   Astudillo-Defru 2017 (corrected; private communication)
 ORBURL                   http://adsabs.harvard.edu/abs/2017A%26A...602A..88A
 INDEPORBREF              
 TRANSITREF               
