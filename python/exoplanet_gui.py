@@ -1,5 +1,37 @@
+"""
+:title:  exoplanet_gui.py
+:author:  Peter Forshay
+:contact:  pforshay@stsci.edu
+
+This code uses the PyQt library to construct a GUI for reading, modifying, and
+writing files containing exoplanet data.  It does this using methods provided
+by the ExoParameter and ExoPlanet classes.  This is intended to make editing
+exoplanet files easier, faster, and more reliable, with some automatic
+triggering of data-checking methods.
+
+..class::  ExoParameterRow
+..synopsis::  This class can construct a GUI row to contain information on a
+              single expolanet parameter, and return the information contained
+              in the row.
+
+..class::  ExoPlanetPanel
+..synopsis::  This widget will be used in the QScrollArea object to construct
+              a series of ExoParameterRow objects.
+
+..class::  ScrollWindow
+..synopsis::  This class constructs a QScrollArea so the GUI will be able to
+              scroll nicely along the many parameters used to define an
+              exoplanet.
+
+..class::  MainGUI
+..synopsis::  This class defines the main body of a GUI for adding and
+              updating exoplanet information to and from .pln files.  Methods
+              are provided to read and write information between the GUI and
+              these .pln files.
+"""
+
 from decimal import Decimal, InvalidOperation
-from Exoplanet import ExoParameter, Exoplanet
+from ExoPlanet import ExoParameter, ExoPlanet
 import sys
 
 try:
@@ -16,8 +48,11 @@ except ImportError:
 class ExoParameterRow(QWidget):
     """
     This class can construct a GUI row to contain information on a single
-    expolanet parameter.  Methods are provided to read and write information
-    between the GUI and Exoplanet objects.
+    expolanet parameter, and return the information contained in the row.
+
+    ..module::  return_parameter
+    ..synopsis::  Read information from a row in the GUI and return it as a
+                  dictionary.
     """
 
     # Set available reference and url pointers.
@@ -191,29 +226,29 @@ class ExoPlanetPanel(QWidget):
 
     def __init__(self, parent=None, planet=None):
         """
-        Add all necessary rows to define an Exoplanet.
+        Add all necessary rows to define an ExoPlanet.
 
         :param parent:  A PyQt parent for the new GUI element.
         :type parent:  QWidget
 
         :param planet:  Optionally pass the GUI an already-constructed
                         exoplanet object to populate the GUI elements.
-        :type planet:  Exoplanet
+        :type planet:  ExoPlanet
         """
 
         # Initialize as a QWidget object.
         super().__init__(parent)
 
-        # If an Exoplanet object is not provided, use an empty Exoplanet.
+        # If an ExoPlanet object is not provided, use an empty ExoPlanet.
         if not planet:
-            planet = Exoplanet()
+            planet = ExoPlanet()
 
         # Define the GUI layout for this widget.
         self.scroll_layout = QVBoxLayout()
         self.scroll_layout.setSpacing(0)
         self.scroll_layout.setContentsMargins(0, 0, 0, 0)
 
-        # Add an ExoParameterRow for each Exoplanet attribute.
+        # Add an ExoParameterRow for each ExoPlanet attribute.
         light = True
         for attr in planet.attributes:
             exo_param = getattr(planet, attr)
@@ -251,7 +286,7 @@ class ScrollWindow(QScrollArea):
 
         :param planet:  Optionally pass the GUI an already-constructed
                         exoplanet object to populate the GUI elements.
-        :type planet:  Exoplanet
+        :type planet:  ExoPlanet
         """
 
         # Initialize as a QScrollArea object.
@@ -271,6 +306,19 @@ class MainGUI(QWidget):
     This class defines the main body of a GUI for adding and updating exoplanet
     information to and from .pln files.  Methods are provided to read and
     write information between the GUI and these .pln files.
+
+    ..module::  _update_form
+    ..synopsis::  Display an ExoPlanet object in the GUI.
+
+    ..module::  clear_form
+    ..synopsis::  Reset the GUI to an empty state.
+
+    ..module::  load_pln
+    ..synopsis::  Load information from an existing .pln file into the GUI.
+
+    ..module::  write_pln
+    ..synopsis::  Write the information currently displayed in the GUI to a
+                  .pln file.
     """
 
     def __init__(self):
@@ -339,16 +387,16 @@ class MainGUI(QWidget):
 
     def _update_form(self, planet):
         """
-        Display an Exoplanet object in the GUI.
+        Display an ExoPlanet object in the GUI.
 
         :param planet:  The exoplanet to display in the GUI.
-        :type planet:  Exoplanet
+        :type planet:  ExoPlanet
         """
 
         # Delete the current scroll area by setting parent to None.
         self.scroll.setParent(None)
 
-        # Construct a new ScrollWindow using the provided Exoplanet.
+        # Construct a new ScrollWindow using the provided ExoPlanet.
         new_window = ScrollWindow(parent=self, planet=planet)
 
         # Add the new ScrollWindow to the GUI.
@@ -361,8 +409,8 @@ class MainGUI(QWidget):
         Reset the GUI to an empty state.
         """
 
-        # Update the GUI with an empty Exoplanet object.
-        planet = Exoplanet()
+        # Update the GUI with an empty ExoPlanet object.
+        planet = ExoPlanet()
         self._update_form(planet)
 
     def load_pln(self):
@@ -371,17 +419,20 @@ class MainGUI(QWidget):
         """
 
         # Use a popup dialog to get a .pln filename.
-        loadit = QFileDialog.getOpenFileName(self, "Load a .pln file", ".")
+        loadit = QFileDialog.getOpenFileName(self,
+                                             "Load a .pln file",
+                                             "../generated_pln/"
+                                             )
         filename = loadit[0]
 
         # If no file is chosen, do nothing.  Otherwise, use the file to
-        # construct an Exoplanet.
+        # construct an ExoPlanet.
         if filename == "":
             return
         else:
-            planet = Exoplanet(path=filename)
+            planet = ExoPlanet(path=filename)
 
-        # Add the new Exoplanet object to the GUI.
+        # Add the new ExoPlanet object to the GUI.
         self._update_form(planet)
 
     def write_pln(self):
@@ -389,8 +440,8 @@ class MainGUI(QWidget):
         Write the information currently displayed in the GUI to a .pln file.
         """
 
-        # Initialize a new empty Exoplanet object.
-        new_planet = Exoplanet()
+        # Initialize a new empty ExoPlanet object.
+        new_planet = ExoPlanet()
 
         # Iterate through each ExoParameterRow in the ScrollWindow area.
         exo_panel = self.scroll.widget()
@@ -406,23 +457,27 @@ class MainGUI(QWidget):
             # the dictionary.
             parameter_name = exo_dict["parameter"].lower()
             exo_param = getattr(new_planet, parameter_name)
-            exo_param.set_from_template(exo_dict)
+            exo_param.set_from_dict(exo_dict)
 
-            # Update the Exoplanet object with the updated ExoParameter.
+            # Update the ExoPlanet object with the updated ExoParameter.
             setattr(new_planet, parameter_name, exo_param)
 
-        # Use Exoplanet methods to verify and save the object to a .pln file.
+        # Use ExoPlanet methods to verify and save the object to a .pln file.
         new_planet.verify_pln()
         new_planet.save_to_pln(dir="../generated_pln", gui=True)
 
+# --------------------
+
 
 def __test__():
-    test = Exoplanet()
+    test = ExoPlanet()
     app = QApplication(sys.argv)
     # w = ScrollWindow(planet=test)
     w = MainGUI()
     sys.exit(app.exec_())
     sys.stdout = sys.__stdout__
+
+# --------------------
 
 
 if __name__ == "__main__":

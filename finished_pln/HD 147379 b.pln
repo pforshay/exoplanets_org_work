@@ -115,11 +115,11 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    NaN
-UMSINI                   NaN
-UMSINID                  NaN
-MSINIREF                 Calculated
-MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+MSINI                    0.0777
+UMSINI                   0.00665
+UMSINID                  0.0057
+MSINIREF                 __ORBREF
+MSINIURL                 __ORBURL
 R                        NaN
 UR                       NaN
 URD                      NaN
@@ -178,11 +178,11 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
-UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+A                        0.3193
+UA                       0.0002
+UAD                      0.0002
+AREF                     __ORBREF
+AURL                     __ORBURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN

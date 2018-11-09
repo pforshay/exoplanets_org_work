@@ -95,7 +95,7 @@ LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  3.5200
 URHOSTAR                 0.1800
-URHOSTARD                0.1800
+URHOSTARD                NaN
 RHOSTARREF               Mann 2017
 RHOSTARURL               http://adsabs.harvard.edu/abs/2017arXiv170910328M
 PROT                     15.0
@@ -124,9 +124,9 @@ UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
-URD                      NaN
+R                        0.088
+UR                       0.0045
+URD                      0.005
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
 DENSITY                  NaN

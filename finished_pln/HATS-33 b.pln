@@ -114,18 +114,19 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
+MASS                     1.192
+UMASS                    0.053
 UMASSD                   NaN
-MASSREF                  Set to MSINI; I unknown
+MASSREF                  __TRANSITREF
+MASSURL                  __TRANSITURL
 MSINI                    NaN
 UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
-URD                      NaN
+R                        1.230
+UR                       0.0965
+URD                      0.112
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
 DENSITY                  0.79
@@ -182,11 +183,11 @@ UI                       0.92
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        0.03727
+UA                       0.00037
 UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+AREF                     __ORBREF
+AURL                     __ORBURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN

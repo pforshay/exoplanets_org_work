@@ -76,8 +76,8 @@ UFE                      0.01
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     NaN
-UDIST                    NaN
+DIST                     45.27
+UDIST                    2.07
 UDISTD                   NaN
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
@@ -115,11 +115,11 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    NaN
-UMSINI                   NaN
-UMSINID                  NaN
-MSINIREF                 Calculated
-MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+MSINI                    0.0260
+UMSINI                   0.0039
+UMSINID                  0.0039
+MSINIREF                 __ORBREF
+MSINIURL                 __ORBURL
 R                        NaN
 UR                       NaN
 URD                      NaN

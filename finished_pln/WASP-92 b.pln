@@ -95,7 +95,7 @@ LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  0.6970
 URHOSTAR                 0.0770
-URHOSTARD                0.0770
+URHOSTARD                NaN
 RHOSTARREF               Hay 2016
 RHOSTARURL               http://adsabs.harvard.edu/abs/2016MNRAS.463.3276H
 PROT                     NaN
@@ -114,17 +114,18 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
+MASS                     0.805
+UMASS                    0.068
 UMASSD                   NaN
-MASSREF                  Set to MSINI; I unknown
+MASSREF                  __TRANSITREF
+MASSURL                  __TRANSITURL
 MSINI                    NaN
 UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
+R                        1.461
+UR                       0.077
 URD                      NaN
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
@@ -182,8 +183,8 @@ UI                       0.69
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        0.03480
+UA                       0.00036
 UAD                      NaN
 AREF                     Calculated
 AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B

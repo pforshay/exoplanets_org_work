@@ -1,4 +1,30 @@
+"""
+:title:  ExoPlanet.py
+:author:  Peter Forshay
+:contact:  pforshay@stsci.edu
+
+This code constructs Python classes for defining exoplanets and all associated
+parameters.  These classes include methods for reading, updating, and writing
+exoplanet data to various sources.  Most of this initial effort was targeted
+at supporting the .pln file format used by the exoplanets.org website, though
+these classes could be extended to support JSON, YAML, and other standards.
+
+..class::  ExoParameter
+..synopsis::  The ExoParameter class is intended to define a single exoplanet
+              parameter and a number of other properties that go along with
+              it.  This includes value, uncertainties, default values, and
+              units.
+
+..class::  ExoPlanet
+..synopsis::  The ExoPlanet class is intended to hold a number of parameters
+              that define an exoplanet within the exoplanets.org workflow.
+              This includes functions for reading and writing parameters in
+              .pln text files, and may be extended to additional formats and
+              parameter calculations.
+"""
+
 from decimal import Decimal, InvalidOperation
+from bin.is_empty import is_empty, is_valid
 import numpy as np
 import os
 import pandas as pd
@@ -12,6 +38,42 @@ class ExoParameter(object):
     The ExoParameter class is intended to define a single exoplanet parameter
     and a number of other properties that go along with it.  This includes
     value, uncertainties, default values, and units.
+
+    ..module::  calculate_uncertainties
+    ..synopsis::  Calculate the uncertainties of this parameter.
+
+    ..module::  check_constrained
+    ..synopsis::  Set the well-constrained flag based on relative uncertainty
+                  percent.
+
+    ..module::  check_limits
+    ..synopsis::  Compare the current value attribute to any limits provided
+                  for this parameter.  (not currently used)
+
+    ..module::  copy_values
+    ..synopsis::  Copy data values from another ExoParameter without
+                  overwriting critical attributes.
+
+    ..module::  is_default
+    ..synopsis::  Determine if this object has been updated or not.
+
+    ..module::  remove_refs
+    ..synopsis::  Remove reference and url listings from this parameter.
+
+    ..module::  reset_parameter
+    ..synopsis::  Reset this parameter to the original template attributes.
+
+    ..module::  reset_uncertainties
+    ..synopsis::  Reset the uncertainty values of this parameter from the
+                  original template uncertainties.
+
+    ..module::  set_from_dict
+    ..synopsis::  Update the attributes of this ExoParameter using a provided
+                  dictionary.
+
+    ..module:: values_dict
+    ..synopsis::  Return all value attributes of self in a formatted
+                  dictionary.
     """
 
     def __init__(self, parameter, attr_dict=None, from_template=None):
@@ -84,7 +146,7 @@ class ExoParameter(object):
         # If an attribute dictionary is provided, use the provided method to
         # update the attributes with this information.
         if attr_dict:
-            self.set_from_template(attr_dict)
+            self.set_from_dict(attr_dict)
 
             # If this attribute is being constructed from a template, store
             # the attr_dict to reset back to template values if needed.
@@ -156,31 +218,37 @@ class ExoParameter(object):
 
         # If only an upper uncertainty is provided, treat this as the mean.
         elif (is_empty(self.uncertainty) and is_valid(self.uncertainty_upper)):
-            self.uncertainty = self.uncertainty_upper
+            temp = Decimal(self.uncertainty_upper)
+            self.reset_uncertainties()
+            self.uncertainty = temp
 
         # If only a lower uncertainty is provided, treat this as the mean.
         elif (is_empty(self.uncertainty) and is_valid(self.uncertainty_lower)):
-            self.uncertainty = self.uncertainty_lower
+            temp = Decimal(self.uncertainty_lower)
+            self.reset_uncertainties()
+            self.uncertainty = temp
 
         else:
             return
 
-    def check_constrained(self):
+    def check_constrained(self, limit=None):
         """
         Set the well-constrained flag based on relative uncertainty percent.
-        (not currently used)
+
+        :param limit:  Optionally provide a different acceptable limit
+                       tolerance (0.1 by default).
+        :type limit:  float
         """
 
-        # Set the 'well-constrained' limit at 10% (arbitrary).
-        limit = 10
+        # Set the 'well-constrained' limit at 10% (arbitrary) if not provided.
+        limit = (Decimal(0.1) if not limit else Decimal(limit))
 
         if is_empty(self.value) or is_empty(self.uncertainty):
             return False
-        elif self.uncertainty > (Decimal(self.value) / limit):
+        elif self.uncertainty > (Decimal(self.value) * Decimal(limit)):
             self.well_constrained = False
         else:
             self.well_constrained = True
-        return self.well_constrained
 
     def check_limits(self):
         """
@@ -209,6 +277,9 @@ class ExoParameter(object):
         """
         Copy data values from another ExoParameter without overwriting critical
         attributes.
+
+        :param another:  Another ExoParameter we wish to copy values from.
+        :type another:  ExoParameter
         """
 
         # Copy all value, uncertainty, and source information from the other
@@ -224,14 +295,62 @@ class ExoParameter(object):
         else:
             raise TypeError("Cannot copy values from a non-ExoParameter obj!")
 
-    def reset_parameter(self):
+    def is_default(self):
+        """
+        Compare current parameters with self.template to determine if this
+        object has been updated or not.
+        """
+
+        # Make sure matching default and value cases are found to be
+        # equivalent.
+        if self.default is None:    # empty string should equal None
+            current_val = (None if self.value == "" else self.value)
+        elif isinstance(self.default, str):  # avoid str v float comparisons
+            current_val = str(self.value)
+        else:
+            current_val = self.value
+
+        # self.template does not contain any information about self.value, so
+        # we need to check this separately.
+        if current_val != self.default:
+            return False
+
+        # At this point, self.value is equivalent to self.default, so we should
+        # check the remaining attribute defaults defined in self.template.
+        default = True
+        for attr, val in self.template.items():
+            current = getattr(self, attr)
+            if current != val:
+                default = False
+                break
+
+        return default
+
+    def remove_refs(self):
+        """
+        Remove reference and url listings from this parameter.
+        """
+
+        self.reference = None
+        self.url = None
+
+    def reset_parameter(self, force=None):
         """
         Reset this parameter to the original template attributes.
+
+        :param force:  Set this flag to force a reset of the given parameter.
+        :type force:  bool
         """
 
         # Set self to a new ExoParameter using the original self.template
-        # dictionary.
-        self = ExoParameter(self.parameter, attr_dict=self.template)
+        # dictionary.  This will reset a parameter that has a null value or
+        # it can be forced to reset.
+        if (is_empty(self.value) or force):
+            self = ExoParameter(self.parameter,
+                                attr_dict=self.template,
+                                from_template=True
+                                )
+            self.value = self.default
 
     def reset_uncertainties(self):
         """
@@ -246,15 +365,20 @@ class ExoParameter(object):
         self.uncertainty_lower = blank.uncertainty_lower
         self.uncertainty_upper = blank.uncertainty_upper
 
-    def set_from_template(self, attribute_dict):
+    def set_from_dict(self, attribute_dict):
         """
         Update the attributes of this ExoParameter using a provided dictionary.
+
+        :param attribute_dict:  This module needs a dictionary of attribute /
+                                value pairs to set attributes of self.
+        :type attribute_dict:  dict
         """
 
         # Iterate through each attribute / value pair in the dictionary.
         for attr, value in attribute_dict.items():
 
-            # Use None if this is not a current attribute of self.
+            # Get the value currently in self.attr.  Use None if this is not a
+            # current attribute of self.
             try:
                 old_value = getattr(self, attr)
             except AttributeError:
@@ -272,18 +396,65 @@ class ExoParameter(object):
         if self.value is None:
             self.value = self.default
 
+    def values_dict(self):
+        """
+        Return all value attributes of self in a formatted dictionary.
+        """
+
+        values = {}
+        values["value"] = self.value
+        values["default"] = self.default
+        values["uncertainty"] = self.uncertainty
+        values["uncertainty_upper"] = self.uncertainty_upper
+        values["uncertainty_lower"] = self.uncertainty_lower
+
+        return values
+
 # --------------------
 
 
-class Exoplanet(object):
+class ExoPlanet(object):
     """
-    The Exoplanet class is intended to hold a number of parameters that define
+    The ExoPlanet class is intended to hold a number of parameters that define
     an exoplanet within the exoplanets.org workflow.  This includes functions
     for reading and writing parameters in .pln text files, and may be extended
     to additional formats and parameter calculations.
+
+    ..module::  _populate_uncertainties
+    ..synopsis::  Trigger uncertainty calculations for all attributes.
+
+    ..module::  _write_pln_line
+    ..synopsis::  Format a line with whitespace and write this to the .pln
+                  file.
+
+    ..module::  exclude
+    ..synopsis::  Set the two data inclusion flags to 0 so this exoplanet does
+                  not appear in EOD.
+
+    ..module::  find_all_names
+    ..synopsis::  Aggregate all the potential exoplanet names stored in pln
+                  file fields.
+
+    ..module::  read_from_nasa
+    ..synopsis::  Construct an ExoPlanet from data scraped from the NASA
+                  ExoPlanet Archive.
+
+    ..module::  read_from_pln
+    ..synopsis::  Read exoplanet parameters from a .pln file assuming certain
+                  commenting and text structures.
+
+    ..module::  save_to_pln
+    ..synopsis::  Save an ExoPlanet object into a .pln text file.
+
+    ..module::  save_to_yaml
+    ..synopsis::  Save an ExoPlanet object to a YAML-formatted file.
+
+    ..module::  verify_pln
+    ..synopsis::  Some last-second tweaks are needed for proper .pln file
+                  formatting.
     """
 
-    # Point to exissting template files.
+    # Point to existing template files.
     pln_template_file = "ref/pln_template.yaml"
     template_file = "ref/exoparam_template.yaml"
 
@@ -292,20 +463,23 @@ class Exoplanet(object):
         Create an exoplanet object and optionally seed it with parameters
         already in hand.
 
-        :param path:  A filepath may be supplied to create an Exoplanet object
+        :param path:  A filepath may be supplied to create an ExoPlanet object
                       from an existing .pln file.
         :type path:  str
         """
 
-        # Initialize the Exoplanet object with an empty 'attributes' list.
+        # Initialize the ExoPlanet object with an empty 'attributes' list.
         self.attributes = []
+
+        # Store the .pln filename.
+        self.pln_filename = path
 
         # Load the YAML-formatted template file.
         with open(self.template_file, 'r') as template:
             template_parameters = yaml.load(template)
 
         # For each attribute defined in the template file, add this attribute
-        # to the Exoplanet object and link it to a new ExoParameter defined
+        # to the ExoPlanet object and link it to a new ExoParameter defined
         # by the information supplied.
         for param, attributes in template_parameters.items():
             setattr(self, param.lower(), ExoParameter(param,
@@ -316,8 +490,8 @@ class Exoplanet(object):
             self.attributes.append(param.lower())
 
         # If an existing .pln file is provided, read this file information.
-        if path:
-            self.read_from_pln(path)
+        if self.pln_filename:
+            self.read_from_pln(self.pln_filename)
 
         # Add the YAML-formatted contents of 'self.pln_template_file' to an
         # attribute of this object.
@@ -326,10 +500,10 @@ class Exoplanet(object):
 
     def __str__(self):
         """
-        Format an Exoplanet string if requested.
+        Format an ExoPlanet string if requested.
         """
 
-        return "<Exoplanet>: {0}".format(self.__dict__)
+        return "<ExoPlanet>: {0}".format(self.__dict__)
 
     def _populate_uncertainties(self):
         """
@@ -356,10 +530,15 @@ class Exoplanet(object):
         :type field:  various
         """
 
+        # Add whitespace to the field name.
         field_str = "{:25}".format(field)
+
+        # Use an empty string for any None values and 'NaN' for any nan values.
         value_str = str(value)
         value_str = ("" if value_str == "None" else value_str)
         value_str = ("NaN" if value_str == "nan" else value_str)
+
+        # Combine the field and value strings and write this to the file.
         file.write("".join([field_str, value_str, "\n"]))
 
     def exclude(self):
@@ -376,17 +555,19 @@ class Exoplanet(object):
         Aggregate all the potential exoplanet names stored in pln file fields.
         """
 
-        if self.parameters is None:
+        # Return if no attributes have been set.
+        if self.attributes is None:
             return None
 
+        # List all .pln fields we can find exoplanet names in.
         name_fields = ["NAME",
                        "OTHERNAME",
                        "JSNAME",
                        "EANAME",
-                       "SIMBADNAME",
                        ]
         all_names = []
 
+        # Add any non-empty names found in these fields to the all_names list.
         for field in name_fields:
             field = field.lower()
             if field in self.attributes:
@@ -403,14 +584,14 @@ class Exoplanet(object):
 
     def read_from_nasa(self, nasa_series):
         """
-        Construct an Exoplanet from data scraped from the NASA Exoplanet
+        Construct an ExoPlanet from data scraped from the NASA ExoPlanet
         Archive.
         """
 
         # Transform the Pandas Series containing NASA parameters into a dict.
         nasa_dict = nasa_series.to_dict()
 
-        # Look for every attribute added during Exoplanet initialization.
+        # Look for every attribute added during ExoPlanet initialization.
         for att in self.attributes:
 
             # getattr will return an ExoParameter object for this attribute.
@@ -426,20 +607,34 @@ class Exoplanet(object):
             new_value = nasa_dict[nasa_field]
             if is_empty(new_value):
                 new_value = exo_param.default
+
+            # Remove 'd', 'm', 's' from the DEC string and fill with ' '.
             elif nasa_field == "dec_str":
                 new_value = new_value.replace("d", " ")
                 new_value = new_value.replace("m", " ")
                 new_value = new_value[:-1]
+
+            # NASA hd_name includes the planet letter, so cut that off.
             elif nasa_field == "hd_name":
                 new_value = " ".join(new_value.split(" ")[1:])
+
+            # NASA hip_name includes the planet letter, so cut that off.
             elif nasa_field == "hip_name":
                 new_value = " ".join(new_value.split(" ")[1:])
+
+            # NASA provides transit depth values in percentages, we just want
+            # the decimal value.
             elif nasa_field == "pl_trandep" and not is_empty(new_value):
                 new_value = Decimal(new_value) / 100
+
+            # Remove 'd', 'm', 's' from the RA string and fill with ' '.
             elif nasa_field == "ra_str":
                 new_value = new_value.replace("h", " ")
                 new_value = new_value.replace("m", " ")
                 new_value = new_value[:-1]
+
+            # If no RV measurements are listed in NASA, we want to use -1 for
+            # our NOBS.
             elif nasa_field == "st_nrvc" and new_value == "0":
                 new_value = -1
 
@@ -462,7 +657,7 @@ class Exoplanet(object):
                 except KeyError:
                     pass
 
-            # Reset the current Exoplanet attribute to the now-updated
+            # Reset the current ExoPlanet attribute to the now-updated
             # ExoParameter.
             setattr(self, att, exo_param)
 
@@ -479,14 +674,13 @@ class Exoplanet(object):
             for line in f:
                 line = line.strip()
 
+                # Comment lines begin with '#'.
+                if line.startswith('#'):
+                    continue
+
                 # Parameter names and values are separated by whitespace, so
                 # split the line on this.
                 keyword_value_pair = [x.strip() for x in line.split(' ', 1)]
-
-                # Comment lines begin with '#'.
-                if keyword_value_pair[0].startswith('#'):
-                    continue
-
                 num = len(keyword_value_pair)
 
                 # Skip if this line is empty.
@@ -547,7 +741,7 @@ class Exoplanet(object):
 
     def save_to_pln(self, name=None, dir=None, gui=False, disp=True):
         """
-        Save an Exoplanet object into a .pln text file.  A .pln template is
+        Save an ExoPlanet object into a .pln text file.  A .pln template is
         needed here to recreate the sections of the text file and where to
         write each parameter.
 
@@ -561,22 +755,29 @@ class Exoplanet(object):
         :type gui:  bool
         """
 
-        # Set the file name to the exoplanet name if not provided.
+        # If name is not provided, use the NAME field value + .pln.
         if not name:
             name = ".".join([self.name.value, "pln"])
+
+        # If the gui flag is set, prepend a 'gen_' on the filename to specify
+        # this was generated by the GUI.
         if gui:
             name = "_".join(["gen", name])
+
+        # If dir is provided add this directory path to the filename.
         if dir:
             name = os.path.join(dir, name)
             home = os.getcwd()
             name = os.path.join(home, name)
 
-        if os.path.isfile(name):
-            os.remove(name)
+        self.pln_filename = name
 
-        with open(name, 'w') as new_pln:
+        if os.path.isfile(self.pln_filename):
+            os.remove(self.pln_filename)
+
+        with open(self.pln_filename, 'w') as new_pln:
             if disp:
-                print("writing to {0}".format(name))
+                print("writing to {0}".format(self.pln_filename))
 
             # Use the pln_template dictionary to create the file sections and
             # look up the names that may be in the parameters dictionary.
@@ -632,7 +833,7 @@ class Exoplanet(object):
 
     def save_to_yaml(self, path=None):
         """
-        Save an Exoplanet object to a YAML-formatted file.  This is not
+        Save an ExoPlanet object to a YAML-formatted file.  This is not
         currently in use by any routines.
 
         :param path:  An optional kwarg to specify a certain file name/path to
@@ -712,6 +913,7 @@ class Exoplanet(object):
             self.trend.value = 1
 
         # Exclude planets with period uncertainty >10%.
+        self.per.check_constrained(0.1)
         if not self.per.well_constrained:
             self.exclude()
             warnings.append("<uncertain PER>")
@@ -746,54 +948,6 @@ class Exoplanet(object):
                   )
             [print(x) for x in warnings]
 
-        """
-        if (is_empty(self.t0.value)
-                and not is_empty(self.tt.value)
-                and not is_empty(self.om.value)
-                and not is_empty(self.ecc.value)):
-            p = float(self.per.value)
-            sig = len(str(self.tt.value))
-            tc = float(self.tt.value)
-            rad = np.radians(float(self.om.value))
-            f = (np.pi / 2) - rad
-            if f != 0:
-                ec = float(self.ecc.value)
-                ea = 2 * np.arctan(np.tan(f/2) * np.sqrt((1-ec) / (1+ec)))
-                tp = tc - (p / (2*np.pi)) * (ea - ec * np.sin(ea))
-                tp = np.round(tp, decimals=(sig-6))
-                print("------------{}".format(tp))
-                self.t0.value = Decimal(str(tp))
-                self.t0.uncertainty = self.tt.uncertainty
-                self.t0.uncertainty_upper = self.tt.uncertainty_upper
-                self.t0.reference = "Computed from TT"
-                self.t0.url = None
-                print("T0 computed from TT")
-        """
-
-# --------------------
-
-
-def is_valid(var):
-    """
-    Just return the opposite of is_empty().  This is easier to keep track of
-    in more complex boolean statements.
-    """
-
-    return (not is_empty(var))
-
-
-def is_empty(var):
-    """
-    Various Exoplanet attributes use 'NaN', 'None', or '' for empty values.
-    Check for all these cases.
-    """
-
-    as_str = str(var).lower()
-    if (as_str == "nan" or as_str == "none" or as_str == ""):
-        return True
-    else:
-        return False
-
 # --------------------
 
 
@@ -803,7 +957,7 @@ def __test__():
     print(p)
 
     testfile = "HD 209458 b.pln"
-    ep = Exoplanet(path=testfile)
+    ep = ExoPlanet(path=testfile)
     ep.save_to_yaml(path="rewrite.yaml")
 
 
@@ -817,7 +971,7 @@ def __test_exoparameter__():
 
 def __test_exoplanet_from_template__():
     testfile = "HD 209458 b.pln"
-    new_planet = Exoplanet(path=testfile)
+    new_planet = ExoPlanet(path=testfile)
     print(new_planet.per)
 
 # --------------------

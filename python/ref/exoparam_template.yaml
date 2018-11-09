@@ -632,6 +632,22 @@ LAMBDA:
     uncertainty_upper: "NaN"
     units: "degrees"
     url: "__ORBURL"
+M0:
+    label:  "Orbital Position at Reference Time"
+    parent:  "Orbital Parameters"
+    reference:  "__ORBREF"
+    required:  False
+    uncertain_flag: True
+    units:  "degrees"
+    url:  "__ORBURL"
+REFTIME:
+    label:  "Reference Time of M0"
+    parent:  "Orbital Parameters"
+    reference:  "__ORBREF"
+    required:  False
+    uncertain_flag: False
+    units:  "JD - 2.44e6"
+    url:  "__ORBURL"
 DEPTH:
     default: "NaN"
     label: "Transit Depth [(Rp/R*)^2]"

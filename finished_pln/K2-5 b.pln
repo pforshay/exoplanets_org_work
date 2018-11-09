@@ -123,7 +123,7 @@ UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
+R                        0.170
 UR                       NaN
 URD                      NaN
 RREF                     __TRANSITREF
@@ -181,11 +181,11 @@ UI                       2.625
 UID                      1.88
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
+A                        0.0532
 UA                       NaN
 UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+AREF                     __TRANSITREF
+AURL                     __TRANSITURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN

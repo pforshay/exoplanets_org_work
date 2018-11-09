@@ -93,7 +93,7 @@ LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  1.6800
 URHOSTAR                 0.4100
-URHOSTARD                0.4100
+URHOSTARD                NaN
 RHOSTARREF               Burdanov 2018
 RHOSTARURL               http://adsabs.harvard.edu/abs/2018arXiv180405551B
 PROT                     NaN
@@ -112,18 +112,19 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
-UMASSD                   NaN
-MASSREF                  Set to MSINI; I unknown
+MASS                     1.089
+UMASS                    0.0855
+UMASSD                   0.085
+MASSREF                  __TRANSITREF
+MASSURL                  __TRANSITURL
 MSINI                    NaN
 UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
-URD                      NaN
+R                        1.04
+UR                       0.12
+URD                      0.13
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
 DENSITY                  NaN
@@ -179,8 +180,8 @@ UI                       0.915
 UID                      0.90
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        0.0269
+UA                       0.0010
 UAD                      NaN
 AREF                     Calculated
 AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B

@@ -95,7 +95,7 @@ LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  0.9100
 URHOSTAR                 0.2000
-URHOSTARD                0.2000
+URHOSTARD                NaN
 RHOSTARREF               Bento 2017
 RHOSTARURL               http://adsabs.harvard.edu/abs/2017MNRAS.468..835B
 PROT                     NaN
@@ -114,18 +114,19 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
+MASS                     1.470
+UMASS                    0.072
 UMASSD                   NaN
-MASSREF                  Set to MSINI; I unknown
+MASSREF                  __TRANSITREF
+MASSURL                  __TRANSITURL
 MSINI                    NaN
 UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
-URD                      NaN
+R                        1.86
+UR                       0.35
+URD                      0.30
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
 DENSITY                  0.29
@@ -181,11 +182,11 @@ UI                       0.775
 UID                      0.93
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        0.03397
+UA                       0.00047
 UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+AREF                     __ORBREF
+AURL                     __ORBURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN

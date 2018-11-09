@@ -95,7 +95,7 @@ LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  2.1100
 URHOSTAR                 0.2200
-URHOSTARD                0.2200
+URHOSTARD                NaN
 RHOSTARREF               Johnson 2016
 RHOSTARURL               http://adsabs.harvard.edu/abs/2016AJ....151..171J
 PROT                     NaN
@@ -114,18 +114,19 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
-UMASSD                   NaN
-MASSREF                  Set to MSINI; I unknown
-MSINI                    NaN
-UMSINI                   NaN
-UMSINID                  NaN
+MASS                     0.579
+UMASS                    0.0275
+UMASSD                   0.028
+MASSREF                  __TRANSITREF
+MASSURL                  __TRANSITURL
+MSINI                    0.57900
+UMSINI                   0.02750
+UMSINID                  0.02800
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
-URD                      NaN
+R                        1.039
+UR                       0.0505
+URD                      0.050
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
 DENSITY                  0.640
@@ -182,11 +183,11 @@ UI                       0.25
 UID                      0.26
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        0.04839
+UA                       0.00076
 UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+AREF                     __TRANSITREF
+AURL                     __TRANSITURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN

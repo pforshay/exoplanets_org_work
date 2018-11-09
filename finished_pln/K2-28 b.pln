@@ -93,7 +93,7 @@ LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  15.2000
 URHOSTAR                 3.4000
-URHOSTARD                3.4000
+URHOSTARD                NaN
 RHOSTARREF               Hirano 2016
 RHOSTARURL               http://adsabs.harvard.edu/abs/2016ApJ...820...41H
 PROT                     NaN
@@ -121,8 +121,8 @@ UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
+R                        0.207
+UR                       0.021
 URD                      NaN
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
@@ -179,11 +179,11 @@ UI                       1.0
 UID                      0.8
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        0.0214
+UA                       0.0013
 UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+AREF                     __TRANSITREF
+AURL                     __TRANSITURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN

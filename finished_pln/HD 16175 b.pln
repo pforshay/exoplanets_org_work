@@ -78,11 +78,11 @@ UFE                      0.0600000
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     NaN
-UDIST                    NaN
-UDISTD                   NaN
-DISTREF                  __SPECREF
-DISTURL                  __SPECURL
+DIST                     57.8704
+UDIST                    2.24719
+UDISTD                   2.33432
+DISTREF                  van Leeuwen 2007
+DISTURL                  http://adsabs.harvard.edu/abs/2007ASSL..350.....V
 PAR                      17.2800
 UPAR                     0.670000
 UPARD                    NaN
@@ -116,11 +116,11 @@ MASS                     NaN
 UMASS                    NaN
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    NaN
-UMSINI                   NaN
+MSINI                    4.77
+UMSINI                   0.37
 UMSINID                  NaN
-MSINIREF                 Calculated
-MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+MSINIREF                 __ORBREF
+MSINIURL                 __ORBURL
 R                        NaN
 UR                       NaN
 URD                      NaN
@@ -179,11 +179,11 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        2.148
+UA                       0.076
 UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+AREF                     __ORBREF
+AURL                     __ORBURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN

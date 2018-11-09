@@ -80,9 +80,9 @@ UFE                      0.125
 UFED                     0.16
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     NaN
-UDIST                    NaN
-UDISTD                   NaN
+DIST                     381
+UDIST                    14
+UDISTD                   15
 DISTREF                  __SPECREF
 DISTURL                  __SPECURL
 PAR                      2.28
@@ -95,7 +95,7 @@ LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  0.3900
 URHOSTAR                 0.0300
-URHOSTARD                0.0300
+URHOSTARD                NaN
 RHOSTARREF               Temple 2017
 RHOSTARURL               http://adsabs.harvard.edu/abs/2017MNRAS.471.2743T
 PROT                     NaN
@@ -114,17 +114,17 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
-UMASSD                   NaN
+MASS                     0
+UMASS                    4
+UMASSD                   8
 MASSREF                  Set to MSINI; I unknown
 MSINI                    NaN
 UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
+R                        1.58
+UR                       0.05
 URD                      NaN
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL
@@ -181,11 +181,11 @@ UI                       0.3
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        0.0365
+UA                       0.0006
 UAD                      NaN
-AREF                     Calculated
-AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+AREF                     __TRANSITREF
+AURL                     __TRANSITURL
 SEP                      NaN
 USEP                     NaN
 USEPD                    NaN

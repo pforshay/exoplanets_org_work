@@ -1,0 +1,273 @@
+#* ================================================
+#* General Information
+#* ================================================
+NAME                     Kepler-407 b
+STAR                     Kepler-407
+COMP                     b
+OTHERNAME                KOI-1442
+JSNAME                   
+EANAME                   K01442.01
+CPSNAME                  
+SMENAME                  
+TABLENAME                
+SIMBADNAME               KOI-1442
+ETDNAME                  
+NSTEDID                  -1
+HD                       -1
+HIPP                     -1
+GL                       NaN
+HR                       -1
+SAO                      -1
+KOI                      1442.01
+RA_STRING                19 04 08.723
+DEC_STRING               +49 36 52.2
+RA                       19.06908972210354
+DEC                      49.61450000021193
+COORDREF                 
+COORDURL                 
+V                        NaN
+BMV                      NaN
+J                        11.3320
+H                        10.9830
+KS                       10.9110
+KP                       12.5200
+SPTYPE                   
+OBSERVATORY              
+SURVEY                   Kepler
+NOBS                     -1
+NCOMP                    1
+RMS                      NaN
+CHI2                     0.958000
+JITTER                   NaN
+FLAG                     1
+MULT                     0
+BINARY                   1
+BINARYREF                Furlan 2017
+BINARYURL                http://adsabs.harvard.edu/abs/2017AJ....153...71F
+TRANSIT                  1
+TRANSITREF               __TRANSITREF
+TRANSITURL               __TRANSITURL
+TIMING                   0
+ASTROMETRY               0
+MICROLENSING             0
+IMAGING                  0
+KDE                      1
+STARDISCMETH             Transit
+PLANETDISCMETH           Transit
+#* ================================================
+#* Stellar Parameters
+#* ================================================
+MSTAR                    1.00000
+UMSTAR                   0.0600000
+UMSTARD                  NaN
+RSTAR                    0.100000
+URSTAR                   0.0700000
+URSTARD                  NaN
+RSTARREF                 Marcy 2014
+RSTARURL                 http://adsabs.harvard.edu/abs/2014ApJS..210...20M
+TEFF                     5476.00
+UTEFF                    75.0000
+UTEFFD                   NaN
+TEFFREF                  __SPECREF
+TEFFURL                  __SPECURL
+FE                       0.330000
+UFE                      0.0700000
+UFED                     NaN
+FEREF                    __SPECREF
+FEURL                    __SPECURL
+DIST                     NaN
+UDIST                    NaN
+UDISTD                   NaN
+PAR                      NaN
+UPAR                     NaN
+UPARD                    NaN
+LOGG                     4.42600
+ULOGG                    0.0600000
+ULOGGD                   0.0600000
+LOGGREF                  __SPECREF
+LOGGURL                  __SPECURL
+RHOSTAR                  1.38000
+URHOSTAR                 0.160000
+URHOSTARD                NaN
+RHOSTARREF               __TRANSITREF
+RHOSTARURL               __TRANSITURL
+PROT                     NaN
+VSINI                    2.00000
+UVSINI                   NaN
+UVSINID                  NaN
+VSINIREF                 __SPECREF
+VSINIURL                 __SPECURL
+SHK                      NaN
+RHK                      NaN
+GAMMA                    NaN
+UGAMMA                   NaN
+UGAMMAD                  NaN
+#* ================================================
+#* Planetary Parameters
+#* ================================================
+MASS                     0.00000
+UMASS                    0.000968397
+UMASSD                   0.00193679
+MASSREF                  Set to MSINI; I unknown
+MSINI                    0.00000
+UMSINI                   0.000968397
+UMSINID                  0.00193679
+MSINIREF                 Calculated
+MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+R                        0.0954590
+UR                       0.00178428
+URD                      NaN
+RREF                     __TRANSITREF
+RURL                     __TRANSITURL
+DENSITY                  0.290000
+UDENSITY                 5.70000
+UDENSITYD                NaN
+DENSITYREF               __TRANSITREF
+DENSITYURL               __TRANSITURL
+GRAVITY                  NaN
+UGRAVITY                 NaN
+UGRAVITYD                NaN
+GRAVITYREF               Calculated
+GRAVITYURL               http://adsabs.harvard.edu/abs/2007MNRAS.379L..11S
+MASSRAT                  NaN
+#* ================================================
+#* Orbital Parameters
+#* ================================================
+PER                      0.6693109000000000
+UPER                     0.00000490000
+UPERD                    NaN
+PERREF                   Borucki 2011
+PERURL                   http://adsabs.harvard.edu/abs/2011ApJ...736...19B
+ECC                      0.00000
+UECC                     NaN
+UECCD                    NaN
+ECCREF                   __ORBREF
+ECCURL                   __ORBURL
+FREEZE_ECC               1
+OM                       90.0000
+UOM                      NaN
+UOMD                     NaN
+OMREF                    __ORBREF
+OMURL                    __ORBURL
+BIGOM                    NaN
+UBIGOM                   NaN
+UBIGOMD                  NaN
+K                        0.00000
+UK                       0.450000
+UKD                      0.900000
+KREF                     __ORBREF
+KURL                     __ORBURL
+T0                       14967.13162000000
+UT0                      NaN
+UT0D                     NaN
+T0REF                    __TRANSITREF
+T0URL                    __TRANSITURL
+DVDT                     NaN
+UDVDT                    NaN
+UDVDTD                   NaN
+DVDTREF                  __ORBREF
+DVDTURL                  __ORBURL
+TREND                    0
+I                        NaN
+UI                       NaN
+UID                      NaN
+IREF                     __TRANSITREF
+IURL                     __TRANSITURL
+A                        0.0149747
+UA                       0.000299494
+UAD                      NaN
+AREF                     Calculated
+AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+SEP                      0.0149747
+USEP                     0.000299494
+USEPD                    NaN
+SEPREF                   Set to A
+LAMBDA                   NaN
+ULAMBDA                  NaN
+ULAMBDAD                 NaN
+#* ================================================
+#* Transit Parameters
+#* ================================================
+DEPTH                    0.000108451
+UDEPTH                   NaN
+UDEPTHD                  NaN
+DEPTHREF                 __TRANSITREF
+DEPTHURL                 __TRANSITURL
+T14                      0.0646396
+UT14                     NaN
+UT14D                    NaN
+T14REF                   Calculated
+T14URL                   http://adsabs.harvard.edu/abs/2003ApJ...585.1038S
+TT                       14967.13162000000
+UTT                      NaN
+UTTD                     NaN
+TTREF                    __TRANSITREF
+TTURL                    __TRANSITURL
+AR                       32.2731
+UAR                      22.6004
+UARD                     NaN
+ARREF                    Calculated
+ARURL                    __TRANSITURL
+B                        0.250000
+UB                       0.150000
+UBD                      NaN
+BREF                     __TRANSITREF
+BURL                     __TRANSITURL
+RR                       0.0104140
+URR                      NaN
+URRD                     NaN
+RRREF                    __TRANSITREF
+RRURL                    __TRANSITURL
+DR                       NaN
+UDR                      NaN
+UDRD                     NaN
+DRREF                    __TRANSITREF
+DRURL                    __TRANSITURL
+#* ================================================
+#* Secondary Eclipse Parameters
+#* ================================================
+SE                       0
+SEREF                    Predicted
+SEDEPTHJ                 NaN
+USEDEPTHJ                NaN
+USEDEPTHJD               NaN
+SEDEPTHH                 NaN
+USEDEPTHH                NaN
+USEDEPTHHD               NaN
+SEDEPTHKS                NaN
+USEDEPTHKS               NaN
+USEDEPTHKSD              NaN
+SEDEPTHKP                NaN
+USEDEPTHKP               NaN
+USEDEPTHKPD              NaN
+SEDEPTH36                NaN
+USEDEPTH36               NaN
+USEDEPTH36D              NaN
+SEDEPTH45                NaN
+USEDEPTH45               NaN
+USEDEPTH45D              NaN
+SEDEPTH58                NaN
+USEDEPTH58               NaN
+USEDEPTH58D              NaN
+SEDEPTH80                NaN
+USEDEPTH80               NaN
+USEDEPTH80D              NaN
+SET                      NaN
+USET                     NaN
+USETD                    NaN
+#* ================================================
+#* Main References and Website Flags
+#* ================================================
+DATE                     2014
+MONTH                    2
+FIRSTREF                 Marcy 2014
+FIRSTURL                 http://adsabs.harvard.edu/abs/2014ApJS..210...20M
+ORBREF                   Marcy 2014
+ORBURL                   http://adsabs.harvard.edu/abs/2014ApJS..210...20M
+INDEPORBREF              
+TRANSITREF               Marcy 2014
+TRANSITURL               http://adsabs.harvard.edu/abs/2014ApJS..210...20M
+SPECREF                  __FIRSTREF
+SPECURL                  __FIRSTURL
+EOD                      1
+PUBLIC                   1

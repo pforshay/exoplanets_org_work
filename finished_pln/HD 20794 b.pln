@@ -75,11 +75,11 @@ UFE                      0.0100000
 UFED                     NaN
 FEREF                    __SPECREF
 FEURL                    __SPECURL
-DIST                     NaN
-UDIST                    NaN
-UDISTD                   NaN
-DISTREF                  __SPECREF
-DISTURL                  __SPECURL
+DIST                     6.04339
+UDIST                    0.00693941
+UDISTD                   0.00694704
+DISTREF                  van Leeuwen 2007
+DISTURL                  http://adsabs.harvard.edu/abs/2007ASSL..350.....V
 PAR                      165.470
 UPAR                     0.190000
 UPARD                    NaN
@@ -109,12 +109,13 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
+MASS                     0.00848679
+UMASS                    0.000962756
 UMASSD                   NaN
 MASSREF                  Set to MSINI; I unknown
-MSINI                    NaN
-UMSINI                   NaN
+MASSURL                  http://adsabs.harvard.edu/abs/2006ApJ...646..505B
+MSINI                    0.00848679
+UMSINI                   0.000962756
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
@@ -176,8 +177,8 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
-UA                       NaN
+A                        0.120738
+UA                       0.00201261
 UAD                      NaN
 AREF                     Calculated
 AURL                     http://adsabs.harvard.edu/abs/2006ApJ...646..505B

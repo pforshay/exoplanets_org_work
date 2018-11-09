@@ -19,17 +19,20 @@ GL                       NaN
 HR                       -1
 SAO                      -1
 KOI                      1658.01
-RA_STRING                19 36 46.108
-DEC_STRING               +39 37 08.4
-RA                       19.61280777825250
-DEC                      39.61899999989404
-COORDREF                 
-COORDURL                 
+RA_STRING                19 36 46.1090
+DEC_STRING               +39 37 08.340
+RA                       19.61280806
+DEC                      39.61898333
+COORDREF                 Simbad
+COORDURL                 http://simbad.u-strasbg.fr/simbad/sim-basic?ident=Kepler-76
 V                        NaN
 BMV                      NaN
-J                        12.3430
-H                        12.1340
-KS                       12.0920
+J                        12.343
+UJ                       0.022
+H                        12.134
+UH                       0.021
+KS                       12.092
+UKS                      0.021
 KP                       13.308
 SPTYPE                   
 OBSERVATORY              TRES; SOPHIE
@@ -78,6 +81,8 @@ FEURL                    __SPECURL
 DIST                     NaN
 UDIST                    NaN
 UDISTD                   NaN
+DISTREF                  __SPECREF
+DISTURL                  __SPECURL
 PAR                      NaN
 UPAR                     NaN
 UPARD                    NaN
@@ -187,6 +192,8 @@ SEPREF                   Set to A
 LAMBDA                   NaN
 ULAMBDA                  NaN
 ULAMBDAD                 NaN
+LAMBDAREF                __ORBREF
+LAMBDAURL                __ORBURL
 #* ================================================
 #* Transit Parameters
 #* ================================================
@@ -194,6 +201,7 @@ DEPTH                    0.01067089
 UDEPTH                   0.0054
 UDEPTHD                  0.0048
 DEPTHREF                 Calculated from Rp/R*
+DEPTHURL                 __TRANSITURL
 T14                      NaN
 UT14                     NaN
 UT14D                    NaN

@@ -95,7 +95,7 @@ LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
 RHOSTAR                  2.5000
 URHOSTAR                 0.4000
-URHOSTARD                0.4000
+URHOSTARD                NaN
 RHOSTARREF               Gaidos 2017
 RHOSTARURL               http://adsabs.harvard.edu/abs/2017MNRAS.464..850G
 PROT                     19.8
@@ -115,17 +115,17 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
-UMASSD                   NaN
+MASS                     0
+UMASS                    0.95
+UMASSD                   1.9
 MASSREF                  Set to MSINI; I unknown
 MSINI                    NaN
 UMSINI                   NaN
 UMSINID                  NaN
 MSINIREF                 Calculated
 MSINIURL                 http://adsabs.harvard.edu/abs/2006ApJ...646..505B
-R                        NaN
-UR                       NaN
+R                        0.205
+UR                       0.014
 URD                      NaN
 RREF                     __TRANSITREF
 RURL                     __TRANSITURL

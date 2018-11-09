@@ -112,10 +112,11 @@ GAMMAURL                 __SPECURL
 #* ================================================
 #* Planetary Parameters
 #* ================================================
-MASS                     NaN
-UMASS                    NaN
+MASS                     9
+UMASS                    3
 UMASSD                   NaN
-MASSREF                  Set to MSINI; I unknown
+MASSREF                  __ORBREF
+MASSURL                  __ORBURL
 MSINI                    NaN
 UMSINI                   NaN
 UMSINID                  NaN
@@ -179,7 +180,7 @@ UI                       NaN
 UID                      NaN
 IREF                     __TRANSITREF
 IURL                     __TRANSITURL
-A                        NaN
+A                        92
 UA                       NaN
 UAD                      NaN
 AREF                     Calculated
