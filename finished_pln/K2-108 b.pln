@@ -91,11 +91,11 @@ ULOGG                    0.05
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
-RHOSTAR                  NaN
-URHOSTAR                 NaN
+RHOSTAR                  0.29492
+URHOSTAR                 30.31705539358600411216202310
 URHOSTARD                NaN
-RHOSTARREF               __TRANSITREF
-RHOSTARURL               __TRANSITURL
+RHOSTARREF               Calculated from MSTAR and RSTAR
+RHOSTARURL               __SPECURL
 PROT                     NaN
 VSINI                    0
 UVSINI                   1

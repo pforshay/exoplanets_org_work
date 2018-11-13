@@ -31,7 +31,8 @@ triggering of data-checking methods.
 """
 
 from decimal import Decimal, InvalidOperation
-from ExoPlanet import ExoParameter, ExoPlanet
+from Exoplanet import ExoParameter, ExoPlanet
+import os
 import sys
 
 try:
@@ -127,7 +128,7 @@ class ExoParameterRow(QWidget):
 
             # If parameter provides a new reference add this to the
             # self.reference dropdown, otherwise select the matching reference.
-            ref = self.reference.findText(parameter.reference)
+            ref = self.reference.findText(str(parameter.reference))
             if ref == -1:
                 self.reference.insertItem(1, parameter.reference)
                 self.reference.setCurrentIndex(1)
@@ -136,7 +137,7 @@ class ExoParameterRow(QWidget):
 
             # If parameter provides a new link add this to the self.url
             # dropdown, otherwise select the matching link.
-            url = self.url.findText(parameter.url)
+            url = self.url.findText(str(parameter.url))
             if url == -1:
                 self.url.insertItem(1, parameter.url)
                 self.url.setCurrentIndex(1)
@@ -248,23 +249,59 @@ class ExoPlanetPanel(QWidget):
         self.scroll_layout.setSpacing(0)
         self.scroll_layout.setContentsMargins(0, 0, 0, 0)
 
-        # Add an ExoParameterRow for each ExoPlanet attribute.
-        light = True
-        for attr in planet.attributes:
-            exo_param = getattr(planet, attr)
-            new_row = ExoParameterRow(parent=parent, parameter=exo_param)
+        # Add rows according to the ExoPlanet.pln_template dictionary.  Each
+        # key is a section heading with a list of parameters as the value.
+        n = 0
+        for section, children in planet.pln_template.items():
 
-            # Alternate GUI row coloring between light and dark gray.
-            if light:
-                light = not light
-            else:
-                p = new_row.palette()
-                p.setColor(new_row.backgroundRole(), Qt.lightGray)
-                new_row.setPalette(p)
-                light = not light
+            # Create a section separator row in the GUI.  Change the
+            # background color depending on how far in we are.
+            section_font = QFont()
+            section_font.setBold(True)
+            section_row = QLabel(section)
+            section_row.setFont(section_font)
+            if n == 0:
+                section_row.setStyleSheet("background-color: #FFADAD")
+            elif n == 1:
+                section_row.setStyleSheet("background-color: #FFE1AD")
+            elif n == 2:
+                section_row.setStyleSheet("background-color: #EBFFAD")
+            elif n == 3:
+                section_row.setStyleSheet("background-color: #ADFFD0")
+            elif n == 4:
+                section_row.setStyleSheet("background-color: #ADE7FF")
+            elif n == 5:
+                section_row.setStyleSheet("background-color: #ADC0FF")
+            elif n == 6:
+                section_row.setStyleSheet("background-color: #CAADFF")
+            self.scroll_layout.addWidget(section_row)
 
-            # Add the new row to the layout.
-            self.scroll_layout.addWidget(new_row)
+            # Now add a new GUI row for each parameter listed in children.
+            light = True
+            for attr in children:
+
+                # Get the current ExoParameter object or skip if none is found.
+                try:
+                    exo_param = getattr(planet, attr.lower())
+                except AttributeError:
+                    continue
+
+                # Create the new ExoParameterRow.
+                new_row = ExoParameterRow(parent=parent, parameter=exo_param)
+
+                # Alternate GUI row coloring between light and dark gray.
+                if light:
+                    light = not light
+                else:
+                    p = new_row.palette()
+                    p.setColor(new_row.backgroundRole(), Qt.lightGray)
+                    new_row.setPalette(p)
+                    light = not light
+
+                # Add the new row to the layout.
+                self.scroll_layout.addWidget(new_row)
+
+            n += 1
 
         self.setLayout(self.scroll_layout)
 
@@ -326,31 +363,62 @@ class MainGUI(QWidget):
         # Initialize as a QWidget.
         super().__init__()
 
+        current_dir = os.path.dirname(os.getcwd())
+        self.default_dir = "/".join([current_dir, "generated_pln"])
+        self.default_pref = "gen"
+
         # GUI elements for buttons to control resetting, loading, and reading
         # data to / from the GUI.
         clear = QPushButton("Clear the .pln Form")
         load = QPushButton("Load .pln File")
         save = QPushButton("Save As .pln File")
+        dir_label = QLabel("Save Directory: ")
+        self.dir_edit = QLineEdit()
+        self.dir_edit.setText(self.default_dir)
+        pref_label = QLabel("File Prefix: ")
+        self.pref_edit = QLineEdit()
+        self.pref_edit.setText(self.default_pref)
+
+        # Arrange the input/output elements at the top of the GUI.
+        self.top_panel = QGridLayout()
+        self.top_panel.addWidget(load, 0, 0)
+        self.top_panel.addWidget(dir_label, 0, 1)
+        self.top_panel.addWidget(self.dir_edit, 0, 2)
+        self.top_panel.addWidget(clear, 0, 3)
+        self.top_panel.addWidget(save, 1, 0)
+        self.top_panel.addWidget(pref_label, 1, 1)
+        self.top_panel.addWidget(self.pref_edit, 1, 2)
 
         # GUI elements to add column header labels.  Widths are fixed
         # arbitrarily to line up with element placement in the ExoParameterRow
         # objects in the QScrollArea.
+        bold = QFont()
+        bold.setBold(True)
         h0 = QLabel("PARAMETER:")
-        h0.setFixedWidth(440)
+        h0.setFixedWidth(450)
+        h0.setFont(bold)
         h1 = QLabel("DESCRIPTION:")
         h1.setFixedWidth(100)
+        h1.setFont(bold)
         h2 = QLabel("VALUE:")
         h2.setFixedWidth(120)
+        h2.setFont(bold)
         h3 = QLabel("UNITS:")
         h3.setFixedWidth(90)
+        h3.setFont(bold)
         h4 = QLabel("UNCERT(+/-):")
-        h4.setFixedWidth(130)
+        h4.setFixedWidth(125)
+        h4.setFont(bold)
         h5 = QLabel("ASYM_UNC(+):")
-        h5.setFixedWidth(130)
+        h5.setFixedWidth(125)
+        h5.setFont(bold)
         h6 = QLabel("ASYM_UNC(-):")
-        h6.setFixedWidth(120)
+        h6.setFixedWidth(130)
+        h6.setFont(bold)
         h7 = QLabel("REFERENCE:")
+        h7.setFont(bold)
         h8 = QLabel("URL:")
+        h8.setFont(bold)
 
         # Construct a layout for the column header labels.
         header = QHBoxLayout()
@@ -369,9 +437,7 @@ class MainGUI(QWidget):
 
         # Construct the overall GUI layout.
         self.grid = QGridLayout()
-        self.grid.addWidget(load, 0, 0)
-        self.grid.addWidget(save, 0, 1)
-        self.grid.addWidget(clear, 0, 2)
+        self.grid.addLayout(self.top_panel, 0, 0, 1, -1)
         self.grid.addLayout(header, 1, 0, 1, -1)
         self.grid.addWidget(self.scroll, 2, 0, 1, -1)
 
@@ -418,10 +484,12 @@ class MainGUI(QWidget):
         Load information from an existing .pln file into the GUI.
         """
 
+        dir = self.dir_edit.text()
+
         # Use a popup dialog to get a .pln filename.
         loadit = QFileDialog.getOpenFileName(self,
                                              "Load a .pln file",
-                                             "../generated_pln/"
+                                             dir
                                              )
         filename = loadit[0]
 
@@ -440,6 +508,13 @@ class MainGUI(QWidget):
         Write the information currently displayed in the GUI to a .pln file.
         """
 
+        dir = self.dir_edit.text()
+        dir = (self.default_dir if dir == "" else dir)
+        if not os.path.isdir(dir):
+            os.makedirs(dir)
+
+        pref = self.pref_edit.text()
+
         # Initialize a new empty ExoPlanet object.
         new_planet = ExoPlanet()
 
@@ -451,7 +526,10 @@ class MainGUI(QWidget):
 
             # Use the ExoParameterRow method to read the information to a
             # dictionary.
-            exo_dict = exo_row.return_parameter()
+            if isinstance(exo_row, ExoParameterRow):
+                exo_dict = exo_row.return_parameter()
+            else:
+                continue
 
             # Use the ExoParameter method to update with the information in
             # the dictionary.
@@ -464,7 +542,7 @@ class MainGUI(QWidget):
 
         # Use ExoPlanet methods to verify and save the object to a .pln file.
         new_planet.verify_pln()
-        new_planet.save_to_pln(dir="../generated_pln", gui=True)
+        new_planet.save_to_pln(dir=dir, pref=pref)
 
 # --------------------
 

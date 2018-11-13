@@ -1,10 +1,32 @@
+"""
+:title:  Reconciler.py
+:author:  Peter Forshay
+:contact:  pforshay@stsci.edu
+
+This code is intended to replicate the IDL reconciler code from exoplanets.org
+in Python.  This includes classes and functions for finalizing exoplanet files
+(.pln files especially) and routines for executing these functions on batches
+of files.
+
+..class::  Reconciler
+..synopsis::  This is a subclass of ExoPlanet that provides additional methods
+              specifically for running final checks, updates, and
+              calculations before writing a final .pln file.
+
+..class::  ReconcilerSession
+..synopsis::  This class defines commonly-desired routines to run during
+              finalization of sets of .pln files.  This includes a decorator
+              class to loop through multiple pln files and a recipe for
+              Reconciler methods to execute before writing a .pln file.
+"""
+
 from add_nasa_data import add_nasa_data
 from add_simbad_info import add_simbad_info
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 import csv
 from decimal import Decimal
-from Exoplanet import ExoParameter, Exoplanet
+from Exoplanet import ExoParameter, ExoPlanet
 from bin.is_empty import is_empty, is_valid
 import json
 import math
@@ -17,10 +39,53 @@ import time
 # --------------------
 
 
-class Reconciler(Exoplanet):
+class Reconciler(ExoPlanet):
     """
-    Create an Exoplanet subclass with special methods for running final checks,
+    Create an ExoPlanet subclass with special methods for running final checks,
     updates, and calculations before writing a final .pln file.
+
+    ..module::  _calculate_rhostar
+    ..synopsis::  If needed, calculate RHOSTAR using MSTAR and RSTAR if
+                  available.
+
+    ..module::  _calculate_t0_from_m0
+    ..synopsis::  Use M0, PER, and REFTIME to calculate T0.
+
+    ..module::  _calculate_t0_from_tt
+    ..synopsis::  Use PER, TT, and OM to calculate T0.
+
+    ..module::  _check_ar
+    ..synopsis::  If the AR value is empty, clear the reference & url
+                  parameters.
+
+    ..module::  _check_dist_par
+    ..synopsis::  If both DIST and PAR are provided, clear DIST to be
+                  calculated from PAR.
+
+    ..module::  _fix_coord_strings
+    ..synopsis::  Make sure RA_STRING and DEC_STRING are using spaces and not
+                  colons.
+
+    ..module::  _remove_bin_refs
+    ..synopsis::  Remove reference info from BINARY if it is not set.
+
+    ..module::  _remove_et_al
+    ..synopsis::  Remove 'et al.' from any reference strings.
+
+    ..module::  _remove_lint
+    ..synopsis::  Remove a few last fields.
+
+    ..module::  apply_pln_recipe
+    ..synopsis::  Construct a recipe for finalizing an ExoPlanet before
+                  writing a final .pln file.
+
+    ..module::  check_t0
+    ..synopsis::  If T0 is empty, try to calculate it from a couple different
+                  methods if either is available.
+
+    ..module::  clear_values
+    ..synopsis::  Reset any attributes that were not assigned values, and
+                  force any included in vals_to_clear.
     """
 
     finished_dir = "../finished_pln/"
@@ -30,7 +95,7 @@ class Reconciler(Exoplanet):
 
     def __init__(self, planet=None, file=None):
 
-        # If an Exoplanet object is provided, make sure it has a pln_filename.
+        # If an ExoPlanet object is provided, make sure it has a pln_filename.
         if planet:
             planet.save_to_pln()
             file = planet.pln_filename
@@ -49,8 +114,8 @@ class Reconciler(Exoplanet):
         """
 
         if (is_empty(self.rhostar.value)
-                and is_valid(self.mstar.value)
-                and is_valid(self.rstar.value)
+            and is_valid(self.mstar.value)
+            and is_valid(self.rstar.value)
             ):
 
             mstar = Decimal(self.mstar.value)
@@ -70,6 +135,9 @@ class Reconciler(Exoplanet):
             self.rhostar.url = str(self.mstar.url)
 
     def _calculate_t0_from_m0(self):
+        """
+        Use M0, PER, and REFTIME to calculate T0.
+        """
 
         bjd = Decimal(self.reftime.value)
         m0 = Decimal(self.m0.value)
@@ -79,6 +147,9 @@ class Reconciler(Exoplanet):
         self.t0.url = self.m0.url
 
     def _calculate_t0_from_tt(self):
+        """
+        Use PER, TT, and OM to calculate T0.
+        """
 
         p = float(self.per.value)
         sig = len(str(self.tt.value))
@@ -165,31 +236,57 @@ class Reconciler(Exoplanet):
 
     def apply_pln_recipe(self):
         """
-        Construct a recipe for finalizing an Exoplanet before writing a final
+        Construct a recipe for finalizing an ExoPlanet before writing a final
         .pln file.
         """
 
+        # Remove any 'et al' strings in reference fields.
         self._remove_et_al()
+
+        # Remove ref & url from any empty AR entries.
         self._check_ar()
+
+        # Calculate RHOSTAR if it still hasn't been populated.
         self._calculate_rhostar()
+
+        # Reset any fields that are still null back to defaults.
         self.clear_values()
+
+        # Force a reset of MASS unless this is a microlensing target.
         if self.microlensing.value == 0:
-            self.mass.reset_parameter()
+            self.mass.reset_parameter(force=True)
+
+        # Force a reset of R unless this is an imaging target.
         if self.imaging.value == 0:
-            self.r.reset_parameter()
+            self.r.reset_parameter(force=True)
+
+        # Remove any remaining ':' from coordinate strings.
         self._fix_coord_strings()
+
+        # Remove ref & url from BINARY unless the flag is set.
         self._remove_bin_refs()
+
+        # Remove extraneous fields.
         self._remove_lint()
+
+        # Reset DIST if PAR is provided.
         self._check_dist_par()
+
+        # Run ExoPlanet verification function.
         self.verify_pln()
+
         print("{0} updated!".format(self.name.value))
 
     def check_t0(self):
+        """
+        If T0 is empty, try to calculate it from a couple different methods if
+        either is available.
+        """
 
         if is_empty(self.t0.value):
             if (is_valid(self.tt.value)
-                    and is_valid(self.om.value)
-                    and is_valid(self.ecc.value)
+                        and is_valid(self.om.value)
+                        and is_valid(self.ecc.value)
                     ):
                 self._calculate_t0_from_tt()
             elif (is_valid(self.m0.value)
@@ -218,6 +315,36 @@ class ReconcilerSession(object):
     """
     This class defines commonly-desired routines to run during finalization of
     sets of .pln files.
+
+    ..class::  NewPlnDecorator
+    ..synopsis::  Create a class to define a decorator that we'll use to
+                  access and loop through custom pln files.
+
+    ..class::  OriginalPlnDecorator
+    ..synopsis::  Create a class to define a decorator that we'll use to
+                  access and loop through original pln files.
+
+    ..module::  check_planet_names
+    ..synopsis::  Look for exoplanet name duplicates within a collection of
+                  pln files.
+
+    ..module::  find_commas
+    ..synopsis::  Scan ExoPlanet attributes for any ',' characters that may
+                  cause errors in CSV files.
+
+    ..module::  find_coords
+    ..synopsis::  Collect all target coordinates within a set of pln files.
+
+    ..module::  find_old_pln
+    ..synopsis::  Scan for any '-999' RA values.
+
+    ..module::  find_simbad_names
+    ..synopsis::  Look for any SIMBADNAME values that may contain a planet
+                  designation letter.
+
+    ..module::  run_pln_reconciler
+    ..synopsis::  Execute modules to add Simbad data, NASA archive data, and
+                  final pln verification routines.
     """
 
     class NewPlnDecorator(object):
@@ -226,8 +353,22 @@ class ReconcilerSession(object):
         the .pln files we've created, since just about every finalization
         routine will need to do this.  New subclasses can be defined for
         different file schemes.
+
+        ..module::  _get_list_to_skip
+        ..synopsis::  Read in a list of planets that have already been
+                      ingested to EOD so we can skip these.
+
+        ..module::  loop_all_files
+        ..synopsis::  Insert the provided function into a loop that iterates
+                      through all .pln files found in input_dir.
+
+        ..module::  loop_files_not_added
+        ..synopsis::  Insert the provided function into a loop that iterates
+                      through all .pln files found in input_dir that are not
+                      listed in ingested_file.
         """
 
+        # Define file paths for new or corrected pln files in /generated_pln/.
         finished_dir = "../finished_pln/"
         ingested_file = "ref/ingested_pln.txt"
         input_dir = "../generated_pln/"
@@ -253,20 +394,39 @@ class ReconcilerSession(object):
             .pln files found in input_dir.
             """
 
+            # Construct the wrapper loop function.
             def wrapper_loop(*args, **kwargs):
+
+                # Get a list of files in input_dir.
                 pln_list = os.listdir(cls.input_dir)
+
+                # Read in the content of the NASA archive file.
                 cls.nasa_frame = read_nasa_data(cls.nasa_data_file)
+
+                # Initialize empty results list.
                 results_list = []
+
+                # Loop through all files in input_dir.
                 for pln in pln_list:
+
+                    # Skip file if name does not end in '.pln' or contains
+                    # 'none' (used for testing).
                     if not pln.endswith(".pln"):
                         continue
                     elif "none" in pln.lower():
                         continue
+
+                    # Get the full filepath and create a new Reconciler object
+                    # from the pln file.
                     xplanet_path = os.path.join(cls.input_dir, pln)
                     xplanet = Reconciler(file=xplanet_path)
+
+                    # Execute the decorated function.
                     results = decorated(cls, xplanet, results_list)
+
                 print("...scanned {0} pln files!".format(len(pln_list)))
                 return results
+
             return wrapper_loop
 
         @classmethod
@@ -276,12 +436,26 @@ class ReconcilerSession(object):
             .pln files found in input_dir that are not listed in ingested_file.
             """
 
+            # Construct the wrapper loop function.
             def wrapper_loop(*args, **kwargs):
+
+                # Get a list of files in input_dir.
                 pln_list = os.listdir(cls.input_dir)
+
+                # Read in the list of already-ingested pln files to skip.
                 skip_list = cls._get_list_to_skip()
+
+                # Read in the content of the NASA archive file.
                 cls.nasa_frame = read_nasa_data(cls.nasa_data_file)
+
+                # Initialize empty results list.
                 results_list = []
+
+                # Loop through all files in input_dir.
                 for pln in pln_list:
+
+                    # Skip file if name is contained in skip_list, does not
+                    # end in '.pln', or contains 'none' (used for testing).
                     if pln.split("_", 1)[-1] in skip_list:
                         print("Skipping {0}".format(pln))
                         continue
@@ -289,11 +463,18 @@ class ReconcilerSession(object):
                         continue
                     elif "none" in pln.lower():
                         continue
+
+                    # Get the full filepath and create a new Reconciler object
+                    # from the pln file.
                     xplanet_path = os.path.join(cls.input_dir, pln)
                     xplanet = Reconciler(file=xplanet_path)
+
+                    # Execute the decorated function.
                     results = decorated(cls, xplanet, results_list)
+
                 print("...scanned {0} pln files!".format(len(pln_list)))
                 return results
+
             return wrapper_loop
 
     class OriginalPlnDecorator(NewPlnDecorator):
@@ -302,6 +483,7 @@ class ReconcilerSession(object):
         in EOD as of June 2018.
         """
 
+        # Define file paths for original pln files.
         finished_dir = "../finished_pln/"
         ingested_file = "ref/ingested_pln.txt"
         input_dir = "../original_files/exoplanet_pln_dir/"
@@ -313,6 +495,22 @@ class ReconcilerSession(object):
 
     @OriginalPlnDecorator.loop_all_files
     def check_planet_names(loop_class, xplanet, results_list):
+        """
+        Decorator will loop through all original pln files.  This function
+        will collect all name values from the current exoplanet, and compare
+        those with the contents of results_list.  If any duplicates are found,
+        print an alert.
+
+        :param loop_class:  The class decorating this function being used to
+                            loop through files.
+        :type loop_class: ReconcilerSession.OriginalPlnDecorator
+
+        :param xplanet:  The current ExoPlanet object being examined.
+        :type xplanet:  ExoPlanet
+
+        :param results_list:  A list to collect results from this function.
+        :type results_list:  list
+        """
 
         target_names = xplanet.find_all_names()
         target_names = list(set(target_names))
@@ -326,8 +524,19 @@ class ReconcilerSession(object):
     @NewPlnDecorator.loop_files_not_added
     def find_commas(loop_class, xplanet, results_list):
         """
-        Search all attributes of an Exoplanet for any commas that may cause
-        errors in a CSV file.
+        Decorator will loop through all new or corrected files not listed in
+        'ingested_pln.txt'.  Search all attributes of this exoplanet for any
+        commas that may cause errors in a CSV file.
+
+        :param loop_class:  The class decorating this function being used to
+                            loop through files.
+        :type loop_class: ReconcilerSession.NewPlnDecorator
+
+        :param xplanet:  The current ExoPlanet object being examined.
+        :type xplanet:  ExoPlanet
+
+        :param results_list:  A list to collect results from this function.
+        :type results_list:  list
         """
 
         for param in xplanet.attributes:
@@ -340,7 +549,18 @@ class ReconcilerSession(object):
     @OriginalPlnDecorator.loop_all_files
     def find_coords(loop_class, xplanet, results_list):
         """
-        Write coordinates from an Exoplanet into a .txt file.
+        Decorator will loop through all original pln files.  Write coordinates
+        from an exoplanet into a .txt file.
+
+        :param loop_class:  The class decorating this function being used to
+                            loop through files.
+        :type loop_class: ReconcilerSession.OriginalPlnDecorator
+
+        :param xplanet:  The current ExoPlanet object being examined.
+        :type xplanet:  ExoPlanet
+
+        :param results_list:  A list to collect results from this function.
+        :type results_list:  list
         """
 
         coord_str = ", ".join([xplanet.ra_string.value,
@@ -356,7 +576,19 @@ class ReconcilerSession(object):
     @NewPlnDecorator.loop_files_not_added
     def find_old_pln(loop_class, xplanet, results_list):
         """
-        Print an alert for an Exoplanet with an RA value of '-999'.
+        Decorator will loop through all new or corrected files not listed in
+        'ingested_pln.txt'.  Print an alert for an ExoPlanet with an RA value
+        of '-999'.
+
+        :param loop_class:  The class decorating this function being used to
+                            loop through files.
+        :type loop_class: ReconcilerSession.NewPlnDecorator
+
+        :param xplanet:  The current ExoPlanet object being examined.
+        :type xplanet:  ExoPlanet
+
+        :param results_list:  A list to collect results from this function.
+        :type results_list:  list
         """
 
         if str(xplanet.ra.value) == "-999":
@@ -365,8 +597,20 @@ class ReconcilerSession(object):
     @NewPlnDecorator.loop_files_not_added
     def find_simbad_names(loop_class, xplanet, results_list):
         """
-        Print an alert for an Exoplanet with a SIMBADNAME value that has a
-        single character ending (may be inadvertant exoplanet designation).
+        Decorator will loop through all new or corrected files not listed in
+        'ingested_pln.txt'.  Print an alert for an ExoPlanet with a SIMBADNAME
+        value that has a single character ending (may be inadvertant exoplanet
+        designation).
+
+        :param loop_class:  The class decorating this function being used to
+                            loop through files.
+        :type loop_class: ReconcilerSession.NewPlnDecorator
+
+        :param xplanet:  The current ExoPlanet object being examined.
+        :type xplanet:  ExoPlanet
+
+        :param results_list:  A list to collect results from this function.
+        :type results_list:  list
         """
 
         chunks = xplanet.simbadname.value.split(" ")
@@ -377,7 +621,19 @@ class ReconcilerSession(object):
     @NewPlnDecorator.loop_files_not_added
     def run_pln_reconciler(loop_class, xplanet, results_list):
         """
-        Ready an Exoplanet for final writing to a .pln file.
+        Decorator will loop through all new or corrected files not listed in
+        'ingested_pln.txt'.  Ready an ExoPlanet for final writing to a .pln
+        file.
+
+        :param loop_class:  The class decorating this function being used to
+                            loop through files.
+        :type loop_class: ReconcilerSession.NewPlnDecorator
+
+        :param xplanet:  The current ExoPlanet object being examined.
+        :type xplanet:  ExoPlanet
+
+        :param results_list:  A list to collect results from this function.
+        :type results_list:  list
         """
 
         finished_file = add_simbad_info(xplanet)
@@ -431,12 +687,19 @@ def check_for_matching_coords():
             remaining = ((((3200 - n) / 100) * time_per_chunk) / 60)
             print("{0} min remaining".format(remaining))
     with open('matching.txt', 'w') as f:
-        f.write(json.dumps(matching_dict))
+        f.write(json.dumps(matching_dict,
+                           sort_keys=True,
+                           indent=4 * ' '
+                           ))
 
 # --------------------
 
 
 def finish_new_plns():
+    """
+    Run the pln reconciler routine.
+    """
+
     x = ReconcilerSession()
     x.run_pln_reconciler()
 

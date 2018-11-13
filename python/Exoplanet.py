@@ -23,6 +23,7 @@ these classes could be extended to support JSON, YAML, and other standards.
               parameter calculations.
 """
 
+from collections import OrderedDict
 from decimal import Decimal, InvalidOperation
 from bin.is_empty import is_empty, is_valid
 import numpy as np
@@ -71,7 +72,7 @@ class ExoParameter(object):
     ..synopsis::  Update the attributes of this ExoParameter using a provided
                   dictionary.
 
-    ..module:: values_dict
+    ..module::  values_dict
     ..synopsis::  Return all value attributes of self in a formatted
                   dictionary.
     """
@@ -491,7 +492,7 @@ class ExoPlanet(object):
 
         # If an existing .pln file is provided, read this file information.
         if self.pln_filename:
-            self.read_from_pln(self.pln_filename)
+            self.read_from_pln_v2(self.pln_filename)
 
         # Add the YAML-formatted contents of 'self.pln_template_file' to an
         # attribute of this object.
@@ -739,7 +740,123 @@ class ExoPlanet(object):
 
         self._populate_uncertainties()
 
-    def save_to_pln(self, name=None, dir=None, gui=False, disp=True):
+    def read_from_pln_v2(self, path):
+        """
+        Read exoplanet parameters from a .pln file assuming certain commenting
+        and text structures.  This can be done without a .pln template.
+
+        :param path:  File path to the desired .pln file.
+        :type path:  str
+        """
+
+        # Prepare an empty results dictionary.
+        pln_dict = {}
+
+        # Open the given file and begin stepping through line by line.
+        with open(path, encoding='latin-1') as f:
+            for line in f:
+                line = line.strip()
+
+                # Comment lines begin with '#', so skip these.
+                if line.startswith('#'):
+                    continue
+
+                # Parameter names and values are separated by whitespace, so
+                # split the line on this.
+                keyword_value_pair = [x.strip() for x in line.split(' ', 1)]
+                num = len(keyword_value_pair)
+
+                # Skip if this line is empty.
+                if num == 0:
+                    continue
+
+                # Use an empty string if this keyword has no value.
+                if num == 1:
+                    value = ''
+
+                # Assign the value if present.
+                elif num == 2:
+                    value = str(keyword_value_pair[1])
+                    value = (None if value == "None" else value)
+
+                    # Try turning the value into a Decimal (this will
+                    # preserve significant figures).
+                    try:
+                        value = Decimal(value)
+                    except (InvalidOperation, TypeError):
+                        pass
+
+                # Add the new keyword / value to the results dictionary.
+                keyword = keyword_value_pair[0].lower()
+                pln_dict[keyword] = value
+
+        # Look for each attribute listed in self.attributes in the results
+        # dictionary.
+        for attr in self.attributes:
+
+            # Get the corresponding ExoParameter object.
+            current = getattr(self, attr)
+
+            # Look for this attribute in the results dictionary and set
+            # ExoParameter.value.
+            key_str = attr
+            try:
+                current.value = pln_dict[key_str]
+                del pln_dict[key_str]
+            except KeyError:
+                current.value = current.default
+
+            # Look for reference and URL information in the results dictionary,
+            # and use this to set ExoParameter.reference and ExoParameter.url.
+            # Skip 'transit' since 'transitref' and 'transiturl', are different
+            # fields in the references section.
+            if not attr == "transit":
+
+                key_str = "".join([attr, "ref"])
+                try:
+                    current.reference = pln_dict[key_str]
+                    del pln_dict[key_str]
+                except KeyError:
+                    current.reference = None
+
+                key_str = "".join([attr, "url"])
+                try:
+                    current.url = pln_dict[key_str]
+                    del pln_dict[key_str]
+                except KeyError:
+                    current.url = None
+
+            # If this attribute can take uncertainty values, look for these in
+            # the results dictionary, then set ExoParameter.uncertainty and
+            # ExoParameter.uncertainty_upper.
+            if current.uncertain_flag:
+
+                key_str = "".join(["u", attr])
+                try:
+                    current.uncertainty = pln_dict[key_str]
+                    del pln_dict[key_str]
+                except KeyError:
+                    current.uncertainty = None
+
+                key_str = "".join(["u", attr, "d"])
+                try:
+                    current.uncertainty_upper = pln_dict[key_str]
+                    del pln_dict[key_str]
+                except KeyError:
+                    current.uncertainty_upper = None
+
+        # If there are still keyword / value pairs in pln_dict, these fields
+        # are not in the self.attributes list, which is built from
+        # self.template_file.
+        if len(pln_dict.keys()) > 0:
+            print("{0} contains unknown .pln fields: {1}".format(
+                path, pln_dict.keys()))
+            print("Add fields to {0} to include.".format(self.template_file))
+
+        # Trigger uncertainty calculations.
+        self._populate_uncertainties()
+
+    def save_to_pln(self, name=None, dir=None, pref=None, disp=True):
         """
         Save an ExoPlanet object into a .pln text file.  A .pln template is
         needed here to recreate the sections of the text file and where to
@@ -761,8 +878,8 @@ class ExoPlanet(object):
 
         # If the gui flag is set, prepend a 'gen_' on the filename to specify
         # this was generated by the GUI.
-        if gui:
-            name = "_".join(["gen", name])
+        if pref:
+            name = "_".join([pref, name])
 
         # If dir is provided add this directory path to the filename.
         if dir:

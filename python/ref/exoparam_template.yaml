@@ -1,3 +1,17 @@
+# TEMPLATE:
+#   default:  (Default parameter value. type=various)
+#   eu_field:  (Where to find this parameter in data from http://exoplanet.eu. type=string)
+#   label:  (A label to describe this parameter in exoplanet_gui.py.  type=string)
+#   nasa_field:  (Where to find this parameter in data from https://exoplanetarchive.ipac.caltech.edu.  type=string)
+#   parent:  (Which section this parameter falls under in standard .pln file formatting.  type=string)
+#   reference:  (Default reference information for this parameter.  type=string)
+#   required:  (Flag whether this parameter is required for ExoPlanet calculations.  type=bool)
+#   uncertain_flag:  (Flag whether this parameter can accept uncertainty information.  type=bool)
+#   uncertainty:  (Default mean uncertainty value.  type=various)
+#   uncertainty_upper:  (Default upper uncertainty value.  type=various).
+#   units:  (The value units expected by .pln files for display in exoplanet_gui.py.  type=string)
+#   url:  (Default reference link for this parameter.  type=string)
+#   
 NAME:
     eu_field: "# name"
     label: "Planet Name"

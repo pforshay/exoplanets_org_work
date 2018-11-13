@@ -50,7 +50,7 @@ BINARY                   0
 TRANSIT                  1
 TRANSITREF               __TRANSITREF
 TRANSITURL               __TRANSITURL
-TIMING                   0
+TIMING                   1
 ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
@@ -70,16 +70,16 @@ URSTAR                   0.05
 URSTARD                  0.05
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     NaN
-UTEFF                    NaN
+TEFF                     5883
+UTEFF                    50
 UTEFFD                   NaN
-TEFFREF                  __SPECREF
-TEFFURL                  __SPECURL
-FE                       NaN
-UFE                      NaN
+TEFFREF                  Buchhave 2012
+TEFFURL                  https://ui.adsabs.harvard.edu/?#abs/2012Natur.486..375B
+FE                       0.10
+UFE                      0.08
 UFED                     NaN
-FEREF                    __SPECREF
-FEURL                    __SPECURL
+FEREF                    Buchhave 2012
+FEURL                    https://ui.adsabs.harvard.edu/?#abs/2012Natur.486..375B
 DIST                     NaN
 UDIST                    NaN
 UDISTD                   NaN
@@ -93,11 +93,11 @@ ULOGG                    0.01
 ULOGGD                   0.01
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
-RHOSTAR                  NaN
-URHOSTAR                 NaN
+RHOSTAR                  0.3473
+URHOSTAR                 902.3999999999999488409230256
 URHOSTARD                NaN
-RHOSTARREF               __TRANSITREF
-RHOSTARURL               __TRANSITURL
+RHOSTARREF               Calculated from MSTAR and RSTAR
+RHOSTARURL               __SPECURL
 PROT                     NaN
 VSINI                    NaN
 UVSINI                   NaN

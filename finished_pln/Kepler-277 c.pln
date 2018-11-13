@@ -48,7 +48,7 @@ BINARY                   0
 TRANSIT                  1
 TRANSITREF               __TRANSITREF
 TRANSITURL               __TRANSITURL
-TIMING                   0
+TIMING                   1
 ASTROMETRY               0.0
 MICROLENSING             0
 IMAGING                  0
@@ -68,16 +68,16 @@ URSTAR                   0.39
 URSTARD                  0.42
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     NaN
-UTEFF                    NaN
+TEFF                     5946
+UTEFF                    56
 UTEFFD                   NaN
-TEFFREF                  __SPECREF
-TEFFURL                  __SPECURL
-FE                       NaN
-UFE                      NaN
+TEFFREF                  Buchhave 2012
+TEFFURL                  https://ui.adsabs.harvard.edu/?#abs/2012Natur.486..375B
+FE                       0.04
+UFE                      0.08
 UFED                     NaN
-FEREF                    __SPECREF
-FEURL                    __SPECURL
+FEREF                    Buchhave 2012
+FEURL                    https://ui.adsabs.harvard.edu/?#abs/2012Natur.486..375B
 DIST                     NaN
 UDIST                    NaN
 UDISTD                   NaN
@@ -91,17 +91,17 @@ ULOGG                    0.15
 ULOGGD                   0.17
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
-RHOSTAR                  NaN
-URHOSTAR                 NaN
+RHOSTAR                  0.3272
+URHOSTAR                 3.565468062509482425691453566
 URHOSTARD                NaN
-RHOSTARREF               __TRANSITREF
-RHOSTARURL               __TRANSITURL
+RHOSTARREF               Calculated from MSTAR and RSTAR
+RHOSTARURL               __SPECURL
 PROT                     NaN
-VSINI                    NaN
-UVSINI                   NaN
+VSINI                    3.4
+UVSINI                   0.5
 UVSINID                  NaN
-VSINIREF                 __SPECREF
-VSINIURL                 __SPECURL
+VSINIREF                 Buchhave 2012
+VSINIURL                 https://ui.adsabs.harvard.edu/?#abs/2012Natur.486..375B
 SHK                      NaN
 RHK                      NaN
 GAMMA                    NaN

@@ -93,11 +93,11 @@ ULOGG                    0.1
 ULOGGD                   NaN
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
-RHOSTAR                  NaN
-URHOSTAR                 NaN
+RHOSTAR                  0.5909
+URHOSTAR                 13.15643679836710816213621556
 URHOSTARD                NaN
-RHOSTARREF               __TRANSITREF
-RHOSTARURL               __TRANSITURL
+RHOSTARREF               Calculated from MSTAR and RSTAR
+RHOSTARURL               __SPECURL
 PROT                     NaN
 VSINI                    NaN
 UVSINI                   NaN
@@ -278,5 +278,5 @@ TRANSITREF               Vanderburg 2016
 TRANSITURL               http://adsabs.harvard.edu/abs/2016ApJ...827L..10V
 SPECREF                  Vanderburg 2016
 SPECURL                  http://adsabs.harvard.edu/abs/2016ApJ...827L..10V
-EOD                      1
-PUBLIC                   1
+EOD                      0
+PUBLIC                   0

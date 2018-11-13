@@ -48,7 +48,7 @@ BINARY                   0
 TRANSIT                  1
 TRANSITREF               __TRANSITREF
 TRANSITURL               __TRANSITURL
-TIMING                   0
+TIMING                   1
 ASTROMETRY               0
 MICROLENSING             0
 IMAGING                  0
@@ -68,14 +68,14 @@ URSTAR                   0.275
 URSTARD                  0.44
 RSTARREF                 __SPECREF
 RSTARURL                 __SPECURL
-TEFF                     NaN
-UTEFF                    NaN
-UTEFFD                   NaN
+TEFF                     6190
+UTEFF                    248
+UTEFFD                   196
 TEFFREF                  __SPECREF
 TEFFURL                  __SPECURL
-FE                       NaN
-UFE                      NaN
-UFED                     NaN
+FE                       0.07
+UFE                      0.275
+UFED                     0.25
 FEREF                    __SPECREF
 FEURL                    __SPECURL
 DIST                     NaN
@@ -91,11 +91,11 @@ ULOGG                    0.15
 ULOGGD                   0.05
 LOGGREF                  __SPECREF
 LOGGURL                  __SPECURL
-RHOSTAR                  NaN
-URHOSTAR                 NaN
+RHOSTAR                  1.3614
+URHOSTAR                 12.88174305033809093011084709
 URHOSTARD                NaN
-RHOSTARREF               __TRANSITREF
-RHOSTARURL               __TRANSITURL
+RHOSTARREF               Calculated from MSTAR and RSTAR
+RHOSTARURL               __SPECURL
 PROT                     NaN
 VSINI                    NaN
 UVSINI                   NaN
