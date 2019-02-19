@@ -1,7 +1,7 @@
 ### Usage
-- >python exoplanet_gui.py  
+- '>python exoplanet_gui.py'  
 This will launch the GUI designed to read and write .pln files.  This can be used to generate new .pln files or modify existing ones.  
-- >python Reconciler.py  
+- '>python Reconciler.py'  
 Currently, this script is set to run through all .pln files that have not been ingested into EOD and apply a recipe to finalize the files for ingestion.  (Further improvements would be useful to provide command line options for which files to run through, etc.)  
   
 ### Directory Contents
