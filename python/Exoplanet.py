@@ -1,5 +1,5 @@
 """
-:title:  ExoPlanet.py
+:title:  Exoplanet.py
 :author:  Peter Forshay
 :contact:  pforshay@stsci.edu
 
@@ -23,12 +23,12 @@ these classes could be extended to support JSON, YAML, and other standards.
               parameter calculations.
 """
 
-from collections import OrderedDict
 from decimal import Decimal, InvalidOperation
 from bin.is_empty import is_empty, is_valid
 import numpy as np
 import os
 import pandas as pd
+from bin.read_pln_file import read_pln_file
 import yaml
 
 # --------------------
@@ -263,9 +263,9 @@ class ExoParameter(object):
             return None
 
         # Check for limit violations.
-        if not is_empty(self.limit_lower):
+        if is_valid(self.limit_lower):
             too_lo = (self.value < self.limit_lower)
-        if not is_empty(self.limit_upper):
+        if is_valid(self.limit_upper):
             too_hi = (self.value > self.limit_upper)
 
         # If a limit is violated, return the designated limit action.
@@ -492,7 +492,7 @@ class ExoPlanet(object):
 
         # If an existing .pln file is provided, read this file information.
         if self.pln_filename:
-            self.read_from_pln_v2(self.pln_filename)
+            self.read_from_pln(self.pln_filename)
 
         # Add the YAML-formatted contents of 'self.pln_template_file' to an
         # attribute of this object.
@@ -587,6 +587,10 @@ class ExoPlanet(object):
         """
         Construct an ExoPlanet from data scraped from the NASA ExoPlanet
         Archive.
+
+        :param nasa_series:  This function expects a data pulled for a single
+                             matching exoplanet.
+        :type nasa_series:  pandas.Series
         """
 
         # Transform the Pandas Series containing NASA parameters into a dict.
@@ -617,18 +621,18 @@ class ExoPlanet(object):
 
             # NASA hd_name includes the planet letter, so cut that off.
             elif nasa_field == "hd_name":
-                new_value = " ".join(new_value.split(" ")[1:])
+                new_value = " ".join(new_value.split(" ")[:-1])
 
             # NASA hip_name includes the planet letter, so cut that off.
             elif nasa_field == "hip_name":
-                new_value = " ".join(new_value.split(" ")[1:])
+                new_value = " ".join(new_value.split(" ")[:-1])
 
             # NASA provides transit depth values in percentages, we just want
             # the decimal value.
-            elif nasa_field == "pl_trandep" and not is_empty(new_value):
+            elif nasa_field == "pl_trandep" and is_valid(new_value):
                 new_value = Decimal(new_value) / 100
 
-            # Remove 'd', 'm', 's' from the RA string and fill with ' '.
+            # Remove 'h', 'm', 's' from the RA string and fill with ' '.
             elif nasa_field == "ra_str":
                 new_value = new_value.replace("h", " ")
                 new_value = new_value.replace("m", " ")
@@ -648,13 +652,20 @@ class ExoPlanet(object):
             # Try looking for corresponding uncertainty values in the NASA
             # data.
             if exo_param.uncertain_flag:
+
+                # Create the two error column fields (for + and - uncertainty).
                 nasa_err1 = "".join([nasa_field, "err1"])
                 nasa_err2 = "".join([nasa_field, "err2"])
+
+                # Pull values from these columns if they exist.
                 try:
                     shi = str(nasa_dict[nasa_err1])
                     exo_param.uncertainty_upper = Decimal(shi)
+
+                    # NASA data stores lower uncertainty as a negative number.
                     slo = str(nasa_dict[nasa_err2])
                     exo_param.uncertainty_lower = Decimal(slo) * -1
+
                 except KeyError:
                     pass
 
@@ -671,124 +682,8 @@ class ExoPlanet(object):
         :type path:  str
         """
 
-        with open(path, encoding='latin-1') as f:
-            for line in f:
-                line = line.strip()
-
-                # Comment lines begin with '#'.
-                if line.startswith('#'):
-                    continue
-
-                # Parameter names and values are separated by whitespace, so
-                # split the line on this.
-                keyword_value_pair = [x.strip() for x in line.split(' ', 1)]
-                num = len(keyword_value_pair)
-
-                # Skip if this line is empty.
-                if num == 0:
-                    continue
-
-                # Use an empty string if this keyword has no value.
-                if num == 1:
-                    value = ''
-
-                # Assign the value if present.
-                elif num == 2:
-                    value = str(keyword_value_pair[1])
-                    value = (None if value == "None" else value)
-
-                    # Try turning the value into a Decimal (this will
-                    # preserve significant figures).
-                    try:
-                        value = Decimal(value)
-                    except (InvalidOperation, TypeError):
-                        pass
-
-                # Examine the keyword.  Current .pln formatting specifies the
-                # uncertainty keywords begin with 'U', uncertainty
-                # upper-limits end with 'D', references end with 'REF', and
-                # links end with 'URL'.
-                keyword = keyword_value_pair[0].lower()
-                if "transit" in keyword:
-                    attribute = "value"
-                elif keyword[0] == "u" and keyword[1:] in self.attributes:
-                    keyword = keyword[1:]
-                    attribute = "uncertainty"
-                elif (keyword[0] == "u"
-                      and keyword[-1] == "d"
-                      and keyword[1:-1] in self.attributes):
-                    keyword = keyword[1:-1]
-                    attribute = "uncertainty_upper"
-                elif (keyword[-3:] == "ref"
-                      and keyword[:-3] in self.attributes):
-                    keyword = keyword[:-3]
-                    attribute = "reference"
-                elif (keyword[-3:] == "url"
-                      and keyword[:-3] in self.attributes):
-                    keyword = keyword[:-3]
-                    attribute = "url"
-                else:
-                    attribute = "value"
-
-                # If this keyword exists as an ExoParameter, set the
-                # designated attribute and value.
-                try:
-                    param = getattr(self, keyword)
-                    setattr(param, attribute, value)
-                except AttributeError:
-                    pass
-
-        self._populate_uncertainties()
-
-    def read_from_pln_v2(self, path):
-        """
-        Read exoplanet parameters from a .pln file assuming certain commenting
-        and text structures.  This can be done without a .pln template.
-
-        :param path:  File path to the desired .pln file.
-        :type path:  str
-        """
-
-        # Prepare an empty results dictionary.
-        pln_dict = {}
-
-        # Open the given file and begin stepping through line by line.
-        with open(path, encoding='latin-1') as f:
-            for line in f:
-                line = line.strip()
-
-                # Comment lines begin with '#', so skip these.
-                if line.startswith('#'):
-                    continue
-
-                # Parameter names and values are separated by whitespace, so
-                # split the line on this.
-                keyword_value_pair = [x.strip() for x in line.split(' ', 1)]
-                num = len(keyword_value_pair)
-
-                # Skip if this line is empty.
-                if num == 0:
-                    continue
-
-                # Use an empty string if this keyword has no value.
-                if num == 1:
-                    value = ''
-
-                # Assign the value if present.
-                elif num == 2:
-                    value = str(keyword_value_pair[1])
-                    value = (None if value == "None" else value)
-
-                    # Try turning the value into a Decimal (this will
-                    # preserve significant figures).
-                    try:
-                        value = Decimal(value)
-                    except (InvalidOperation, TypeError):
-                        pass
-
-                # Add the new keyword / value to the results dictionary.
-                keyword = keyword_value_pair[0].lower()
-                pln_dict[keyword] = value
+        # Read the .pln file contents to a dictionary.
+        pln_dict = read_pln_file(path)
 
         # Look for each attribute listed in self.attributes in the results
         # dictionary.
@@ -808,7 +703,7 @@ class ExoPlanet(object):
 
             # Look for reference and URL information in the results dictionary,
             # and use this to set ExoParameter.reference and ExoParameter.url.
-            # Skip 'transit' since 'transitref' and 'transiturl', are different
+            # Skip 'transit' since 'transitref' and 'transiturl', are separate
             # fields in the references section.
             if not attr == "transit":
 
@@ -848,10 +743,12 @@ class ExoPlanet(object):
         # If there are still keyword / value pairs in pln_dict, these fields
         # are not in the self.attributes list, which is built from
         # self.template_file.
+        """
         if len(pln_dict.keys()) > 0:
             print("{0} contains unknown .pln fields: {1}".format(
                 path, pln_dict.keys()))
             print("Add fields to {0} to include.".format(self.template_file))
+        """
 
         # Trigger uncertainty calculations.
         self._populate_uncertainties()
@@ -993,14 +890,14 @@ class ExoPlanet(object):
 
         # If the transit depth is not provided, but an Rp/R* ratio is,
         # calculate the depth value.
-        if is_empty(self.depth.value) and not is_empty(self.rr.value):
+        if is_empty(self.depth.value) and is_valid(self.rr.value):
             self.depth.value = self.rr.value ** 2
             if isinstance(self.rr.uncertainty, Decimal):
                 self.depth.uncertainty = self.rr.uncertainty * 2
             if isinstance(self.rr.uncertainty_upper, Decimal):
                 self.depth.uncertainty_upper = self.rr.uncertainty_upper * 2
             self.depth.reference = "Calculated from Rp/R*"
-            self.depth.url = None
+            self.depth.url = self.rr.reference
 
         # If the orbital eccentricity value is 0 and a TT value is provided,
         # use the same values for T0 as well.
@@ -1008,7 +905,7 @@ class ExoPlanet(object):
             self.om.value = Decimal(90)
             self.om.reference = "Set to 90 deg with ecc~0"
             print("set omega to 90")
-            if str(self.tt.value) != "NaN":
+            if is_valid(self.tt.value):
                 print("copying TT to T0")
                 self.t0.copy_values(self.tt)
         # OM may already be set to 90.
@@ -1036,12 +933,12 @@ class ExoPlanet(object):
             warnings.append("<uncertain PER>")
 
         # Warn of planets with K speeds <2 m/s.
-        if not is_empty(self.k.value):
+        if is_valid(self.k.value):
             if self.k.value < 2:
                 # self.exclude()
                 warnings.append("<low K value>")
 
-        # Make sure RA string uses colons.
+        # Make sure RA string uses spaces.
         if not is_empty(self.ra_string.value):
             if "h" in self.ra_string.value:
                 new_value = self.ra_string.value.replace("h", " ")
@@ -1049,7 +946,7 @@ class ExoPlanet(object):
                 new_value = new_value.replace("s", "")
                 self.ra_string.value = new_value
 
-        # Make sure DEC string uses colons.
+        # Make sure DEC string uses spaces.
         if not is_empty(self.dec_string.value):
             if "d" in self.dec_string.value:
                 new_value = self.dec_string.value.replace("d", " ")

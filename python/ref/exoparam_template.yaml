@@ -379,6 +379,7 @@ LOGG:
 RHOSTAR:
     default: "NaN"
     label: "Host Star Density"
+    nasa_field: "st_dens"
     parent: "Stellar Parameters"
     reference: "__TRANSITREF"
     required: True

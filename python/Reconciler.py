@@ -20,8 +20,9 @@ of files.
               Reconciler methods to execute before writing a .pln file.
 """
 
-from add_nasa_data import add_nasa_data
-from add_simbad_info import add_simbad_info
+from bin.add_nasa_data import add_nasa_data
+from lib.CustomNASA import CustomNASA
+from lib.CustomSimbad import CustomSimbad
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 import csv
@@ -43,6 +44,14 @@ class Reconciler(ExoPlanet):
     """
     Create an ExoPlanet subclass with special methods for running final checks,
     updates, and calculations before writing a final .pln file.
+
+    ..module::  _add_simbad_coords
+    ..synopsis::  Add RA and Dec information from a Simbad query to an
+                  ExoPlanet object.
+
+    ..module::  _add_simbad_mags
+    ..synopsis::  Add a number of flux magnitude values from a Simbad query to
+                  an ExoPlanet object.
 
     ..module::  _calculate_rhostar
     ..synopsis::  If needed, calculate RHOSTAR using MSTAR and RSTAR if
@@ -74,6 +83,11 @@ class Reconciler(ExoPlanet):
 
     ..module::  _remove_lint
     ..synopsis::  Remove a few last fields.
+
+    ..module::  add_simbad_info
+    ..synopsis::  Query Simbad for coordinates and magnitude values of the
+                  current exoplanet, then add the results to the ExoPlanet
+                  object.
 
     ..module::  apply_pln_recipe
     ..synopsis::  Construct a recipe for finalizing an ExoPlanet before
@@ -107,6 +121,114 @@ class Reconciler(ExoPlanet):
 
         # These values get cleared by default for reconciler calculation.
         self.vals_to_clear = ["a", "msini"]
+
+    def _add_nasa_value(self, frame, attr):
+        """
+        Add values from a CustomNASA object to an ExoPlanet object.
+
+        :param frame:  The ingested NASA Archive .csv file.
+        :type frame:  CustomNASA
+
+        :param attr:  The ExoPlanet attribute to be updated.
+        :type attr:  ExoParameter
+        """
+
+        # Look up the appropriate field to look for in the CustomNASA object.
+        # If nasa_field is empty, return immediately.
+        nasa_str = attr.nasa_field
+        if is_empty(nasa_str):
+            return
+
+        # Get the current ExoParameter attached to attr, and update the
+        # new value.
+        attr.value = frame.read_val(nasa_str)
+        if is_valid(attr.value):
+            print("Updated {0} for {1}".format(attr.parameter,
+                                               self.name.value
+                                               ))
+
+        # Update error values for this attribute.
+        hi, lo = frame.read_errors(nasa_str)
+        attr.uncertainty_upper = hi
+        attr.uncertainty_lower = lo
+
+        # Get the reference and url strings for this attribute.
+        attr.reference, attr.url = frame.read_refs()
+
+    def _add_simbad_coords(self, query):
+        """
+        Add RA and Dec information from a Simbad query to an ExoPlanet object.
+
+        :param query:  The Simbad query object.
+        :type query:  CustomSimbad
+        """
+
+        # Get the coordinate values from the query object.
+        ra, dec = query.get_coordinates()
+
+        # If either coordinate is empty, exit the function.
+        if is_empty(ra) or is_empty(dec):
+            pl = self.name.value
+            print("Could not find Simbad coordinates for {0}".format(pl))
+            return
+
+        # Set the ExoPlanet coordinate string values to these figures.
+        self.ra_string.value = str(ra)
+        self.dec_string.value = str(dec)
+
+        # Use astropy SkyCoord to convert these into coordinates in hours and
+        # degrees.
+        coord = SkyCoord(" ".join([ra, dec]), unit=(u.hourangle, u.deg))
+
+        # Round the numerical coordinates to a reasonable length and set the
+        # ExoPlanet attributes.
+        self.ra.value = round(Decimal(coord.ra.hour), 10)
+        self.dec.value = round(Decimal(coord.dec.degree), 10)
+
+        # Set the COORDREF value to 'Simbad'.
+        self.coordref.value = "Simbad"
+
+        # Convert special characters in the SIMBADNAME to HTML friendly characters.
+        ident = self.simbadname.value.replace("+", "%2B")
+        ident = ident.replace(" ", "+")
+
+        # Construct the Simbad target url and update COORDURL.
+        simbad_url = "http://simbad.u-strasbg.fr/simbad/sim-basic?ident="
+        self.coordurl.value = "".join([simbad_url, ident])
+
+    def _add_simbad_mags(self, query):
+        """
+        Add a number of flux magnitude values from a Simbad query to an
+        ExoPlanet object.
+
+        :param query:  The Simbad query object.
+        :type query:  CustomSimbad
+        """
+
+        # Construct a list of filters to look for in the query results.  .pln
+        # files list a B-V value instead of B magnitude.
+        filters = query.filters
+        filters.remove('B')
+        filters.append('BMV')
+
+        # Iterate through each filter.
+        for f in filters:
+
+            # Get the magnitude value and error from the Simbad results.
+            val, err = query.get_magnitude(f)
+
+            # Simbad uses 'K' while .pln files use 'KS'.
+            filt_name = ('ks' if f.lower() == 'k' else f.lower())
+
+            # Get the current ExoParameter object for this filter.
+            mag = getattr(self, filt_name)
+
+            # Set the value.
+            mag.value = val
+            mag.uncertainty = err
+
+            # Reset the ExoPlanet filter attribute to the updated ExoParameter.
+            setattr(self, filt_name, mag)
 
     def _calculate_rhostar(self):
         """
@@ -158,9 +280,9 @@ class Reconciler(ExoPlanet):
         f = (np.pi / 2) - rad
         if f != 0:
             ec = float(self.ecc.value)
-            ea = 2 * np.arctan(np.tan(f/2) * np.sqrt((1-ec) / (1+ec)))
-            tp = tc - (p / (2*np.pi)) * (ea - ec * np.sin(ea))
-            tp = np.round(tp, decimals=(sig-6))
+            ea = 2 * np.arctan(np.tan(f / 2) * np.sqrt((1 - ec) / (1 + ec)))
+            tp = tc - (p / (2 * np.pi)) * (ea - ec * np.sin(ea))
+            tp = np.round(tp, decimals=(sig - 6))
             self.t0.value = Decimal(str(tp))
             self.t0.uncertainty = self.tt.uncertainty
             self.t0.uncertainty_upper = self.tt.uncertainty_upper
@@ -216,12 +338,8 @@ class Reconciler(ExoPlanet):
         for r in self.refs:
             exo_param = getattr(self, r)
             chunks = exo_param.value.split(" ")
-            try:
-                chunks.remove("et")
-                chunks.remove("al.")
-                chunks.remove("al")
-            except ValueError:
-                pass
+            excess = ["et", "al.", "al"]
+            [chunks.remove(x) for x in excess if x in chunks]
             exo_param.value = " ".join(chunks)
             setattr(self, r, exo_param)
 
@@ -230,9 +348,45 @@ class Reconciler(ExoPlanet):
         Remove a few last fields.
         """
 
+        self.massrat.uncertainty = None
         self.massrat.uncertainty_upper = None
         self.kde.reference = None
         self.kde.url = None
+
+    def add_nasa_info(self, nasa_frame):
+        """
+        Add values from a scraped NASA Archive table to self.
+
+        :param nasa_frame:  The scraped NASA Archive data object for this
+                            planet.
+        :type nasa_frame:  CustomNASA
+        """
+
+        # Keep a list of ExoPlanet attributes to update with NASA data.
+        fields_to_update = ["rhostar"]
+
+        for f in fields_to_update:
+
+            # Get the current value of this field.
+            current = getattr(self, f)
+
+            # If there is currently no value listed for this field, look for
+            # one from the provided NASA data object.
+            if is_empty(current.value):
+                self._add_nasa_value(nasa_frame, current)
+
+    def add_simbad_info(self):
+        """
+        Query Simbad for coordinates and magnitude values of the current
+        exoplanet, then add the results to the ExoPlanet object.
+        """
+
+        # Execute the Simbad query using the SIMBADNAME parameter.
+        query_obj = CustomSimbad(self.simbadname.value)
+
+        # Add coordinates and magnitude values from the query results.
+        self._add_simbad_coords(query_obj)
+        self._add_simbad_mags(query_obj)
 
     def apply_pln_recipe(self):
         """
@@ -240,14 +394,29 @@ class Reconciler(ExoPlanet):
         .pln file.
         """
 
-        # Remove any 'et al' strings in reference fields.
-        self._remove_et_al()
+        # Calculate RHOSTAR if it still hasn't been populated.
+        # self._calculate_rhostar()
 
         # Remove ref & url from any empty AR entries.
         self._check_ar()
 
-        # Calculate RHOSTAR if it still hasn't been populated.
-        self._calculate_rhostar()
+        # Reset DIST if PAR is provided.
+        self._check_dist_par()
+
+        # Remove any remaining ':' from coordinate strings.
+        self._fix_coord_strings()
+
+        # Remove ref & url from BINARY unless the flag is set.
+        self._remove_bin_refs()
+
+        # Remove any 'et al' strings in reference fields.
+        self._remove_et_al()
+
+        # Remove extraneous fields.
+        self._remove_lint()
+
+        # Add coordinates and magnitudes from Simbad.
+        self.add_simbad_info()
 
         # Reset any fields that are still null back to defaults.
         self.clear_values()
@@ -259,18 +428,6 @@ class Reconciler(ExoPlanet):
         # Force a reset of R unless this is an imaging target.
         if self.imaging.value == 0:
             self.r.reset_parameter(force=True)
-
-        # Remove any remaining ':' from coordinate strings.
-        self._fix_coord_strings()
-
-        # Remove ref & url from BINARY unless the flag is set.
-        self._remove_bin_refs()
-
-        # Remove extraneous fields.
-        self._remove_lint()
-
-        # Reset DIST if PAR is provided.
-        self._check_dist_par()
 
         # Run ExoPlanet verification function.
         self.verify_pln()
@@ -401,7 +558,7 @@ class ReconcilerSession(object):
                 pln_list = os.listdir(cls.input_dir)
 
                 # Read in the content of the NASA archive file.
-                cls.nasa_frame = read_nasa_data(cls.nasa_data_file)
+                cls.nasa_frame = CustomNASA(cls.nasa_data_file, *args)
 
                 # Initialize empty results list.
                 results_list = []
@@ -571,7 +728,7 @@ class ReconcilerSession(object):
         else:
             coord_str = ", ".join([xplanet.name.value, coord_str])
             with open('coords.txt', 'a') as f:
-                f.write((coord_str+"\n"))
+                f.write((coord_str + "\n"))
 
     @NewPlnDecorator.loop_files_not_added
     def find_old_pln(loop_class, xplanet, results_list):
@@ -636,10 +793,17 @@ class ReconcilerSession(object):
         :type results_list:  list
         """
 
-        finished_file = add_simbad_info(xplanet)
-        finished_file = add_nasa_data(finished_file, loop_class.nasa_frame)
-        finished_file.apply_pln_recipe()
-        finished_file.save_to_pln(dir=loop_class.finished_dir, disp=False)
+        # Add Simbad coordinates and magnitude values.
+        xplanet.add_simbad_info()
+
+        # Read the NASA Archive data file and add values from this.
+        nasa_frame = CustomNASA(loop_class.nasa_data_file, xplanet.name.value)
+        if nasa_frame.valid:
+            xplanet.add_nasa_info(nasa_frame)
+
+        # Apply the final .pln recipe and save the file.
+        xplanet.apply_pln_recipe()
+        xplanet.save_to_pln(dir=loop_class.finished_dir, disp=False)
 
 # --------------------
 

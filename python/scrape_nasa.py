@@ -1,4 +1,4 @@
-from Exoplanet import Exoplanet, ExoParameter
+from Exoplanet import ExoPlanet, ExoParameter
 import os
 import pandas as pd
 
@@ -56,7 +56,7 @@ def make_nasa_files(list_to_add, nasa_frame):
     for name in list_to_add:
         match = nasa_frame[(nasa_frame["simple_name"] == name)]
         if len(match.index) == 1:
-            new_planet = Exoplanet()
+            new_planet = ExoPlanet()
             ind = match.index[0]
             row = match.iloc[0]
             new_planet.read_from_nasa(row)
